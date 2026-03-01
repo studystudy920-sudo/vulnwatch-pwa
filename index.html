@@ -3,20 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>VulnWatch - èå¼±æ§æå ±åéãã¼ã«</title>
-  <meta name="description" content="NVDã»JVNã®èå¼±æ§æå ±ãåéããGemini AIã¨ä¼è©±ã§ããPWAãã¼ã«">
+  <title>VulnWatch - Ã¨ÂÂÃ¥Â¼Â±Ã¦ÂÂ§Ã¦ÂÂÃ¥Â Â±Ã¥ÂÂÃ©ÂÂÃ£ÂÂÃ£ÂÂ¼Ã£ÂÂ«</title>
+  <meta name="description" content="NVDÃ£ÂÂ»JVNÃ£ÂÂ®Ã¨ÂÂÃ¥Â¼Â±Ã¦ÂÂ§Ã¦ÂÂÃ¥Â Â±Ã£ÂÂÃ¥ÂÂÃ©ÂÂÃ£ÂÂÃ£ÂÂGemini AIÃ£ÂÂ¨Ã¤Â¼ÂÃ¨Â©Â±Ã£ÂÂ§Ã£ÂÂÃ£ÂÂPWAÃ£ÂÂÃ£ÂÂ¼Ã£ÂÂ«">
   <meta name="theme-color" content="#2563eb">
-  <!-- iOS PWAå¯¾å¿ -->
+  <!-- iOS PWAÃ¥Â¯Â¾Ã¥Â¿Â -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="VulnWatch">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="format-detection" content="telephone=no">
   <!-- Apple Splash Screen -->
-  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect width='180' height='180' rx='40' fill='%232563eb'/><text x='90' y='130' font-size='100' text-anchor='middle'>ð¡ï¸</text></svg>">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect width='180' height='180' rx='40' fill='%232563eb'/><text x='90' y='130' font-size='100' text-anchor='middle'>Ã°ÂÂÂ¡Ã¯Â¸Â</text></svg>">
   <link rel="manifest" href="./manifest.json">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>ð¡ï¸</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>Ã°ÂÂÂ¡Ã¯Â¸Â</text></svg>">
   <style>
-    /* ===== CSSå¤æ°ï¼ãã¼ãã«ã©ã¼ï¼ ===== */
+    /* ===== CSSÃ¥Â¤ÂÃ¦ÂÂ°Ã¯Â¼ÂÃ£ÂÂÃ£ÂÂ¼Ã£ÂÂÃ£ÂÂ«Ã£ÂÂ©Ã£ÂÂ¼Ã¯Â¼Â ===== */
     :root {
       --primary: #2563eb;
       --primary-light: #dbeafe;
@@ -41,7 +41,7 @@
       --radius: 12px;
     }
 
-    /* ===== ãªã»ããã»åºæ¬ã¹ã¿ã¤ã« ===== */
+    /* ===== Ã£ÂÂªÃ£ÂÂ»Ã£ÂÂÃ£ÂÂÃ£ÂÂ»Ã¥ÂÂºÃ¦ÂÂ¬Ã£ÂÂ¹Ã£ÂÂ¿Ã£ÂÂ¤Ã£ÂÂ« ===== */
     * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
     html { height: -webkit-fill-available; }
     body {
@@ -58,7 +58,7 @@
     a { color: var(--primary); text-decoration: none; }
     a:hover { text-decoration: underline; }
 
-    /* ===== ãããã¼ ===== */
+    /* ===== Ã£ÂÂÃ£ÂÂÃ£ÂÂÃ£ÂÂ¼ ===== */
     .header {
       background: linear-gradient(135deg, var(--primary), var(--primary-dark));
       color: white;
@@ -78,7 +78,7 @@
     .header h1 { font-size: 20px; font-weight: 700; }
     .header-sub { font-size: 11px; opacity: 0.85; margin-top: 2px; }
 
-    /* ===== ããã ããã²ã¼ã·ã§ã³ ===== */
+    /* ===== Ã£ÂÂÃ£ÂÂÃ£ÂÂ Ã£ÂÂÃ£ÂÂÃ£ÂÂ²Ã£ÂÂ¼Ã£ÂÂ·Ã£ÂÂ§Ã£ÂÂ³ ===== */
     .bottom-nav {
       position: fixed;
       bottom: 0;
@@ -110,12 +110,12 @@
     .nav-item.active { color: var(--primary); font-weight: 600; }
     .nav-item .nav-icon { font-size: 22px; }
 
-    /* ===== ã¡ã¤ã³ã³ã³ãã³ã ===== */
+    /* ===== Ã£ÂÂ¡Ã£ÂÂ¤Ã£ÂÂ³Ã£ÂÂ³Ã£ÂÂ³Ã£ÂÂÃ£ÂÂ³Ã£ÂÂ ===== */
     .main { max-width: 800px; margin: 0 auto; padding: 16px; }
     .page { display: none; }
     .page.active { display: block; }
 
-    /* ===== ã«ã¼ã ===== */
+    /* ===== Ã£ÂÂ«Ã£ÂÂ¼Ã£ÂÂ ===== */
     .card {
       background: var(--card);
       border-radius: var(--radius);
@@ -133,7 +133,7 @@
       gap: 8px;
     }
 
-    /* ===== æ¤ç´¢ãã¼ ===== */
+    /* ===== Ã¦Â¤ÂÃ§Â´Â¢Ã£ÂÂÃ£ÂÂ¼ ===== */
     .search-bar {
       display: flex;
       gap: 8px;
@@ -152,7 +152,7 @@
     .search-input:focus { border-color: var(--primary); }
     .search-input::placeholder { color: #94a3b8; }
 
-    /* ===== ãã¿ã³ ===== */
+    /* ===== Ã£ÂÂÃ£ÂÂ¿Ã£ÂÂ³ ===== */
     .btn {
       padding: 12px 20px;
       border: none;
@@ -187,7 +187,7 @@
       border-radius: 8px;
     }
 
-    /* ===== æ·±å»åº¦ããã¸ ===== */
+    /* ===== Ã¦Â·Â±Ã¥ÂÂ»Ã¥ÂºÂ¦Ã£ÂÂÃ£ÂÂÃ£ÂÂ¸ ===== */
     .severity {
       display: inline-block;
       padding: 3px 10px;
@@ -202,7 +202,7 @@
     .severity-low { background: var(--low-bg); color: var(--low); }
     .severity-info { background: var(--info-bg); color: var(--info); }
 
-    /* ===== èå¼±æ§ãªã¹ã ===== */
+    /* ===== Ã¨ÂÂÃ¥Â¼Â±Ã¦ÂÂ§Ã£ÂÂªÃ£ÂÂ¹Ã£ÂÂ ===== */
     .vuln-item {
       padding: 14px;
       border: 1px solid var(--border);
@@ -243,7 +243,7 @@
       border-radius: 6px;
     }
 
-    /* ===== çµ±è¨ã«ã¼ã ===== */
+    /* ===== Ã§ÂµÂ±Ã¨Â¨ÂÃ£ÂÂ«Ã£ÂÂ¼Ã£ÂÂ ===== */
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -261,7 +261,7 @@
     .stat-number { font-size: 28px; font-weight: 800; }
     .stat-label { font-size: 12px; color: var(--text-light); margin-top: 4px; }
 
-    /* ===== ãã£ãã ===== */
+    /* ===== Ã£ÂÂÃ£ÂÂ£Ã£ÂÂÃ£ÂÂ ===== */
     .chat-container {
       display: flex;
       flex-direction: column;
@@ -347,7 +347,7 @@
     .chat-send:hover { background: var(--primary-dark); }
     .chat-send:disabled { background: #94a3b8; cursor: not-allowed; }
 
-    /* ===== è¨­å® ===== */
+    /* ===== Ã¨Â¨Â­Ã¥Â®Â ===== */
     .setting-group {
       margin-bottom: 20px;
     }
@@ -375,7 +375,7 @@
     }
     .setting-input:focus { border-color: var(--primary); }
 
-    /* ===== ã­ã¼ãã£ã³ã° ===== */
+    /* ===== Ã£ÂÂ­Ã£ÂÂ¼Ã£ÂÂÃ£ÂÂ£Ã£ÂÂ³Ã£ÂÂ° ===== */
     .loading {
       display: flex;
       align-items: center;
@@ -394,7 +394,7 @@
     }
     @keyframes spin { to { transform: rotate(360deg); } }
 
-    /* ===== ç©ºç¶æ ===== */
+    /* ===== Ã§Â©ÂºÃ§ÂÂ¶Ã¦ÂÂ ===== */
     .empty-state {
       text-align: center;
       padding: 40px 20px;
@@ -403,7 +403,7 @@
     .empty-state .empty-icon { font-size: 48px; margin-bottom: 12px; }
     .empty-state p { font-size: 14px; line-height: 1.6; }
 
-    /* ===== ãã£ã«ã¿ã¼ ===== */
+    /* ===== Ã£ÂÂÃ£ÂÂ£Ã£ÂÂ«Ã£ÂÂ¿Ã£ÂÂ¼ ===== */
     .filter-row {
       display: flex;
       gap: 8px;
@@ -428,7 +428,7 @@
       border-color: var(--primary);
     }
 
-    /* ===== ã¯ã¤ãã¯ãã­ã³ãã ===== */
+    /* ===== Ã£ÂÂ¯Ã£ÂÂ¤Ã£ÂÂÃ£ÂÂ¯Ã£ÂÂÃ£ÂÂ­Ã£ÂÂ³Ã£ÂÂÃ£ÂÂ ===== */
     .quick-prompts {
       display: flex;
       gap: 8px;
@@ -449,7 +449,7 @@
     }
     .quick-prompt:hover { background: var(--primary); color: white; }
 
-    /* ===== è©³ç´°ã¢ã¼ãã« ===== */
+    /* ===== Ã¨Â©Â³Ã§Â´Â°Ã£ÂÂ¢Ã£ÂÂ¼Ã£ÂÂÃ£ÂÂ« ===== */
     .modal-overlay {
       display: none;
       position: fixed;
@@ -491,7 +491,7 @@
     }
     .modal-section p { font-size: 14px; line-height: 1.6; }
 
-    /* ===== ãã¼ã¹ãéç¥ ===== */
+    /* ===== Ã£ÂÂÃ£ÂÂ¼Ã£ÂÂ¹Ã£ÂÂÃ©ÂÂÃ§ÂÂ¥ ===== */
     .toast {
       position: fixed;
       top: 80px;
@@ -509,7 +509,7 @@
     }
     .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-    /* ===== Notionã³ãã¼ãã¿ã³ ===== */
+    /* ===== NotionÃ£ÂÂ³Ã£ÂÂÃ£ÂÂ¼Ã£ÂÂÃ£ÂÂ¿Ã£ÂÂ³ ===== */
     .btn-notion {
       background: #000;
       color: #fff;
@@ -542,7 +542,7 @@
       color: var(--text-light);
     }
 
-    /* ===== ã¬ã¹ãã³ã·ã ===== */
+    /* ===== Ã£ÂÂ¬Ã£ÂÂ¹Ã£ÂÂÃ£ÂÂ³Ã£ÂÂ·Ã£ÂÂ ===== */
     @media (min-width: 600px) {
       .stats-grid { grid-template-columns: repeat(4, 1fr); }
       .main { padding: 24px; }
@@ -551,25 +551,25 @@
 </head>
 <body>
 
-  <!-- ===== ãããã¼ ===== -->
+  <!-- ===== Ã£ÂÂÃ£ÂÂÃ£ÂÂÃ£ÂÂ¼ ===== -->
   <header class="header">
-    <span class="header-icon">ð¡ï¸</span>
+    <span class="header-icon">Ã°ÂÂÂ¡Ã¯Â¸Â</span>
     <div>
       <h1>VulnWatch</h1>
-      <div class="header-sub">èå¼±æ§æå ±åé &amp; AIåæãã¼ã«</div>
+      <div class="header-sub">Ã¨ÂÂÃ¥Â¼Â±Ã¦ÂÂ§Ã¦ÂÂÃ¥Â Â±Ã¥ÂÂÃ©ÂÂ &amp; AIÃ¥ÂÂÃ¦ÂÂÃ£ÂÂÃ£ÂÂ¼Ã£ÂÂ«</div>
     </div>
   </header>
 
-  <!-- ===== ã¡ã¤ã³ã³ã³ãã³ã ===== -->
+  <!-- ===== Ã£ÂÂ¡Ã£ÂÂ¤Ã£ÂÂ³Ã£ÂÂ³Ã£ÂÂ³Ã£ÂÂÃ£ÂÂ³Ã£ÂÂ ===== -->
   <div class="main">
 
-    <!-- ===== ããã·ã¥ãã¼ã ===== -->
+    <!-- ===== Ã£ÂÂÃ£ÂÂÃ£ÂÂ·Ã£ÂÂ¥Ã£ÂÂÃ£ÂÂ¼Ã£ÂÂ ===== -->
     <div id="page-dashboard" class="page active">
       <div class="card" style="padding:12px 16px; margin-bottom:12px; display:flex; justify-content:space-between; align-items:center;">
         <div>
-          <span style="font-size:13px; color:var(--text-light);" id="last-update-text">ð¡ èµ·åæã«èªååå¾ä¸­...</span>
+          <span style="font-size:13px; color:var(--text-light);" id="last-update-text">Ã°ÂÂÂ¡ Ã¨ÂµÂ·Ã¥ÂÂÃ¦ÂÂÃ£ÂÂ«Ã¨ÂÂªÃ¥ÂÂÃ¥ÂÂÃ¥Â¾ÂÃ¤Â¸Â­...</span>
         </div>
-        <button class="btn btn-outline btn-sm" onclick="refreshDashboard()" id="refresh-btn">ð ä»ããæ´æ°</button>
+        <button class="btn btn-outline btn-sm" onclick="refreshDashboard()" id="refresh-btn">Ã°ÂÂÂ Ã¤Â»ÂÃ£ÂÂÃ£ÂÂÃ¦ÂÂ´Ã¦ÂÂ°</button>
       </div>
 
       <div class="stats-grid" id="stats-grid">
@@ -592,43 +592,43 @@
       </div>
 
       <div class="card" style="border-color:#000; border-width:1.5px;">
-        <div class="card-title">ð Notion èå¼±æ§ãã©ãã«ã¼</div>
+        <div class="card-title">Ã°ÂÂÂ Notion Ã¨ÂÂÃ¥Â¼Â±Ã¦ÂÂ§Ã£ÂÂÃ£ÂÂ©Ã£ÂÂÃ£ÂÂ«Ã£ÂÂ¼</div>
         <p style="font-size:14px; line-height:1.6; color:var(--text-light); margin-bottom:12px;">
-          èå¼±æ§ã®æ¤ç´¢çµæããNotionã«ã³ãã¼ããã¿ã³ã§ç°¡åã«Notionã¸è¨é²ã§ãã¾ãã
+          Ã¨ÂÂÃ¥Â¼Â±Ã¦ÂÂ§Ã£ÂÂ®Ã¦Â¤ÂÃ§Â´Â¢Ã§ÂµÂÃ¦ÂÂÃ£ÂÂÃ£ÂÂNotionÃ£ÂÂ«Ã£ÂÂ³Ã£ÂÂÃ£ÂÂ¼Ã£ÂÂÃ£ÂÂÃ£ÂÂ¿Ã£ÂÂ³Ã£ÂÂ§Ã§Â°Â¡Ã¥ÂÂÃ£ÂÂ«NotionÃ£ÂÂ¸Ã¨Â¨ÂÃ©ÂÂ²Ã£ÂÂ§Ã£ÂÂÃ£ÂÂ¾Ã£ÂÂÃ£ÂÂ
         </p>
         <a href="https://www.notion.so/1b9ae28446bc4960872f841ecfadc8de" target="_blank" rel="noopener" class="btn btn-notion" style="font-size:14px; padding:10px 18px;">
-          ð Notionãã¼ã¿ãã¼ã¹ãéã
+          Ã°ÂÂÂ NotionÃ£ÂÂÃ£ÂÂ¼Ã£ÂÂ¿Ã£ÂÂÃ£ÂÂ¼Ã£ÂÂ¹Ã£ÂÂÃ©ÂÂÃ£ÂÂ
         </a>
       </div>
 
       <div class="card">
-        <div class="card-title">ð¥ ææ°ã®éè¦ãªèå¼±æ§</div>
+        <div class="card-title">Ã°ÂÂÂ¥ Ã¦ÂÂÃ¦ÂÂ°Ã£ÂÂ®Ã©ÂÂÃ¨Â¦ÂÃ£ÂÂªÃ¨ÂÂÃ¥Â¼Â±Ã¦ÂÂ§</div>
         <div id="dashboard-recent">
-          <div class="loading"><div class="spinner"></div>èª­ã¿è¾¼ã¿ä¸­...</div>
+          <div class="loading"><div class="spinner"></div>Ã¨ÂªÂ­Ã£ÂÂ¿Ã¨Â¾Â¼Ã£ÂÂ¿Ã¤Â¸Â­...</div>
         </div>
       </div>
 
       <div class="card">
-        <div class="card-title">ð ä½¿ãæ¹ã¬ã¤ã</div>
+        <div class="card-title">Ã°ÂÂÂ Ã¤Â½Â¿Ã£ÂÂÃ¦ÂÂ¹Ã£ÂÂ¬Ã£ÂÂ¤Ã£ÂÂ</div>
         <p style="font-size:14px; line-height:1.8; color:var(--text-light);">
-          <strong>NVDæ¤ç´¢:</strong> ç±³å½ã®èå¼±æ§ãã¼ã¿ãã¼ã¹ããCVEæå ±ãæ¤ç´¢ã§ãã¾ããã­ã¼ã¯ã¼ããå¥åãã¦æ¤ç´¢ãã¦ãã ããã<br>
-          <strong>JVNæ¤ç´¢:</strong> æ¥æ¬èªã®èå¼±æ§æå ±ãJVNããåå¾ãã¾ãã<br>
-          <strong>AIãã£ãã:</strong> Gemini AIã«èå¼±æ§ã«ã¤ãã¦è³ªåã§ãã¾ããè¨­å®ç»é¢ã§APIã­ã¼ãå¥åãã¦ãã ããã<br>
-          <strong>è¨­å®:</strong> Gemini APIã­ã¼ã®è¨­å®ãè¡ãã¾ãã
+          <strong>NVDÃ¦Â¤ÂÃ§Â´Â¢:</strong> Ã§Â±Â³Ã¥ÂÂ½Ã£ÂÂ®Ã¨ÂÂÃ¥Â¼Â±Ã¦ÂÂ§Ã£ÂÂÃ£ÂÂ¼Ã£ÂÂ¿Ã£ÂÂÃ£ÂÂ¼Ã£ÂÂ¹Ã£ÂÂÃ£ÂÂCVEÃ¦ÂÂÃ¥Â Â±Ã£ÂÂÃ¦Â¤ÂÃ§Â´Â¢Ã£ÂÂ§Ã£ÂÂÃ£ÂÂ¾Ã£ÂÂÃ£ÂÂÃ£ÂÂ­Ã£ÂÂ¼Ã£ÂÂ¯Ã£ÂÂ¼Ã£ÂÂÃ£ÂÂÃ¥ÂÂ¥Ã¥ÂÂÃ£ÂÂÃ£ÂÂ¦Ã¦Â¤ÂÃ§Â´Â¢Ã£ÂÂÃ£ÂÂ¦Ã£ÂÂÃ£ÂÂ Ã£ÂÂÃ£ÂÂÃ£ÂÂ<br>
+          <strong>JVNÃ¦Â¤ÂÃ§Â´Â¢:</strong> Ã¦ÂÂ¥Ã¦ÂÂ¬Ã¨ÂªÂÃ£ÂÂ®Ã¨ÂÂÃ¥Â¼Â±Ã¦ÂÂ§Ã¦ÂÂÃ¥Â Â±Ã£ÂÂJVNÃ£ÂÂÃ£ÂÂÃ¥ÂÂÃ¥Â¾ÂÃ£ÂÂÃ£ÂÂ¾Ã£ÂÂÃ£ÂÂ<br>
+          <strong>AIÃ£ÂÂÃ£ÂÂ£Ã£ÂÂÃ£ÂÂ:</strong> Gemini AIÃ£ÂÂ«Ã¨ÂÂÃ¥Â¼Â±Ã¦ÂÂ§Ã£ÂÂ«Ã£ÂÂ¤Ã£ÂÂÃ£ÂÂ¦Ã¨Â³ÂªÃ¥ÂÂÃ£ÂÂ§Ã£ÂÂÃ£ÂÂ¾Ã£ÂÂÃ£ÂÂÃ¨Â¨Â­Ã¥Â®ÂÃ§ÂÂ»Ã©ÂÂ¢Ã£ÂÂ§APIÃ£ÂÂ­Ã£ÂÂ¼Ã£ÂÂÃ¥ÂÂ¥Ã¥ÂÂÃ£ÂÂÃ£ÂÂ¦Ã£ÂÂÃ£ÂÂ Ã£ÂÂÃ£ÂÂÃ£ÂÂ<br>
+          <strong>Ã¨Â¨Â­Ã¥Â®Â:</strong> Gemini APIÃ£ÂÂ­Ã£ÂÂ¼Ã£ÂÂ®Ã¨Â¨Â­Ã¥Â®ÂÃ£ÂÂÃ¨Â¡ÂÃ£ÂÂÃ£ÂÂ¾Ã£ÂÂÃ£ÂÂ
         </p>
       </div>
     </div>
 
-    <!-- ===== NVDæ¤ç´¢ãã¼ã¸ ===== -->
+    <!-- ===== NVDÃ¦Â¤ÂÃ§Â´Â¢Ã£ÂÂÃ£ÂÂ¼Ã£ÂÂ¸ ===== -->
     <div id="page-nvd" class="page">
       <div class="card">
-        <div class="card-title">ð NVD èå¼±æ§æ¤ç´¢</div>
+        <div class="card-title">Ã°ÂÂÂ NVD Ã¨ÂÂÃ¥Â¼Â±Ã¦ÂÂ§Ã¦Â¤ÂÃ§Â´Â¢</div>
         <div class="search-bar">
-          <input type="text" class="search-input" id="nvd-search" placeholder="ã­ã¼ã¯ã¼ããå¥åï¼ä¾: Apache, Windows, Log4jï¼">
-          <button class="btn btn-primary" id="nvd-search-btn" onclick="searchNVD()">æ¤ç´¢</button>
+          <input type="text" class="search-input" id="nvd-search" placeholder="Ã£ÂÂ­Ã£ÂÂ¼Ã£ÂÂ¯Ã£ÂÂ¼Ã£ÂÂÃ£ÂÂÃ¥ÂÂ¥Ã¥ÂÂÃ¯Â¼ÂÃ¤Â¾Â: Apache, Windows, Log4jÃ¯Â¼Â">
+          <button class="btn btn-primary" id="nvd-search-btn" onclick="searchNVD()">Ã¦Â¤ÂÃ§Â´Â¢</button>
         </div>
         <div class="filter-row">
-          <button class="filter-chip active" onclick="setNvdFilter('all', this)">ãã¹ã¦</button>
+          <button class="filter-chip active" onclick="setNvdFilter('all', this)">Ã£ÂÂÃ£ÂÂ¹Ã£ÂÂ¦</button>
           <button class="filter-chip" onclick="setNvdFilter('CRITICAL', this)">Critical</button>
           <button class="filter-chip" onclick="setNvdFilter('HIGH', this)">High</button>
           <button class="filter-chip" onclick="setNvdFilter('MEDIUM', this)">Medium</button>
@@ -636,196 +636,196 @@
         </div>
         <div id="export-bar" style="display:none;">
           <div class="filter-row" style="margin-bottom:0;">
-            <button class="btn btn-outline btn-sm" onclick="exportCSV()">ð CSVã§ä¿å­</button>
-            <button class="btn btn-outline btn-sm" onclick="exportJSON()">ð JSONã§ä¿å­</button>
+            <button class="btn btn-outline btn-sm" onclick="exportCSV()">Ã°ÂÂÂ CSVÃ£ÂÂ§Ã¤Â¿ÂÃ¥Â­Â</button>
+            <button class="btn btn-outline btn-sm" onclick="exportJSON()">Ã°ÂÂÂ JSONÃ£ÂÂ§Ã¤Â¿ÂÃ¥Â­Â</button>
           </div>
         </div>
       </div>
       <div id="nvd-results">
         <div class="empty-state">
-          <div class="empty-icon">ð</div>
-          <p>ã­ã¼ã¯ã¼ããå¥åãã¦èå¼±æ§æå ±ãæ¤ç´¢ãã¦ãã ãã</p>
+          <div class="empty-icon">Ã°ÂÂÂ</div>
+          <p>Ã£ÂÂ­Ã£ÂÂ¼Ã£ÂÂ¯Ã£ÂÂ¼Ã£ÂÂÃ£ÂÂÃ¥ÂÂ¥Ã¥ÂÂÃ£ÂÂÃ£ÂÂ¦Ã¨ÂÂÃ¥Â¼Â±Ã¦ÂÂ§Ã¦ÂÂÃ¥Â Â±Ã£ÂÂÃ¦Â¤ÂÃ§Â´Â¢Ã£ÂÂÃ£ÂÂ¦Ã£ÂÂÃ£ÂÂ Ã£ÂÂÃ£ÂÂ</p>
         </div>
       </div>
     </div>
 
-    <!-- ===== JVNæ¤ç´¢ãã¼ã¸ ===== -->
+    <!-- ===== JVNÃ¦Â¤ÂÃ§Â´Â¢Ã£ÂÂÃ£ÂÂ¼Ã£ÂÂ¸ ===== -->
     <div id="page-jvn" class="page">
       <div class="card">
-        <div class="card-title">ð JVN èå¼±æ§æ¤ç´¢ï¼æ¥æ¬èªï¼</div>
+        <div class="card-title">Ã°ÂÂÂ JVN Ã¨ÂÂÃ¥Â¼Â±Ã¦ÂÂ§Ã¦Â¤ÂÃ§Â´Â¢Ã¯Â¼ÂÃ¦ÂÂ¥Ã¦ÂÂ¬Ã¨ÂªÂÃ¯Â¼Â</div>
         <div class="search-bar">
-          <input type="text" class="search-input" id="jvn-search" placeholder="ã­ã¼ã¯ã¼ããå¥åï¼ä¾: Apache, WordPressï¼">
-          <button class="btn btn-primary" id="jvn-search-btn" onclick="searchJVN()">æ¤ç´¢</button>
+          <input type="text" class="search-input" id="jvn-search" placeholder="Ã£ÂÂ­Ã£ÂÂ¼Ã£ÂÂ¯Ã£ÂÂ¼Ã£ÂÂÃ£ÂÂÃ¥ÂÂ¥Ã¥ÂÂÃ¯Â¼ÂÃ¤Â¾Â: Apache, WordPressÃ¯Â¼Â">
+          <button class="btn btn-primary" id="jvn-search-btn" onclick="searchJVN()">Ã¦Â¤ÂÃ§Â´Â¢</button>
         </div>
       </div>
       <div id="jvn-results">
         <div class="empty-state">
-          <div class="empty-icon">ð</div>
-          <p>ã­ã¼ã¯ã¼ããå¥åãã¦JVNã®èå¼±æ§æå ±ãæ¤ç´¢ãã¦ãã ãã</p>
+          <div class="empty-icon">Ã°ÂÂÂ</div>
+          <p>Ã£ÂÂ­Ã£ÂÂ¼Ã£ÂÂ¯Ã£ÂÂ¼Ã£ÂÂÃ£ÂÂÃ¥ÂÂ¥Ã¥ÂÂÃ£ÂÂÃ£ÂÂ¦JVNÃ£ÂÂ®Ã¨ÂÂÃ¥Â¼Â±Ã¦ÂÂ§Ã¦ÂÂÃ¥Â Â±Ã£ÂÂÃ¦Â¤ÂÃ§Â´Â¢Ã£ÂÂÃ£ÂÂ¦Ã£ÂÂÃ£ÂÂ Ã£ÂÂÃ£ÂÂ</p>
         </div>
       </div>
     </div>
 
-    <!-- ===== AIãã£ãããã¼ã¸ ===== -->
+    <!-- ===== AIÃ£ÂÂÃ£ÂÂ£Ã£ÂÂÃ£ÂÂÃ£ÂÂÃ£ÂÂ¼Ã£ÂÂ¸ ===== -->
     <div id="page-chat" class="page">
       <div class="card" style="padding:0; overflow:hidden;">
         <div class="chat-container">
           <div class="quick-prompts" id="quick-prompts">
-            <button class="quick-prompt" onclick="sendQuickPrompt('ææ°ã®éå¤§ãªèå¼±æ§ã«ã¤ãã¦æãã¦ãã ãã')">ð¥ ææ°ã®éå¤§èå¼±æ§</button>
-            <button class="quick-prompt" onclick="sendQuickPrompt('Log4Shellã®èå¼±æ§ã«ã¤ãã¦åãããããèª¬æãã¦ãã ãã')">ð Log4Shellã¨ã¯</button>
-            <button class="quick-prompt" onclick="sendQuickPrompt('èå¼±æ§ã®CVSSã¹ã³ã¢ã®èª­ã¿æ¹ãæãã¦ãã ãã')">ð CVSSã¹ã³ã¢ã®èª­ã¿æ¹</button>
-            <button class="quick-prompt" onclick="sendQuickPrompt('Webã¢ããªã±ã¼ã·ã§ã³ã®ã»ã­ã¥ãªãã£å¯¾ç­ã®åºæ¬ãæãã¦ãã ãã')">ð Webã»ã­ã¥ãªãã£åºæ¬</button>
+            <button class="quick-prompt" onclick="sendQuickPrompt('Ã¦ÂÂÃ¦ÂÂ°Ã£ÂÂ®Ã©ÂÂÃ¥Â¤Â§Ã£ÂÂªÃ¨ÂÂÃ¥Â¼Â±Ã¦ÂÂ§Ã£ÂÂ«Ã£ÂÂ¤Ã£ÂÂÃ£ÂÂ¦Ã¦ÂÂÃ£ÂÂÃ£ÂÂ¦Ã£ÂÂÃ£ÂÂ Ã£ÂÂÃ£ÂÂ')">Ã°ÂÂÂ¥ Ã¦ÂÂÃ¦ÂÂ°Ã£ÂÂ®Ã©ÂÂÃ¥Â¤Â§Ã¨ÂÂÃ¥Â¼Â±Ã¦ÂÂ§</button>
+            <button class="quick-prompt" onclick="sendQuickPrompt('Log4ShellÃ£ÂÂ®Ã¨ÂÂÃ¥Â¼Â±Ã¦ÂÂ§Ã£ÂÂ«Ã£ÂÂ¤Ã£ÂÂÃ£ÂÂ¦Ã¥ÂÂÃ£ÂÂÃ£ÂÂÃ£ÂÂÃ£ÂÂÃ£ÂÂÃ¨ÂªÂ¬Ã¦ÂÂÃ£ÂÂÃ£ÂÂ¦Ã£ÂÂÃ£ÂÂ Ã£ÂÂÃ£ÂÂ')">Ã°ÂÂÂ Log4ShellÃ£ÂÂ¨Ã£ÂÂ¯</button>
+            <button class="quick-prompt" onclick="sendQuickPrompt('Ã¨ÂÂÃ¥Â¼Â±Ã¦ÂÂ§Ã£ÂÂ®CVSSÃ£ÂÂ¹Ã£ÂÂ³Ã£ÂÂ¢Ã£ÂÂ®Ã¨ÂªÂ­Ã£ÂÂ¿Ã¦ÂÂ¹Ã£ÂÂÃ¦ÂÂÃ£ÂÂÃ£ÂÂ¦Ã£ÂÂÃ£ÂÂ Ã£ÂÂÃ£ÂÂ')">Ã°ÂÂÂ CVSSÃ£ÂÂ¹Ã£ÂÂ³Ã£ÂÂ¢Ã£ÂÂ®Ã¨ÂªÂ­Ã£ÂÂ¿Ã¦ÂÂ¹</button>
+            <button class="quick-prompt" onclick="sendQuickPrompt('WebÃ£ÂÂ¢Ã£ÂÂÃ£ÂÂªÃ£ÂÂ±Ã£ÂÂ¼Ã£ÂÂ·Ã£ÂÂ§Ã£ÂÂ³Ã£ÂÂ®Ã£ÂÂ»Ã£ÂÂ­Ã£ÂÂ¥Ã£ÂÂªÃ£ÂÂÃ£ÂÂ£Ã¥Â¯Â¾Ã§Â­ÂÃ£ÂÂ®Ã¥ÂÂºÃ¦ÂÂ¬Ã£ÂÂÃ¦ÂÂÃ£ÂÂÃ£ÂÂ¦Ã£ÂÂÃ£ÂÂ Ã£ÂÂÃ£ÂÂ')">Ã°ÂÂÂ WebÃ£ÂÂ»Ã£ÂÂ­Ã£ÂÂ¥Ã£ÂÂªÃ£ÂÂÃ£ÂÂ£Ã¥ÂÂºÃ¦ÂÂ¬</button>
           </div>
           <div class="chat-messages" id="chat-messages">
             <div class="chat-bubble system">
-              ð¡ï¸ ã»ã­ã¥ãªãã£AIã¢ã·ã¹ã¿ã³ãã§ããèå¼±æ§ã«ã¤ãã¦è³ªåãã¦ãã ããã<br>
-              <small>â» è¨­å®ç»é¢ã§Gemini APIã­ã¼ãå¥åãã¦ãã ãã</small>
+              Ã°ÂÂÂ¡Ã¯Â¸Â Ã£ÂÂ»Ã£ÂÂ­Ã£ÂÂ¥Ã£ÂÂªÃ£ÂÂÃ£ÂÂ£AIÃ£ÂÂ¢Ã£ÂÂ·Ã£ÂÂ¹Ã£ÂÂ¿Ã£ÂÂ³Ã£ÂÂÃ£ÂÂ§Ã£ÂÂÃ£ÂÂÃ¨ÂÂÃ¥Â¼Â±Ã¦ÂÂ§Ã£ÂÂ«Ã£ÂÂ¤Ã£ÂÂÃ£ÂÂ¦Ã¨Â³ÂªÃ¥ÂÂÃ£ÂÂÃ£ÂÂ¦Ã£ÂÂÃ£ÂÂ Ã£ÂÂÃ£ÂÂÃ£ÂÂ<br>
+              <small>Ã¢ÂÂ» Ã¨Â¨Â­Ã¥Â®ÂÃ§ÂÂ»Ã©ÂÂ¢Ã£ÂÂ§Gemini APIÃ£ÂÂ­Ã£ÂÂ¼Ã£ÂÂÃ¥ÂÂ¥Ã¥ÂÂÃ£ÂÂÃ£ÂÂ¦Ã£ÂÂÃ£ÂÂ Ã£ÂÂÃ£ÂÂ</small>
             </div>
           </div>
           <div class="chat-input-area">
-            <input type="text" class="chat-input" id="chat-input" placeholder="èå¼±æ§ã«ã¤ãã¦è³ªå..." onkeydown="if(event.key==='Enter')sendChat()">
-            <button class="chat-send" onclick="sendChat()" id="chat-send-btn">â¤</button>
+            <input type="text" class="chat-input" id="chat-input" placeholder="Ã¨ÂÂÃ¥Â¼Â±Ã¦ÂÂ§Ã£ÂÂ«Ã£ÂÂ¤Ã£ÂÂÃ£ÂÂ¦Ã¨Â³ÂªÃ¥ÂÂ..." onkeydown="if(event.key==='Enter')sendChat()">
+            <button class="chat-send" onclick="sendChat()" id="chat-send-btn">Ã¢ÂÂ¤</button>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- ===== è¨­å®ãã¼ã¸ ===== -->
+    <!-- ===== Ã¨Â¨Â­Ã¥Â®ÂÃ£ÂÂÃ£ÂÂ¼Ã£ÂÂ¸ ===== -->
     <div id="page-settings" class="page">
       <div class="card">
-        <div class="card-title">âï¸ è¨­å®</div>
+        <div class="card-title">Ã¢ÂÂÃ¯Â¸Â Ã¨Â¨Â­Ã¥Â®Â</div>
 
         <div class="setting-group">
-          <label class="setting-label">Gemini APIã­ã¼</label>
+          <label class="setting-label">Gemini APIÃ£ÂÂ­Ã£ÂÂ¼</label>
           <input type="password" class="setting-input" id="gemini-key" placeholder="AIzaSy...">
           <div style="margin-top:10px; display:flex; align-items:center; gap:8px;">
             <input type="checkbox" id="save-key-checkbox" style="width:18px; height:18px; cursor:pointer;">
-            <label for="save-key-checkbox" style="font-size:13px; cursor:pointer;">ãã©ã¦ã¶ã«ä¿å­ããï¼æ¬¡åããèªåå¥åï¼</label>
+            <label for="save-key-checkbox" style="font-size:13px; cursor:pointer;">Ã£ÂÂÃ£ÂÂ©Ã£ÂÂ¦Ã£ÂÂ¶Ã£ÂÂ«Ã¤Â¿ÂÃ¥Â­ÂÃ£ÂÂÃ£ÂÂÃ¯Â¼ÂÃ¦Â¬Â¡Ã¥ÂÂÃ£ÂÂÃ£ÂÂÃ¨ÂÂªÃ¥ÂÂÃ¥ÂÂ¥Ã¥ÂÂÃ¯Â¼Â</label>
           </div>
           <p class="setting-help">
-            Google AI Studioã§APIã­ã¼ãåå¾ã§ãã¾ã:
+            Google AI StudioÃ£ÂÂ§APIÃ£ÂÂ­Ã£ÂÂ¼Ã£ÂÂÃ¥ÂÂÃ¥Â¾ÂÃ£ÂÂ§Ã£ÂÂÃ£ÂÂ¾Ã£ÂÂ:
             <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">https://aistudio.google.com/apikey</a>
-            <br>â ï¸ ããã©ã¦ã¶ã«ä¿å­ãããªã³ã«ããã¨ããã®ãã©ã¦ã¶ã®localStorageã«ã­ã¼ãä¿å­ããã¾ããå±æPCã§ã¯æ¨å¥¨ãã¾ããã
+            <br>Ã¢ÂÂ Ã¯Â¸Â Ã£ÂÂÃ£ÂÂÃ£ÂÂ©Ã£ÂÂ¦Ã£ÂÂ¶Ã£ÂÂ«Ã¤Â¿ÂÃ¥Â­ÂÃ£ÂÂÃ£ÂÂÃ£ÂÂªÃ£ÂÂ³Ã£ÂÂ«Ã£ÂÂÃ£ÂÂÃ£ÂÂ¨Ã£ÂÂÃ£ÂÂÃ£ÂÂ®Ã£ÂÂÃ£ÂÂ©Ã£ÂÂ¦Ã£ÂÂ¶Ã£ÂÂ®localStorageÃ£ÂÂ«Ã£ÂÂ­Ã£ÂÂ¼Ã£ÂÂÃ¤Â¿ÂÃ¥Â­ÂÃ£ÂÂÃ£ÂÂÃ£ÂÂ¾Ã£ÂÂÃ£ÂÂÃ¥ÂÂ±Ã¦ÂÂPCÃ£ÂÂ§Ã£ÂÂ¯Ã¦ÂÂ¨Ã¥Â¥Â¨Ã£ÂÂÃ£ÂÂ¾Ã£ÂÂÃ£ÂÂÃ£ÂÂ
           </p>
         </div>
 
-        <button class="btn btn-primary" onclick="saveSettings()">ð¾ ä¿å­</button>
-        <button class="btn btn-outline" onclick="clearSavedKey()" style="margin-left:8px;">ðï¸ ä¿å­æ¸ã¿ã­ã¼ãåé¤</button>
+        <button class="btn btn-primary" onclick="saveSettings()">Ã°ÂÂÂ¾ Ã¤Â¿ÂÃ¥Â­Â</button>
+        <button class="btn btn-outline" onclick="clearSavedKey()" style="margin-left:8px;">Ã°ÂÂÂÃ¯Â¸Â Ã¤Â¿ÂÃ¥Â­ÂÃ¦Â¸ÂÃ£ÂÂ¿Ã£ÂÂ­Ã£ÂÂ¼Ã£ÂÂÃ¥ÂÂÃ©ÂÂ¤</button>
         <span id="settings-status" style="margin-left:12px; font-size:14px; color:var(--low);"></span>
       </div>
 
       <div class="card">
-        <div class="card-title">â¹ï¸ ãã®ã¢ããªã«ã¤ãã¦</div>
+        <div class="card-title">Ã¢ÂÂ¹Ã¯Â¸Â Ã£ÂÂÃ£ÂÂ®Ã£ÂÂ¢Ã£ÂÂÃ£ÂÂªÃ£ÂÂ«Ã£ÂÂ¤Ã£ÂÂÃ£ÂÂ¦</div>
         <p style="font-size:14px; line-height:1.8; color:var(--text-light);">
-          <strong>VulnWatch</strong>ã¯èå¼±æ§æå ±ãåéã»åæããããã®PWAï¼Progressive Web Appï¼ã§ãã<br><br>
-          <strong>ãã¼ã¿ã½ã¼ã¹:</strong><br>
-          ã»NVD (National Vulnerability Database) - ç±³å½NISTãæä¾<br>
-          ã»JVN (Japan Vulnerability Notes) - IPAã¨JPCERT/CCãæä¾<br><br>
-          <strong>AIæ©è½:</strong><br>
-          ã»Google Gemini APIãä½¿ç¨ãã¦èå¼±æ§ã«ã¤ãã¦è³ªåã»åæãã§ãã¾ã<br><br>
-          <strong>ãã©ã¤ãã·ã¼:</strong><br>
-          ã»APIã­ã¼ã¯ãµã¼ãã¼ã«éä¿¡ããã¾ããï¼ãã©ã¦ã¶åã§ç´æ¥APIã¨éä¿¡ãã¾ãï¼<br>
-          ã»ãã¼ã¿ã¯ã­ã¼ã«ã«ã®ã¿ã«ä¿æããã¾ã
+          <strong>VulnWatch</strong>Ã£ÂÂ¯Ã¨ÂÂÃ¥Â¼Â±Ã¦ÂÂ§Ã¦ÂÂÃ¥Â Â±Ã£ÂÂÃ¥ÂÂÃ©ÂÂÃ£ÂÂ»Ã¥ÂÂÃ¦ÂÂÃ£ÂÂÃ£ÂÂÃ£ÂÂÃ£ÂÂÃ£ÂÂ®PWAÃ¯Â¼ÂProgressive Web AppÃ¯Â¼ÂÃ£ÂÂ§Ã£ÂÂÃ£ÂÂ<br><br>
+          <strong>Ã£ÂÂÃ£ÂÂ¼Ã£ÂÂ¿Ã£ÂÂ½Ã£ÂÂ¼Ã£ÂÂ¹:</strong><br>
+          Ã£ÂÂ»NVD (National Vulnerability Database) - Ã§Â±Â³Ã¥ÂÂ½NISTÃ£ÂÂÃ¦ÂÂÃ¤Â¾Â<br>
+          Ã£ÂÂ»JVN (Japan Vulnerability Notes) - IPAÃ£ÂÂ¨JPCERT/CCÃ£ÂÂÃ¦ÂÂÃ¤Â¾Â<br><br>
+          <strong>AIÃ¦Â©ÂÃ¨ÂÂ½:</strong><br>
+          Ã£ÂÂ»Google Gemini APIÃ£ÂÂÃ¤Â½Â¿Ã§ÂÂ¨Ã£ÂÂÃ£ÂÂ¦Ã¨ÂÂÃ¥Â¼Â±Ã¦ÂÂ§Ã£ÂÂ«Ã£ÂÂ¤Ã£ÂÂÃ£ÂÂ¦Ã¨Â³ÂªÃ¥ÂÂÃ£ÂÂ»Ã¥ÂÂÃ¦ÂÂÃ£ÂÂÃ£ÂÂ§Ã£ÂÂÃ£ÂÂ¾Ã£ÂÂ<br><br>
+          <strong>Ã£ÂÂÃ£ÂÂ©Ã£ÂÂ¤Ã£ÂÂÃ£ÂÂ·Ã£ÂÂ¼:</strong><br>
+          Ã£ÂÂ»APIÃ£ÂÂ­Ã£ÂÂ¼Ã£ÂÂ¯Ã£ÂÂµÃ£ÂÂ¼Ã£ÂÂÃ£ÂÂ¼Ã£ÂÂ«Ã©ÂÂÃ¤Â¿Â¡Ã£ÂÂÃ£ÂÂÃ£ÂÂ¾Ã£ÂÂÃ£ÂÂÃ¯Â¼ÂÃ£ÂÂÃ£ÂÂ©Ã£ÂÂ¦Ã£ÂÂ¶Ã¥ÂÂÃ£ÂÂ§Ã§ÂÂ´Ã¦ÂÂ¥APIÃ£ÂÂ¨Ã©ÂÂÃ¤Â¿Â¡Ã£ÂÂÃ£ÂÂ¾Ã£ÂÂÃ¯Â¼Â<br>
+          Ã£ÂÂ»Ã£ÂÂÃ£ÂÂ¼Ã£ÂÂ¿Ã£ÂÂ¯Ã£ÂÂ­Ã£ÂÂ¼Ã£ÂÂ«Ã£ÂÂ«Ã£ÂÂ®Ã£ÂÂ¿Ã£ÂÂ«Ã¤Â¿ÂÃ¦ÂÂÃ£ÂÂÃ£ÂÂÃ£ÂÂ¾Ã£ÂÂ
         </p>
       </div>
 
       <div class="card" style="border-color:#000; border-width:1.5px;">
-        <div class="card-title">ð Notioné£æº</div>
+        <div class="card-title">Ã°ÂÂÂ NotionÃ©ÂÂ£Ã¦ÂÂº</div>
         <p style="font-size:14px; line-height:1.8; color:var(--text-light);">
-          èå¼±æ§ãã©ãã«ã¼ãã¼ã¿ãã¼ã¹ãNotionã«ç¨æããã¦ãã¾ãã<br>
-          NVDæ¤ç´¢çµæã®åã¢ã¤ãã ã«ãããðããã¿ã³ã§ãæå ±ãã³ãã¼ãã¦Notionã«è²¼ãä»ãã§ãã¾ãã<br><br>
-          <strong>ä½¿ãæ¹:</strong><br>
-          1. NVDã§èå¼±æ§ãæ¤ç´¢<br>
-          2. ãðããã¿ã³ã¾ãã¯ãå¨ä»¶Notionã«ã³ãã¼ããã¯ãªãã¯<br>
-          3. Notionãã¼ã¿ãã¼ã¹ãéãã¦è²¼ãä»ã
+          Ã¨ÂÂÃ¥Â¼Â±Ã¦ÂÂ§Ã£ÂÂÃ£ÂÂ©Ã£ÂÂÃ£ÂÂ«Ã£ÂÂ¼Ã£ÂÂÃ£ÂÂ¼Ã£ÂÂ¿Ã£ÂÂÃ£ÂÂ¼Ã£ÂÂ¹Ã£ÂÂNotionÃ£ÂÂ«Ã§ÂÂ¨Ã¦ÂÂÃ£ÂÂÃ£ÂÂÃ£ÂÂ¦Ã£ÂÂÃ£ÂÂ¾Ã£ÂÂÃ£ÂÂ<br>
+          NVDÃ¦Â¤ÂÃ§Â´Â¢Ã§ÂµÂÃ¦ÂÂÃ£ÂÂ®Ã¥ÂÂÃ£ÂÂ¢Ã£ÂÂ¤Ã£ÂÂÃ£ÂÂ Ã£ÂÂ«Ã£ÂÂÃ£ÂÂÃ£ÂÂÃ°ÂÂÂÃ£ÂÂÃ£ÂÂÃ£ÂÂ¿Ã£ÂÂ³Ã£ÂÂ§Ã£ÂÂÃ¦ÂÂÃ¥Â Â±Ã£ÂÂÃ£ÂÂ³Ã£ÂÂÃ£ÂÂ¼Ã£ÂÂÃ£ÂÂ¦NotionÃ£ÂÂ«Ã¨Â²Â¼Ã£ÂÂÃ¤Â»ÂÃ£ÂÂÃ£ÂÂ§Ã£ÂÂÃ£ÂÂ¾Ã£ÂÂÃ£ÂÂ<br><br>
+          <strong>Ã¤Â½Â¿Ã£ÂÂÃ¦ÂÂ¹:</strong><br>
+          1. NVDÃ£ÂÂ§Ã¨ÂÂÃ¥Â¼Â±Ã¦ÂÂ§Ã£ÂÂÃ¦Â¤ÂÃ§Â´Â¢<br>
+          2. Ã£ÂÂÃ°ÂÂÂÃ£ÂÂÃ£ÂÂÃ£ÂÂ¿Ã£ÂÂ³Ã£ÂÂ¾Ã£ÂÂÃ£ÂÂ¯Ã£ÂÂÃ¥ÂÂ¨Ã¤Â»Â¶NotionÃ£ÂÂ«Ã£ÂÂ³Ã£ÂÂÃ£ÂÂ¼Ã£ÂÂÃ£ÂÂÃ£ÂÂ¯Ã£ÂÂªÃ£ÂÂÃ£ÂÂ¯<br>
+          3. NotionÃ£ÂÂÃ£ÂÂ¼Ã£ÂÂ¿Ã£ÂÂÃ£ÂÂ¼Ã£ÂÂ¹Ã£ÂÂÃ©ÂÂÃ£ÂÂÃ£ÂÂ¦Ã¨Â²Â¼Ã£ÂÂÃ¤Â»ÂÃ£ÂÂ
         </p>
         <a href="https://www.notion.so/1b9ae28446bc4960872f841ecfadc8de" target="_blank" rel="noopener" class="btn-notion" style="margin-top:12px; font-size:14px; padding:10px 18px; display:inline-flex;">
-          ð Notionãã¼ã¿ãã¼ã¹ãéã
+          Ã°ÂÂÂ NotionÃ£ÂÂÃ£ÂÂ¼Ã£ÂÂ¿Ã£ÂÂÃ£ÂÂ¼Ã£ÂÂ¹Ã£ÂÂÃ©ÂÂÃ£ÂÂ
         </a>
       </div>
 
       <div class="card">
-        <div class="card-title">ð ã¢ããªã®æ´æ°</div>
+        <div class="card-title">Ã°ÂÂÂ Ã£ÂÂ¢Ã£ÂÂÃ£ÂÂªÃ£ÂÂ®Ã¦ÂÂ´Ã¦ÂÂ°</div>
         <p style="font-size:14px; line-height:1.8; color:var(--text-light); margin-bottom:12px;">
-          ã¢ããªãæ­£ããåä½ããªãå ´åããææ°çã«æ´æ°ãããå ´åã«ãä½¿ããã ããã<br>
-          ã­ã£ãã·ã¥ãã¯ãªã¢ãã¦ææ°ã®ãã¼ã¿ãååå¾ãã¾ãã
+          Ã£ÂÂ¢Ã£ÂÂÃ£ÂÂªÃ£ÂÂÃ¦Â­Â£Ã£ÂÂÃ£ÂÂÃ¥ÂÂÃ¤Â½ÂÃ£ÂÂÃ£ÂÂªÃ£ÂÂÃ¥Â Â´Ã¥ÂÂÃ£ÂÂÃ£ÂÂÃ¦ÂÂÃ¦ÂÂ°Ã§ÂÂÃ£ÂÂ«Ã¦ÂÂ´Ã¦ÂÂ°Ã£ÂÂÃ£ÂÂÃ£ÂÂÃ¥Â Â´Ã¥ÂÂÃ£ÂÂ«Ã£ÂÂÃ¤Â½Â¿Ã£ÂÂÃ£ÂÂÃ£ÂÂ Ã£ÂÂÃ£ÂÂÃ£ÂÂ<br>
+          Ã£ÂÂ­Ã£ÂÂ£Ã£ÂÂÃ£ÂÂ·Ã£ÂÂ¥Ã£ÂÂÃ£ÂÂ¯Ã£ÂÂªÃ£ÂÂ¢Ã£ÂÂÃ£ÂÂ¦Ã¦ÂÂÃ¦ÂÂ°Ã£ÂÂ®Ã£ÂÂÃ£ÂÂ¼Ã£ÂÂ¿Ã£ÂÂÃ¥ÂÂÃ¥ÂÂÃ¥Â¾ÂÃ£ÂÂÃ£ÂÂ¾Ã£ÂÂÃ£ÂÂ
         </p>
-        <button class="btn btn-primary" id="update-btn" onclick="updateApp()">ð ã¢ããªãæ´æ°ãã</button>
+        <button class="btn btn-primary" id="update-btn" onclick="updateApp()">Ã°ÂÂÂ Ã£ÂÂ¢Ã£ÂÂÃ£ÂÂªÃ£ÂÂÃ¦ÂÂ´Ã¦ÂÂ°Ã£ÂÂÃ£ÂÂ</button>
         <span id="update-status" style="margin-left:12px; font-size:14px;"></span>
       </div>
 
       <div class="card">
-        <div class="card-title">ð± PWAã¨ãã¦ã¤ã³ã¹ãã¼ã«</div>
+        <div class="card-title">Ã°ÂÂÂ± PWAÃ£ÂÂ¨Ã£ÂÂÃ£ÂÂ¦Ã£ÂÂ¤Ã£ÂÂ³Ã£ÂÂ¹Ã£ÂÂÃ£ÂÂ¼Ã£ÂÂ«</div>
         <p style="font-size:14px; line-height:1.8; color:var(--text-light);">
-          ãã®ã¢ããªã¯Webãµã¼ãã¼ã«ãã¹ãããã¨ãã¹ãããPCã«ã¤ã³ã¹ãã¼ã«ã§ããPWAã«ãªãã¾ãã<br><br>
-          <strong>ð Netlifyã§å¬éï¼ä¸çªç°¡åï¼:</strong><br>
-          1. <a href="https://app.netlify.com/drop" target="_blank" rel="noopener">Netlify Drop</a> ãéã<br>
-          2. vulnwatch-pwaãã©ã«ãããã©ãã°ï¼ãã­ãã<br>
-          3. æ°ç§ã§å¬éå®äºï¼URLãçºè¡ããã¾ã<br><br>
-          <strong>ð GitHub Pagesã§å¬é:</strong><br>
-          1. GitHubã«ãªãã¸ããªãä½æ<br>
-          2. vulnwatch-pwaãã©ã«ãã®ä¸­èº«ãã¢ããã­ã¼ã<br>
-          3. Settings â Pages â Source: main â Save<br>
-          4. æ°åå¾ã«URLãçºè¡ããã¾ã<br><br>
-          <strong>ð² ã¹ããã«ã¤ã³ã¹ãã¼ã«:</strong><br>
-          å¬éå¾ããã©ã¦ã¶ã§éãã¦ããã¼ã ç»é¢ã«è¿½å ããé¸æ
+          Ã£ÂÂÃ£ÂÂ®Ã£ÂÂ¢Ã£ÂÂÃ£ÂÂªÃ£ÂÂ¯WebÃ£ÂÂµÃ£ÂÂ¼Ã£ÂÂÃ£ÂÂ¼Ã£ÂÂ«Ã£ÂÂÃ£ÂÂ¹Ã£ÂÂÃ£ÂÂÃ£ÂÂÃ£ÂÂ¨Ã£ÂÂÃ£ÂÂ¹Ã£ÂÂÃ£ÂÂÃ£ÂÂPCÃ£ÂÂ«Ã£ÂÂ¤Ã£ÂÂ³Ã£ÂÂ¹Ã£ÂÂÃ£ÂÂ¼Ã£ÂÂ«Ã£ÂÂ§Ã£ÂÂÃ£ÂÂPWAÃ£ÂÂ«Ã£ÂÂªÃ£ÂÂÃ£ÂÂ¾Ã£ÂÂÃ£ÂÂ<br><br>
+          <strong>Ã°ÂÂÂ NetlifyÃ£ÂÂ§Ã¥ÂÂ¬Ã©ÂÂÃ¯Â¼ÂÃ¤Â¸ÂÃ§ÂÂªÃ§Â°Â¡Ã¥ÂÂÃ¯Â¼Â:</strong><br>
+          1. <a href="https://app.netlify.com/drop" target="_blank" rel="noopener">Netlify Drop</a> Ã£ÂÂÃ©ÂÂÃ£ÂÂ<br>
+          2. vulnwatch-pwaÃ£ÂÂÃ£ÂÂ©Ã£ÂÂ«Ã£ÂÂÃ£ÂÂÃ£ÂÂÃ£ÂÂ©Ã£ÂÂÃ£ÂÂ°Ã¯Â¼ÂÃ£ÂÂÃ£ÂÂ­Ã£ÂÂÃ£ÂÂ<br>
+          3. Ã¦ÂÂ°Ã§Â§ÂÃ£ÂÂ§Ã¥ÂÂ¬Ã©ÂÂÃ¥Â®ÂÃ¤ÂºÂÃ¯Â¼ÂURLÃ£ÂÂÃ§ÂÂºÃ¨Â¡ÂÃ£ÂÂÃ£ÂÂÃ£ÂÂ¾Ã£ÂÂ<br><br>
+          <strong>Ã°ÂÂÂ GitHub PagesÃ£ÂÂ§Ã¥ÂÂ¬Ã©ÂÂ:</strong><br>
+          1. GitHubÃ£ÂÂ«Ã£ÂÂªÃ£ÂÂÃ£ÂÂ¸Ã£ÂÂÃ£ÂÂªÃ£ÂÂÃ¤Â½ÂÃ¦ÂÂ<br>
+          2. vulnwatch-pwaÃ£ÂÂÃ£ÂÂ©Ã£ÂÂ«Ã£ÂÂÃ£ÂÂ®Ã¤Â¸Â­Ã¨ÂºÂ«Ã£ÂÂÃ£ÂÂ¢Ã£ÂÂÃ£ÂÂÃ£ÂÂ­Ã£ÂÂ¼Ã£ÂÂ<br>
+          3. Settings Ã¢ÂÂ Pages Ã¢ÂÂ Source: main Ã¢ÂÂ Save<br>
+          4. Ã¦ÂÂ°Ã¥ÂÂÃ¥Â¾ÂÃ£ÂÂ«URLÃ£ÂÂÃ§ÂÂºÃ¨Â¡ÂÃ£ÂÂÃ£ÂÂÃ£ÂÂ¾Ã£ÂÂ<br><br>
+          <strong>Ã°ÂÂÂ² Ã£ÂÂ¹Ã£ÂÂÃ£ÂÂÃ£ÂÂ«Ã£ÂÂ¤Ã£ÂÂ³Ã£ÂÂ¹Ã£ÂÂÃ£ÂÂ¼Ã£ÂÂ«:</strong><br>
+          Ã¥ÂÂ¬Ã©ÂÂÃ¥Â¾ÂÃ£ÂÂÃ£ÂÂÃ£ÂÂ©Ã£ÂÂ¦Ã£ÂÂ¶Ã£ÂÂ§Ã©ÂÂÃ£ÂÂÃ£ÂÂ¦Ã£ÂÂÃ£ÂÂÃ£ÂÂ¼Ã£ÂÂ Ã§ÂÂ»Ã©ÂÂ¢Ã£ÂÂ«Ã¨Â¿Â½Ã¥ÂÂ Ã£ÂÂÃ£ÂÂÃ©ÂÂ¸Ã¦ÂÂ
         </p>
       </div>
     </div>
   </div>
 
-  <!-- ===== è©³ç´°ã¢ã¼ãã« ===== -->
+  <!-- ===== Ã¨Â©Â³Ã§Â´Â°Ã£ÂÂ¢Ã£ÂÂ¼Ã£ÂÂÃ£ÂÂ« ===== -->
   <div class="modal-overlay" id="modal-overlay" onclick="if(event.target===this)closeModal()">
     <div class="modal">
-      <button class="modal-close" onclick="closeModal()">â</button>
+      <button class="modal-close" onclick="closeModal()">Ã¢ÂÂ</button>
       <h2 id="modal-title"></h2>
       <div id="modal-content"></div>
     </div>
   </div>
 
-  <!-- ===== ãã¼ã¹ãéç¥ ===== -->
+  <!-- ===== Ã£ÂÂÃ£ÂÂ¼Ã£ÂÂ¹Ã£ÂÂÃ©ÂÂÃ§ÂÂ¥ ===== -->
   <div class="toast" id="toast"></div>
 
-  <!-- ===== ããã ãã ===== -->
+  <!-- ===== Ã£ÂÂÃ£ÂÂÃ£ÂÂ Ã£ÂÂÃ£ÂÂ ===== -->
   <nav class="bottom-nav">
     <button class="nav-item active" onclick="switchPage('dashboard', this)">
-      <span class="nav-icon">ð </span>ãã¼ã 
+      <span class="nav-icon">Ã°ÂÂÂ </span>Ã£ÂÂÃ£ÂÂ¼Ã£ÂÂ 
     </button>
     <button class="nav-item" onclick="switchPage('nvd', this)">
-      <span class="nav-icon">ð</span>NVD
+      <span class="nav-icon">Ã°ÂÂÂ</span>NVD
     </button>
     <button class="nav-item" onclick="switchPage('jvn', this)">
-      <span class="nav-icon">ð¯ðµ</span>JVN
+      <span class="nav-icon">Ã°ÂÂÂ¯Ã°ÂÂÂµ</span>JVN
     </button>
     <button class="nav-item" onclick="switchPage('chat', this)">
-      <span class="nav-icon">ð¬</span>AIãã£ãã
+      <span class="nav-icon">Ã°ÂÂÂ¬</span>AIÃ£ÂÂÃ£ÂÂ£Ã£ÂÂÃ£ÂÂ
     </button>
     <button class="nav-item" onclick="switchPage('settings', this)">
-      <span class="nav-icon">âï¸</span>è¨­å®
+      <span class="nav-icon">Ã¢ÂÂÃ¯Â¸Â</span>Ã¨Â¨Â­Ã¥Â®Â
     </button>
   </nav>
 
   <script>
-    // ===== ã°ã­ã¼ãã«å¤æ° =====
-    let geminiApiKey = '';          // Gemini APIã­ã¼ï¼ã¡ã¢ãªåã®ã¿ï¼
-    let chatHistory = [];           // ãã£ããå±¥æ­´
-    let nvdCache = [];              // NVDæ¤ç´¢çµæã­ã£ãã·ã¥
-    let currentNvdFilter = 'all';   // NVDãã£ã«ã¿ã¼ç¶æ
+    // ===== Ã£ÂÂ°Ã£ÂÂ­Ã£ÂÂ¼Ã£ÂÂÃ£ÂÂ«Ã¥Â¤ÂÃ¦ÂÂ° =====
+    let geminiApiKey = '';          // Gemini APIÃ£ÂÂ­Ã£ÂÂ¼Ã¯Â¼ÂÃ£ÂÂ¡Ã£ÂÂ¢Ã£ÂÂªÃ¥ÂÂÃ£ÂÂ®Ã£ÂÂ¿Ã¯Â¼Â
+    let chatHistory = [];           // Ã£ÂÂÃ£ÂÂ£Ã£ÂÂÃ£ÂÂÃ¥Â±Â¥Ã¦Â­Â´
+    let nvdCache = [];              // NVDÃ¦Â¤ÂÃ§Â´Â¢Ã§ÂµÂÃ¦ÂÂÃ£ÂÂ­Ã£ÂÂ£Ã£ÂÂÃ£ÂÂ·Ã£ÂÂ¥
+    let currentNvdFilter = 'all';   // NVDÃ£ÂÂÃ£ÂÂ£Ã£ÂÂ«Ã£ÂÂ¿Ã£ÂÂ¼Ã§ÂÂ¶Ã¦ÂÂ
 
-    // ===== ãã¼ã¸åãæ¿ã =====
+    // ===== Ã£ÂÂÃ£ÂÂ¼Ã£ÂÂ¸Ã¥ÂÂÃ£ÂÂÃ¦ÂÂ¿Ã£ÂÂ =====
     function switchPage(pageId, navEl) {
-      // å¨ãã¼ã¸ãéè¡¨ç¤º
+      // Ã¥ÂÂ¨Ã£ÂÂÃ£ÂÂ¼Ã£ÂÂ¸Ã£ÂÂÃ©ÂÂÃ¨Â¡Â¨Ã§Â¤Âº
       document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-      // å¨ããã¢ã¤ãã ãéã¢ã¯ãã£ã
+      // Ã¥ÂÂ¨Ã£ÂÂÃ£ÂÂÃ£ÂÂ¢Ã£ÂÂ¤Ã£ÂÂÃ£ÂÂ Ã£ÂÂÃ©ÂÂÃ£ÂÂ¢Ã£ÂÂ¯Ã£ÂÂÃ£ÂÂ£Ã£ÂÂ
       document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-      // æå®ãã¼ã¸ãè¡¨ç¤º
+      // Ã¦ÂÂÃ¥Â®ÂÃ£ÂÂÃ£ÂÂ¼Ã£ÂÂ¸Ã£ÂÂÃ¨Â¡Â¨Ã§Â¤Âº
       document.getElementById('page-' + pageId).classList.add('active');
       if (navEl) navEl.classList.add('active');
-      // ãã¼ã¸ãããã¸ã¹ã¯ã­ã¼ã«
+      // Ã£ÂÂÃ£ÂÂ¼Ã£ÂÂ¸Ã£ÂÂÃ£ÂÂÃ£ÂÂÃ£ÂÂ¸Ã£ÂÂ¹Ã£ÂÂ¯Ã£ÂÂ­Ã£ÂÂ¼Ã£ÂÂ«
       window.scrollTo(0, 0);
     }
 
-    // ===== ãã¼ã¹ãéç¥ =====
+    // ===== Ã£ÂÂÃ£ÂÂ¼Ã£ÂÂ¹Ã£ÂÂÃ©ÂÂÃ§ÂÂ¥ =====
     function showToast(message) {
       const toast = document.getElementById('toast');
       toast.textContent = message;
@@ -833,7 +833,7 @@
       setTimeout(() => toast.classList.remove('show'), 3000);
     }
 
-    // ===== ã¢ã¼ãã« =====
+    // ===== Ã£ÂÂ¢Ã£ÂÂ¼Ã£ÂÂÃ£ÂÂ« =====
     function openModal(title, content) {
       document.getElementById('modal-title').textContent = title;
       document.getElementById('modal-content').innerHTML = content;
@@ -843,7 +843,7 @@
       document.getElementById('modal-overlay').classList.remove('active');
     }
 
-    // ===== è¨­å®ã®ä¿å­ï¼localStorageæ°¸ç¶åå¯¾å¿ï¼ =====
+    // ===== Ã¨Â¨Â­Ã¥Â®ÂÃ£ÂÂ®Ã¤Â¿ÂÃ¥Â­ÂÃ¯Â¼ÂlocalStorageÃ¦Â°Â¸Ã§Â¶ÂÃ¥ÂÂÃ¥Â¯Â¾Ã¥Â¿ÂÃ¯Â¼Â =====
     function saveSettings() {
       geminiApiKey = document.getElementById('gemini-key').value.trim();
       const shouldSave = document.getElementById('save-key-checkbox').checked;
@@ -854,24 +854,24 @@
         } else {
           try { localStorage.removeItem('vw_gemini_key'); } catch(e) {}
         }
-        document.getElementById('settings-status').textContent = 'â ä¿å­ãã¾ãã';
-        showToast(shouldSave ? 'APIã­ã¼ããã©ã¦ã¶ã«ä¿å­ãã¾ãã' : 'APIã­ã¼ãè¨­å®ãã¾ããï¼ã»ãã·ã§ã³ä¸­ã®ã¿ï¼');
+        document.getElementById('settings-status').textContent = 'Ã¢ÂÂ Ã¤Â¿ÂÃ¥Â­ÂÃ£ÂÂÃ£ÂÂ¾Ã£ÂÂÃ£ÂÂ';
+        showToast(shouldSave ? 'APIÃ£ÂÂ­Ã£ÂÂ¼Ã£ÂÂÃ£ÂÂÃ£ÂÂ©Ã£ÂÂ¦Ã£ÂÂ¶Ã£ÂÂ«Ã¤Â¿ÂÃ¥Â­ÂÃ£ÂÂÃ£ÂÂ¾Ã£ÂÂÃ£ÂÂ' : 'APIÃ£ÂÂ­Ã£ÂÂ¼Ã£ÂÂÃ¨Â¨Â­Ã¥Â®ÂÃ£ÂÂÃ£ÂÂ¾Ã£ÂÂÃ£ÂÂÃ¯Â¼ÂÃ£ÂÂ»Ã£ÂÂÃ£ÂÂ·Ã£ÂÂ§Ã£ÂÂ³Ã¤Â¸Â­Ã£ÂÂ®Ã£ÂÂ¿Ã¯Â¼Â');
       } else {
-        document.getElementById('settings-status').textContent = 'â ï¸ ã­ã¼ãç©ºã§ã';
+        document.getElementById('settings-status').textContent = 'Ã¢ÂÂ Ã¯Â¸Â Ã£ÂÂ­Ã£ÂÂ¼Ã£ÂÂÃ§Â©ÂºÃ£ÂÂ§Ã£ÂÂ';
       }
       setTimeout(() => { document.getElementById('settings-status').textContent = ''; }, 3000);
     }
 
-    // ä¿å­æ¸ã¿ã­ã¼ã®åé¤
+    // Ã¤Â¿ÂÃ¥Â­ÂÃ¦Â¸ÂÃ£ÂÂ¿Ã£ÂÂ­Ã£ÂÂ¼Ã£ÂÂ®Ã¥ÂÂÃ©ÂÂ¤
     function clearSavedKey() {
       try { localStorage.removeItem('vw_gemini_key'); } catch(e) {}
       geminiApiKey = '';
       document.getElementById('gemini-key').value = '';
       document.getElementById('save-key-checkbox').checked = false;
-      showToast('ä¿å­æ¸ã¿APIã­ã¼ãåé¤ãã¾ãã');
+      showToast('Ã¤Â¿ÂÃ¥Â­ÂÃ¦Â¸ÂÃ£ÂÂ¿APIÃ£ÂÂ­Ã£ÂÂ¼Ã£ÂÂÃ¥ÂÂÃ©ÂÂ¤Ã£ÂÂÃ£ÂÂ¾Ã£ÂÂÃ£ÂÂ');
     }
 
-    // èµ·åæã«localStorageããã­ã¼ãå¾©å
+    // Ã¨ÂµÂ·Ã¥ÂÂÃ¦ÂÂÃ£ÂÂ«localStorageÃ£ÂÂÃ£ÂÂÃ£ÂÂ­Ã£ÂÂ¼Ã£ÂÂÃ¥Â¾Â©Ã¥ÂÂ
     function loadSavedKey() {
       try {
         const saved = localStorage.getItem('vw_gemini_key');
@@ -884,25 +884,25 @@
     }
 
     // ============================================================
-    //  NVD API æ¤ç´¢
+    //  NVD API Ã¦Â¤ÂÃ§Â´Â¢
     // ============================================================
     async function searchNVD() {
       const keyword = document.getElementById('nvd-search').value.trim();
       if (!keyword) {
-        showToast('ã­ã¼ã¯ã¼ããå¥åãã¦ãã ãã');
+        showToast('Ã£ÂÂ­Ã£ÂÂ¼Ã£ÂÂ¯Ã£ÂÂ¼Ã£ÂÂÃ£ÂÂÃ¥ÂÂ¥Ã¥ÂÂÃ£ÂÂÃ£ÂÂ¦Ã£ÂÂÃ£ÂÂ Ã£ÂÂÃ£ÂÂ');
         return;
       }
 
       const resultsDiv = document.getElementById('nvd-results');
-      resultsDiv.innerHTML = '<div class="loading"><div class="spinner"></div>NVDãæ¤ç´¢ä¸­...</div>';
+      resultsDiv.innerHTML = '<div class="loading"><div class="spinner"></div>NVDÃ£ÂÂÃ¦Â¤ÂÃ§Â´Â¢Ã¤Â¸Â­...</div>';
 
       try {
-        // NVD API v2.0 ãå¼ã³åºã
+        // NVD API v2.0 Ã£ÂÂÃ¥ÂÂ¼Ã£ÂÂ³Ã¥ÂÂºÃ£ÂÂ
         const url = `https://services.nvd.nist.gov/rest/json/cves/2.0?keywordSearch=${encodeURIComponent(keyword)}&resultsPerPage=20`;
         const response = await fetch(url);
 
         if (!response.ok) {
-          throw new Error(`APIã¨ã©ã¼: ${response.status}`);
+          throw new Error(`APIÃ£ÂÂ¨Ã£ÂÂ©Ã£ÂÂ¼: ${response.status}`);
         }
 
         const data = await response.json();
@@ -911,8 +911,8 @@
         if (nvdCache.length === 0) {
           resultsDiv.innerHTML = `
             <div class="empty-state">
-              <div class="empty-icon">ð</div>
-              <p>ã${escapeHtml(keyword)}ãã«ä¸è´ããèå¼±æ§ã¯è¦ã¤ããã¾ããã§ãã</p>
+              <div class="empty-icon">Ã°ÂÂÂ</div>
+              <p>Ã£ÂÂ${escapeHtml(keyword)}Ã£ÂÂÃ£ÂÂ«Ã¤Â¸ÂÃ¨ÂÂ´Ã£ÂÂÃ£ÂÂÃ¨ÂÂÃ¥Â¼Â±Ã¦ÂÂ§Ã£ÂÂ¯Ã¨Â¦ÂÃ£ÂÂ¤Ã£ÂÂÃ£ÂÂÃ£ÂÂ¾Ã£ÂÂÃ£ÂÂÃ£ÂÂ§Ã£ÂÂÃ£ÂÂ</p>
             </div>`;
           return;
         }
@@ -922,17 +922,17 @@
       } catch (error) {
         resultsDiv.innerHTML = `
           <div class="card" style="border-color:var(--critical);">
-            <div class="card-title" style="color:var(--critical);">â ã¨ã©ã¼ãçºçãã¾ãã</div>
+            <div class="card-title" style="color:var(--critical);">Ã¢ÂÂ Ã£ÂÂ¨Ã£ÂÂ©Ã£ÂÂ¼Ã£ÂÂÃ§ÂÂºÃ§ÂÂÃ£ÂÂÃ£ÂÂ¾Ã£ÂÂÃ£ÂÂ</div>
             <p style="font-size:14px;">${escapeHtml(error.message)}</p>
             <p style="font-size:13px; color:var(--text-light); margin-top:8px;">
-              NVD APIã¯ã¬ã¼ãå¶éãããã¾ãï¼30ç§ããã5ãªã¯ã¨ã¹ãï¼ã<br>
-              å°ãå¾ã£ã¦ããåè©¦è¡ãã¦ãã ããã
+              NVD APIÃ£ÂÂ¯Ã£ÂÂ¬Ã£ÂÂ¼Ã£ÂÂÃ¥ÂÂ¶Ã©ÂÂÃ£ÂÂÃ£ÂÂÃ£ÂÂÃ£ÂÂ¾Ã£ÂÂÃ¯Â¼Â30Ã§Â§ÂÃ£ÂÂÃ£ÂÂÃ£ÂÂ5Ã£ÂÂªÃ£ÂÂ¯Ã£ÂÂ¨Ã£ÂÂ¹Ã£ÂÂÃ¯Â¼ÂÃ£ÂÂ<br>
+              Ã¥Â°ÂÃ£ÂÂÃ¥Â¾ÂÃ£ÂÂ£Ã£ÂÂ¦Ã£ÂÂÃ£ÂÂÃ¥ÂÂÃ¨Â©Â¦Ã¨Â¡ÂÃ£ÂÂÃ£ÂÂ¦Ã£ÂÂÃ£ÂÂ Ã£ÂÂÃ£ÂÂÃ£ÂÂ
             </p>
           </div>`;
       }
     }
 
-    // NVDçµæã®æç»
+    // NVDÃ§ÂµÂÃ¦ÂÂÃ£ÂÂ®Ã¦ÂÂÃ§ÂÂ»
     function renderNvdResults() {
       const resultsDiv = document.getElementById('nvd-results');
       let filtered = nvdCache;
@@ -947,65 +947,65 @@
       if (filtered.length === 0) {
         resultsDiv.innerHTML = `
           <div class="empty-state">
-            <div class="empty-icon">ð</div>
-            <p>ãã®ãã£ã«ã¿ã¼ã«ä¸è´ããçµæã¯ããã¾ãã</p>
+            <div class="empty-icon">Ã°ÂÂÂ</div>
+            <p>Ã£ÂÂÃ£ÂÂ®Ã£ÂÂÃ£ÂÂ£Ã£ÂÂ«Ã£ÂÂ¿Ã£ÂÂ¼Ã£ÂÂ«Ã¤Â¸ÂÃ¨ÂÂ´Ã£ÂÂÃ£ÂÂÃ§ÂµÂÃ¦ÂÂÃ£ÂÂ¯Ã£ÂÂÃ£ÂÂÃ£ÂÂ¾Ã£ÂÂÃ£ÂÂ</p>
           </div>`;
         return;
       }
 
       resultsDiv.innerHTML = `
         <div class="notion-bar">
-          <span class="notion-bar-text">${nvdCache.length}ä»¶ä¸­ ${filtered.length}ä»¶ãè¡¨ç¤º</span>
-          <button class="btn-notion" onclick="copyAllToNotion(event)">ð å¨ä»¶Notionã«ã³ãã¼</button>
+          <span class="notion-bar-text">${nvdCache.length}Ã¤Â»Â¶Ã¤Â¸Â­ ${filtered.length}Ã¤Â»Â¶Ã£ÂÂÃ¨Â¡Â¨Ã§Â¤Âº</span>
+          <button class="btn-notion" onclick="copyAllToNotion(event)">Ã°ÂÂÂ Ã¥ÂÂ¨Ã¤Â»Â¶NotionÃ£ÂÂ«Ã£ÂÂ³Ã£ÂÂÃ£ÂÂ¼</button>
         </div>` +
         filtered.map(v => renderNvdItem(v.cve)).join('');
 
-      // ã¨ã¯ã¹ãã¼ããã¼ãè¡¨ç¤º
+      // Ã£ÂÂ¨Ã£ÂÂ¯Ã£ÂÂ¹Ã£ÂÂÃ£ÂÂ¼Ã£ÂÂÃ£ÂÂÃ£ÂÂ¼Ã£ÂÂÃ¨Â¡Â¨Ã§Â¤Âº
       document.getElementById('export-bar').style.display = 'block';
     }
 
-    // NVDã¢ã¤ãã ã®HTMLçæ
+    // NVDÃ£ÂÂ¢Ã£ÂÂ¤Ã£ÂÂÃ£ÂÂ Ã£ÂÂ®HTMLÃ§ÂÂÃ¦ÂÂ
     function renderNvdItem(cve) {
       const id = cve.id;
       const desc = getEnglishDesc(cve);
       const severity = getNvdSeverity(cve);
       const score = getNvdScore(cve);
-      const published = cve.published ? new Date(cve.published).toLocaleDateString('ja-JP') : 'ä¸æ';
+      const published = cve.published ? new Date(cve.published).toLocaleDateString('ja-JP') : 'Ã¤Â¸ÂÃ¦ÂÂ';
 
       return `
         <div class="vuln-item" onclick='showNvdDetail(${JSON.stringify(JSON.stringify(cve))})'>
           <div style="display:flex; justify-content:space-between; align-items:flex-start;">
             <div class="vuln-id">${escapeHtml(id)}</div>
-            <button class="btn-notion" onclick="copyOneToNotion(event, '${escapeHtml(id)}', '${severity}', '${score || ''}', '${escapeHtml(published)}', 'NVD')" title="Notionã«ã³ãã¼">ð</button>
+            <button class="btn-notion" onclick="copyOneToNotion(event, '${escapeHtml(id)}', '${severity}', '${score || ''}', '${escapeHtml(published)}', 'NVD')" title="NotionÃ£ÂÂ«Ã£ÂÂ³Ã£ÂÂÃ£ÂÂ¼">Ã°ÂÂÂ</button>
           </div>
           <div class="vuln-desc">${escapeHtml(desc)}</div>
           <div class="vuln-meta">
             <span class="severity severity-${severity.toLowerCase()}">${severity}</span>
             ${score ? `<span class="vuln-score" style="background:${getScoreColor(score)}15; color:${getScoreColor(score)}">${score}</span>` : ''}
-            <span>ð ${published}</span>
+            <span>Ã°ÂÂÂ ${published}</span>
           </div>
         </div>`;
     }
 
-    // NVDè©³ç´°è¡¨ç¤º
+    // NVDÃ¨Â©Â³Ã§Â´Â°Ã¨Â¡Â¨Ã§Â¤Âº
     function showNvdDetail(cveJson) {
       const cve = JSON.parse(cveJson);
       const id = cve.id;
       const desc = getEnglishDesc(cve);
       const severity = getNvdSeverity(cve);
       const score = getNvdScore(cve);
-      const published = cve.published ? new Date(cve.published).toLocaleDateString('ja-JP') : 'ä¸æ';
-      const modified = cve.lastModified ? new Date(cve.lastModified).toLocaleDateString('ja-JP') : 'ä¸æ';
+      const published = cve.published ? new Date(cve.published).toLocaleDateString('ja-JP') : 'Ã¤Â¸ÂÃ¦ÂÂ';
+      const modified = cve.lastModified ? new Date(cve.lastModified).toLocaleDateString('ja-JP') : 'Ã¤Â¸ÂÃ¦ÂÂ';
       const refs = (cve.references || []).slice(0, 5);
 
-      // CVSSã¡ããªã¯ã¹æå ±ãåå¾
+      // CVSSÃ£ÂÂ¡Ã£ÂÂÃ£ÂÂªÃ£ÂÂ¯Ã£ÂÂ¹Ã¦ÂÂÃ¥Â Â±Ã£ÂÂÃ¥ÂÂÃ¥Â¾Â
       const cvssData = cve.metrics?.cvssMetricV31?.[0]?.cvssData
         || cve.metrics?.cvssMetricV30?.[0]?.cvssData
         || null;
 
       let content = `
         <div class="modal-section">
-          <h3>æ·±å»åº¦</h3>
+          <h3>Ã¦Â·Â±Ã¥ÂÂ»Ã¥ÂºÂ¦</h3>
           <p><span class="severity severity-${severity.toLowerCase()}">${severity}</span>
           ${score ? ` CVSS: <strong>${score}</strong>` : ''}</p>
           ${score ? `<div style="margin-top:8px; background:#f1f5f9; border-radius:8px; overflow:hidden; height:12px;">
@@ -1017,16 +1017,16 @@
         </div>
         ${cvssData ? renderCvssMetrics(cvssData) : ''}
         <div class="modal-section">
-          <h3>èª¬æ</h3>
+          <h3>Ã¨ÂªÂ¬Ã¦ÂÂ</h3>
           <p>${escapeHtml(desc)}</p>
         </div>
         <div class="modal-section">
-          <h3>æ¥ä»</h3>
-          <p>å¬é: ${published} / æ´æ°: ${modified}</p>
+          <h3>Ã¦ÂÂ¥Ã¤Â»Â</h3>
+          <p>Ã¥ÂÂ¬Ã©ÂÂ: ${published} / Ã¦ÂÂ´Ã¦ÂÂ°: ${modified}</p>
         </div>`;
 
       if (refs.length > 0) {
-        content += `<div class="modal-section"><h3>åèãªã³ã¯</h3>`;
+        content += `<div class="modal-section"><h3>Ã¥ÂÂÃ¨ÂÂÃ£ÂÂªÃ£ÂÂ³Ã£ÂÂ¯</h3>`;
         refs.forEach(r => {
           content += `<p><a href="${escapeHtml(r.url)}" target="_blank" rel="noopener">${escapeHtml(r.url)}</a></p>`;
         });
@@ -1036,22 +1036,22 @@
       content += `
         <div class="modal-section">
           <p><a href="https://nvd.nist.gov/vuln/detail/${escapeHtml(id)}" target="_blank" rel="noopener">
-            NVDã§è©³ç´°ãè¦ã â
+            NVDÃ£ÂÂ§Ã¨Â©Â³Ã§Â´Â°Ã£ÂÂÃ¨Â¦ÂÃ£ÂÂ Ã¢ÂÂ
           </a></p>
         </div>
         <div style="margin-top:16px; display:flex; gap:8px; flex-wrap:wrap;">
           <button class="btn btn-outline btn-sm" onclick="askAiAboutCve('${escapeHtml(id)}', '${escapeHtml(desc.substring(0, 200))}')">
-            ð¬ AIã«è³ªåãã
+            Ã°ÂÂÂ¬ AIÃ£ÂÂ«Ã¨Â³ÂªÃ¥ÂÂÃ£ÂÂÃ£ÂÂ
           </button>
           <button class="btn-notion" onclick="copyDetailToNotion('${escapeHtml(id)}', '${severity}', '${score || ''}', '${escapeHtml(published)}', 'NVD', \`${escapeHtml(desc.substring(0, 300))}\`)">
-            ð Notionã«ã³ãã¼
+            Ã°ÂÂÂ NotionÃ£ÂÂ«Ã£ÂÂ³Ã£ÂÂÃ£ÂÂ¼
           </button>
         </div>`;
 
       openModal(id, content);
     }
 
-    // NVDãã£ã«ã¿ã¼è¨­å®
+    // NVDÃ£ÂÂÃ£ÂÂ£Ã£ÂÂ«Ã£ÂÂ¿Ã£ÂÂ¼Ã¨Â¨Â­Ã¥Â®Â
     function setNvdFilter(filter, el) {
       currentNvdFilter = filter;
       document.querySelectorAll('#page-nvd .filter-chip').forEach(c => c.classList.remove('active'));
@@ -1060,27 +1060,27 @@
     }
 
     // ============================================================
-    //  CVSS ã¡ããªã¯ã¹å¯è¦å
+    //  CVSS Ã£ÂÂ¡Ã£ÂÂÃ£ÂÂªÃ£ÂÂ¯Ã£ÂÂ¹Ã¥ÂÂ¯Ã¨Â¦ÂÃ¥ÂÂ
     // ============================================================
     function renderCvssMetrics(cvss) {
       const metrics = [
-        { key: 'attackVector', label: 'æ»æå', values: { NETWORK: 'ð ãããã¯ã¼ã¯', ADJACENT_NETWORK: 'ð¡ é£æ¥', LOCAL: 'ð» ã­ã¼ã«ã«', PHYSICAL: 'ð ç©ç' }},
-        { key: 'attackComplexity', label: 'æ»ææ¡ä»¶', values: { LOW: 'â¡ ä½ãï¼å®¹æï¼', HIGH: 'ð é«ãï¼å°é£ï¼' }},
-        { key: 'privilegesRequired', label: 'å¿è¦ãªæ¨©é', values: { NONE: 'ð ä¸è¦', LOW: 'ð ä½ã', HIGH: 'ð é«ã' }},
-        { key: 'userInteraction', label: 'ã¦ã¼ã¶ã¼æä½', values: { NONE: 'ð¤ ä¸è¦', REQUIRED: 'ð å¿è¦' }},
-        { key: 'confidentialityImpact', label: 'æ©å¯æ§ã¸ã®å½±é¿', values: { NONE: 'â ãªã', LOW: 'â ï¸ ä½ã', HIGH: 'ð´ é«ã' }},
-        { key: 'integrityImpact', label: 'å®å¨æ§ã¸ã®å½±é¿', values: { NONE: 'â ãªã', LOW: 'â ï¸ ä½ã', HIGH: 'ð´ é«ã' }},
-        { key: 'availabilityImpact', label: 'å¯ç¨æ§ã¸ã®å½±é¿', values: { NONE: 'â ãªã', LOW: 'â ï¸ ä½ã', HIGH: 'ð´ é«ã' }}
+        { key: 'attackVector', label: 'Ã¦ÂÂ»Ã¦ÂÂÃ¥ÂÂ', values: { NETWORK: 'Ã°ÂÂÂ Ã£ÂÂÃ£ÂÂÃ£ÂÂÃ£ÂÂ¯Ã£ÂÂ¼Ã£ÂÂ¯', ADJACENT_NETWORK: 'Ã°ÂÂÂ¡ Ã©ÂÂ£Ã¦ÂÂ¥', LOCAL: 'Ã°ÂÂÂ» Ã£ÂÂ­Ã£ÂÂ¼Ã£ÂÂ«Ã£ÂÂ«', PHYSICAL: 'Ã°ÂÂÂ Ã§ÂÂ©Ã§ÂÂ' }},
+        { key: 'attackComplexity', label: 'Ã¦ÂÂ»Ã¦ÂÂÃ¦ÂÂ¡Ã¤Â»Â¶', values: { LOW: 'Ã¢ÂÂ¡ Ã¤Â½ÂÃ£ÂÂÃ¯Â¼ÂÃ¥Â®Â¹Ã¦ÂÂÃ¯Â¼Â', HIGH: 'Ã°ÂÂÂ Ã©Â«ÂÃ£ÂÂÃ¯Â¼ÂÃ¥ÂÂ°Ã©ÂÂ£Ã¯Â¼Â' }},
+        { key: 'privilegesRequired', label: 'Ã¥Â¿ÂÃ¨Â¦ÂÃ£ÂÂªÃ¦Â¨Â©Ã©ÂÂ', values: { NONE: 'Ã°ÂÂÂ Ã¤Â¸ÂÃ¨Â¦Â', LOW: 'Ã°ÂÂÂ Ã¤Â½ÂÃ£ÂÂ', HIGH: 'Ã°ÂÂÂ Ã©Â«ÂÃ£ÂÂ' }},
+        { key: 'userInteraction', label: 'Ã£ÂÂ¦Ã£ÂÂ¼Ã£ÂÂ¶Ã£ÂÂ¼Ã¦ÂÂÃ¤Â½Â', values: { NONE: 'Ã°ÂÂ¤Â Ã¤Â¸ÂÃ¨Â¦Â', REQUIRED: 'Ã°ÂÂÂ Ã¥Â¿ÂÃ¨Â¦Â' }},
+        { key: 'confidentialityImpact', label: 'Ã¦Â©ÂÃ¥Â¯ÂÃ¦ÂÂ§Ã£ÂÂ¸Ã£ÂÂ®Ã¥Â½Â±Ã©ÂÂ¿', values: { NONE: 'Ã¢ÂÂ Ã£ÂÂªÃ£ÂÂ', LOW: 'Ã¢ÂÂ Ã¯Â¸Â Ã¤Â½ÂÃ£ÂÂ', HIGH: 'Ã°ÂÂÂ´ Ã©Â«ÂÃ£ÂÂ' }},
+        { key: 'integrityImpact', label: 'Ã¥Â®ÂÃ¥ÂÂ¨Ã¦ÂÂ§Ã£ÂÂ¸Ã£ÂÂ®Ã¥Â½Â±Ã©ÂÂ¿', values: { NONE: 'Ã¢ÂÂ Ã£ÂÂªÃ£ÂÂ', LOW: 'Ã¢ÂÂ Ã¯Â¸Â Ã¤Â½ÂÃ£ÂÂ', HIGH: 'Ã°ÂÂÂ´ Ã©Â«ÂÃ£ÂÂ' }},
+        { key: 'availabilityImpact', label: 'Ã¥ÂÂ¯Ã§ÂÂ¨Ã¦ÂÂ§Ã£ÂÂ¸Ã£ÂÂ®Ã¥Â½Â±Ã©ÂÂ¿', values: { NONE: 'Ã¢ÂÂ Ã£ÂÂªÃ£ÂÂ', LOW: 'Ã¢ÂÂ Ã¯Â¸Â Ã¤Â½ÂÃ£ÂÂ', HIGH: 'Ã°ÂÂÂ´ Ã©Â«ÂÃ£ÂÂ' }}
       ];
 
-      let html = `<div class="modal-section"><h3>CVSSã¡ããªã¯ã¹è©³ç´°</h3>
+      let html = `<div class="modal-section"><h3>CVSSÃ£ÂÂ¡Ã£ÂÂÃ£ÂÂªÃ£ÂÂ¯Ã£ÂÂ¹Ã¨Â©Â³Ã§Â´Â°</h3>
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; font-size:13px;">`;
       metrics.forEach(m => {
         const val = cvss[m.key];
         if (val) {
           const display = m.values[val] || val;
           const isHigh = val === 'HIGH' || val === 'NONE' && (m.key === 'privilegesRequired' || m.key === 'userInteraction');
-          html += `<div style="padding:6px 10px; background:${display.includes('ð´') || display.includes('â¡') || display.includes('ð') || display.includes('ð') || display.includes('ð¤') ? '#fef2f2' : '#f0fdf4'}; border-radius:6px;">
+          html += `<div style="padding:6px 10px; background:${display.includes('Ã°ÂÂÂ´') || display.includes('Ã¢ÂÂ¡') || display.includes('Ã°ÂÂÂ') || display.includes('Ã°ÂÂÂ') || display.includes('Ã°ÂÂ¤Â') ? '#fef2f2' : '#f0fdf4'}; border-radius:6px;">
             <div style="font-size:11px; color:var(--text-light);">${m.label}</div>
             <div style="font-weight:600; margin-top:2px;">${display}</div>
           </div>`;
@@ -1088,7 +1088,7 @@
       });
       html += `</div>`;
 
-      // CVSSãã¯ã¿ã¼æå­å
+      // CVSSÃ£ÂÂÃ£ÂÂ¯Ã£ÂÂ¿Ã£ÂÂ¼Ã¦ÂÂÃ¥Â­ÂÃ¥ÂÂ
       if (cvss.vectorString) {
         html += `<p style="margin-top:8px; font-family:monospace; font-size:12px; color:var(--text-light); word-break:break-all;">
           Vector: ${escapeHtml(cvss.vectorString)}</p>`;
@@ -1098,7 +1098,7 @@
     }
 
     // ============================================================
-    //  ãã¼ã¿ã¨ã¯ã¹ãã¼ãï¼CSV / JSONï¼
+    //  Ã£ÂÂÃ£ÂÂ¼Ã£ÂÂ¿Ã£ÂÂ¨Ã£ÂÂ¯Ã£ÂÂ¹Ã£ÂÂÃ£ÂÂ¼Ã£ÂÂÃ¯Â¼ÂCSV / JSONÃ¯Â¼Â
     // ============================================================
     function getFilteredResults() {
       let filtered = nvdCache;
@@ -1110,10 +1110,10 @@
 
     function exportCSV() {
       const filtered = getFilteredResults();
-      if (filtered.length === 0) { showToast('ã¨ã¯ã¹ãã¼ããããã¼ã¿ãããã¾ãã'); return; }
+      if (filtered.length === 0) { showToast('Ã£ÂÂ¨Ã£ÂÂ¯Ã£ÂÂ¹Ã£ÂÂÃ£ÂÂ¼Ã£ÂÂÃ£ÂÂÃ£ÂÂÃ£ÂÂÃ£ÂÂ¼Ã£ÂÂ¿Ã£ÂÂÃ£ÂÂÃ£ÂÂÃ£ÂÂ¾Ã£ÂÂÃ£ÂÂ'); return; }
 
-      // BOMä»ãUTF-8ã§CSVçæï¼Excelã§ã®æ¥æ¬èªæå­åãé²æ­¢ï¼
-      let csv = '\uFEFFCVE ID,æ·±å»åº¦,CVSSã¹ã³ã¢,ã½ã¼ã¹,å¬éæ¥,èª¬æ\n';
+      // BOMÃ¤Â»ÂÃ£ÂÂUTF-8Ã£ÂÂ§CSVÃ§ÂÂÃ¦ÂÂÃ¯Â¼ÂExcelÃ£ÂÂ§Ã£ÂÂ®Ã¦ÂÂ¥Ã¦ÂÂ¬Ã¨ÂªÂÃ¦ÂÂÃ¥Â­ÂÃ¥ÂÂÃ£ÂÂÃ©ÂÂ²Ã¦Â­Â¢Ã¯Â¼Â
+      let csv = '\uFEFFCVE ID,Ã¦Â·Â±Ã¥ÂÂ»Ã¥ÂºÂ¦,CVSSÃ£ÂÂ¹Ã£ÂÂ³Ã£ÂÂ¢,Ã£ÂÂ½Ã£ÂÂ¼Ã£ÂÂ¹,Ã¥ÂÂ¬Ã©ÂÂÃ¦ÂÂ¥,Ã¨ÂªÂ¬Ã¦ÂÂ\n';
       filtered.forEach(v => {
         const cve = v.cve;
         const desc = getEnglishDesc(cve).replace(/"/g, '""').replace(/\n/g, ' ').substring(0, 300);
@@ -1121,12 +1121,12 @@
       });
 
       downloadFile(csv, `vulnwatch-${getDateStr()}.csv`, 'text/csv;charset=utf-8');
-      showToast(`ð ${filtered.length}ä»¶ãCSVã§ä¿å­ãã¾ãã`);
+      showToast(`Ã°ÂÂÂ ${filtered.length}Ã¤Â»Â¶Ã£ÂÂCSVÃ£ÂÂ§Ã¤Â¿ÂÃ¥Â­ÂÃ£ÂÂÃ£ÂÂ¾Ã£ÂÂÃ£ÂÂ`);
     }
 
     function exportJSON() {
       const filtered = getFilteredResults();
-      if (filtered.length === 0) { showToast('ã¨ã¯ã¹ãã¼ããããã¼ã¿ãããã¾ãã'); return; }
+      if (filtered.length === 0) { showToast('Ã£ÂÂ¨Ã£ÂÂ¯Ã£ÂÂ¹Ã£ÂÂÃ£ÂÂ¼Ã£ÂÂÃ£ÂÂÃ£ÂÂÃ£ÂÂÃ£ÂÂ¼Ã£ÂÂ¿Ã£ÂÂÃ£ÂÂÃ£ÂÂÃ£ÂÂ¾Ã£ÂÂÃ£ÂÂ'); return; }
 
       const data = filtered.map(v => {
         const cve = v.cve;
@@ -1143,7 +1143,7 @@
       });
 
       downloadFile(JSON.stringify(data, null, 2), `vulnwatch-${getDateStr()}.json`, 'application/json');
-      showToast(`ð ${filtered.length}ä»¶ãJSONã§ä¿å­ãã¾ãã`);
+      showToast(`Ã°ÂÂÂ ${filtered.length}Ã¤Â»Â¶Ã£ÂÂJSONÃ£ÂÂ§Ã¤Â¿ÂÃ¥Â­ÂÃ£ÂÂÃ£ÂÂ¾Ã£ÂÂÃ£ÂÂ`);
     }
 
     function downloadFile(content, filename, mimeType) {
@@ -1163,11 +1163,11 @@
       return `${d.getFullYear()}${String(d.getMonth()+1).padStart(2,'0')}${String(d.getDate()).padStart(2,'0')}`;
     }
 
-    // NVDãã«ãã¼é¢æ°
+    // NVDÃ£ÂÂÃ£ÂÂ«Ã£ÂÂÃ£ÂÂ¼Ã©ÂÂ¢Ã¦ÂÂ°
     function getEnglishDesc(cve) {
-      if (!cve.descriptions) return 'èª¬æãªã';
+      if (!cve.descriptions) return 'Ã¨ÂªÂ¬Ã¦ÂÂÃ£ÂÂªÃ£ÂÂ';
       const en = cve.descriptions.find(d => d.lang === 'en');
-      return en ? en.value : (cve.descriptions[0]?.value || 'èª¬æãªã');
+      return en ? en.value : (cve.descriptions[0]?.value || 'Ã¨ÂªÂ¬Ã¦ÂÂÃ£ÂÂªÃ£ÂÂ');
     }
 
     function getNvdSeverity(cve) {
@@ -1196,26 +1196,26 @@
     }
 
     // ============================================================
-    //  Notioné£æºï¼ã¯ãªãããã¼ãã³ãã¼ï¼
+    //  NotionÃ©ÂÂ£Ã¦ÂÂºÃ¯Â¼ÂÃ£ÂÂ¯Ã£ÂÂªÃ£ÂÂÃ£ÂÂÃ£ÂÂÃ£ÂÂ¼Ã£ÂÂÃ£ÂÂ³Ã£ÂÂÃ£ÂÂ¼Ã¯Â¼Â
     // ============================================================
     const NOTION_DB_URL = 'https://www.notion.so/1b9ae28446bc4960872f841ecfadc8de';
 
-    // 1ä»¶ã®CVEãNotionãã©ã¼ãããã§ã³ãã¼
+    // 1Ã¤Â»Â¶Ã£ÂÂ®CVEÃ£ÂÂNotionÃ£ÂÂÃ£ÂÂ©Ã£ÂÂ¼Ã£ÂÂÃ£ÂÂÃ£ÂÂÃ£ÂÂ§Ã£ÂÂ³Ã£ÂÂÃ£ÂÂ¼
     function copyOneToNotion(event, id, severity, score, published, source) {
-      event.stopPropagation(); // è¦ªã®onclickãé²æ­¢
+      event.stopPropagation(); // Ã¨Â¦ÂªÃ£ÂÂ®onclickÃ£ÂÂÃ©ÂÂ²Ã¦Â­Â¢
       const text = formatForNotion(id, severity, score, published, source, '');
       copyToClipboard(text, event.currentTarget);
     }
 
-    // è©³ç´°ã¢ã¼ãã«ããNotionã«ã³ãã¼
+    // Ã¨Â©Â³Ã§Â´Â°Ã£ÂÂ¢Ã£ÂÂ¼Ã£ÂÂÃ£ÂÂ«Ã£ÂÂÃ£ÂÂNotionÃ£ÂÂ«Ã£ÂÂ³Ã£ÂÂÃ£ÂÂ¼
     function copyDetailToNotion(id, severity, score, published, source, desc) {
       const text = formatForNotion(id, severity, score, published, source, desc);
       navigator.clipboard.writeText(text).then(() => {
-        showToast('ð Notionã«ã³ãã¼ãã¾ããï¼ãã¼ã¿ãã¼ã¹ã«è²¼ãä»ãã¦ãã ãã');
+        showToast('Ã°ÂÂÂ NotionÃ£ÂÂ«Ã£ÂÂ³Ã£ÂÂÃ£ÂÂ¼Ã£ÂÂÃ£ÂÂ¾Ã£ÂÂÃ£ÂÂÃ¯Â¼ÂÃ£ÂÂÃ£ÂÂ¼Ã£ÂÂ¿Ã£ÂÂÃ£ÂÂ¼Ã£ÂÂ¹Ã£ÂÂ«Ã¨Â²Â¼Ã£ÂÂÃ¤Â»ÂÃ£ÂÂÃ£ÂÂ¦Ã£ÂÂÃ£ÂÂ Ã£ÂÂÃ£ÂÂ');
       });
     }
 
-    // å¨ä»¶ãNotionãã©ã¼ãããã§ã³ãã¼
+    // Ã¥ÂÂ¨Ã¤Â»Â¶Ã£ÂÂNotionÃ£ÂÂÃ£ÂÂ©Ã£ÂÂ¼Ã£ÂÂÃ£ÂÂÃ£ÂÂÃ£ÂÂ§Ã£ÂÂ³Ã£ÂÂÃ£ÂÂ¼
     function copyAllToNotion(event) {
       event.stopPropagation();
       let filtered = nvdCache;
@@ -1223,8 +1223,8 @@
         filtered = nvdCache.filter(v => getNvdSeverity(v.cve) === currentNvdFilter);
       }
 
-      // TSVå½¢å¼ï¼ã¿ãåºåãï¼ã§ã³ãã¼ â Notionãã¼ãã«ã«ç´æ¥è²¼ãä»ãå¯è½
-      let tsv = 'CVE ID\tæ·±å»åº¦\tCVSSã¹ã³ã¢\tã½ã¼ã¹\tå¬éæ¥\tèª¬æ\n';
+      // TSVÃ¥Â½Â¢Ã¥Â¼ÂÃ¯Â¼ÂÃ£ÂÂ¿Ã£ÂÂÃ¥ÂÂºÃ¥ÂÂÃ£ÂÂÃ¯Â¼ÂÃ£ÂÂ§Ã£ÂÂ³Ã£ÂÂÃ£ÂÂ¼ Ã¢ÂÂ NotionÃ£ÂÂÃ£ÂÂ¼Ã£ÂÂÃ£ÂÂ«Ã£ÂÂ«Ã§ÂÂ´Ã¦ÂÂ¥Ã¨Â²Â¼Ã£ÂÂÃ¤Â»ÂÃ£ÂÂÃ¥ÂÂ¯Ã¨ÂÂ½
+      let tsv = 'CVE ID\tÃ¦Â·Â±Ã¥ÂÂ»Ã¥ÂºÂ¦\tCVSSÃ£ÂÂ¹Ã£ÂÂ³Ã£ÂÂ¢\tÃ£ÂÂ½Ã£ÂÂ¼Ã£ÂÂ¹\tÃ¥ÂÂ¬Ã©ÂÂÃ¦ÂÂ¥\tÃ¨ÂªÂ¬Ã¦ÂÂ\n';
       filtered.forEach(v => {
         const cve = v.cve;
         const id = cve.id;
@@ -1236,36 +1236,36 @@
       });
 
       navigator.clipboard.writeText(tsv).then(() => {
-        showToast(`ð ${filtered.length}ä»¶ãã³ãã¼ãã¾ããï¼Notionãã¼ã¿ãã¼ã¹ã«è²¼ãä»ãã¦ãã ãã`);
+        showToast(`Ã°ÂÂÂ ${filtered.length}Ã¤Â»Â¶Ã£ÂÂÃ£ÂÂ³Ã£ÂÂÃ£ÂÂ¼Ã£ÂÂÃ£ÂÂ¾Ã£ÂÂÃ£ÂÂÃ¯Â¼ÂNotionÃ£ÂÂÃ£ÂÂ¼Ã£ÂÂ¿Ã£ÂÂÃ£ÂÂ¼Ã£ÂÂ¹Ã£ÂÂ«Ã¨Â²Â¼Ã£ÂÂÃ¤Â»ÂÃ£ÂÂÃ£ÂÂ¦Ã£ÂÂÃ£ÂÂ Ã£ÂÂÃ£ÂÂ`);
         const btn = event.currentTarget;
-        btn.innerHTML = 'â ã³ãã¼æ¸ã¿';
+        btn.innerHTML = 'Ã¢ÂÂ Ã£ÂÂ³Ã£ÂÂÃ£ÂÂ¼Ã¦Â¸ÂÃ£ÂÂ¿';
         btn.classList.add('copied');
         setTimeout(() => {
-          btn.innerHTML = 'ð å¨ä»¶Notionã«ã³ãã¼';
+          btn.innerHTML = 'Ã°ÂÂÂ Ã¥ÂÂ¨Ã¤Â»Â¶NotionÃ£ÂÂ«Ã£ÂÂ³Ã£ÂÂÃ£ÂÂ¼';
           btn.classList.remove('copied');
         }, 2500);
       });
     }
 
-    // Notionç¨ãã©ã¼ãããçæ
+    // NotionÃ§ÂÂ¨Ã£ÂÂÃ£ÂÂ©Ã£ÂÂ¼Ã£ÂÂÃ£ÂÂÃ£ÂÂÃ§ÂÂÃ¦ÂÂ
     function formatForNotion(id, severity, score, published, source, desc) {
       let lines = [`${id}`];
-      lines.push(`æ·±å»åº¦: ${severity}`);
-      if (score) lines.push(`CVSSã¹ã³ã¢: ${score}`);
-      lines.push(`ã½ã¼ã¹: ${source}`);
-      if (published) lines.push(`å¬éæ¥: ${published}`);
-      if (desc) lines.push(`\nèª¬æ:\n${desc}`);
-      lines.push(`\nè©³ç´°: https://nvd.nist.gov/vuln/detail/${id}`);
+      lines.push(`Ã¦Â·Â±Ã¥ÂÂ»Ã¥ÂºÂ¦: ${severity}`);
+      if (score) lines.push(`CVSSÃ£ÂÂ¹Ã£ÂÂ³Ã£ÂÂ¢: ${score}`);
+      lines.push(`Ã£ÂÂ½Ã£ÂÂ¼Ã£ÂÂ¹: ${source}`);
+      if (published) lines.push(`Ã¥ÂÂ¬Ã©ÂÂÃ¦ÂÂ¥: ${published}`);
+      if (desc) lines.push(`\nÃ¨ÂªÂ¬Ã¦ÂÂ:\n${desc}`);
+      lines.push(`\nÃ¨Â©Â³Ã§Â´Â°: https://nvd.nist.gov/vuln/detail/${id}`);
       return lines.join('\n');
     }
 
-    // ã¯ãªãããã¼ãã«ã³ãã¼
+    // Ã£ÂÂ¯Ã£ÂÂªÃ£ÂÂÃ£ÂÂÃ£ÂÂÃ£ÂÂ¼Ã£ÂÂÃ£ÂÂ«Ã£ÂÂ³Ã£ÂÂÃ£ÂÂ¼
     function copyToClipboard(text, btnEl) {
       navigator.clipboard.writeText(text).then(() => {
-        showToast('ð ã³ãã¼ãã¾ããï¼Notionã«è²¼ãä»ãã¦ãã ãã');
+        showToast('Ã°ÂÂÂ Ã£ÂÂ³Ã£ÂÂÃ£ÂÂ¼Ã£ÂÂÃ£ÂÂ¾Ã£ÂÂÃ£ÂÂÃ¯Â¼ÂNotionÃ£ÂÂ«Ã¨Â²Â¼Ã£ÂÂÃ¤Â»ÂÃ£ÂÂÃ£ÂÂ¦Ã£ÂÂÃ£ÂÂ Ã£ÂÂÃ£ÂÂ');
         if (btnEl) {
           const original = btnEl.innerHTML;
-          btnEl.innerHTML = 'â';
+          btnEl.innerHTML = 'Ã¢ÂÂ';
           btnEl.classList.add('copied');
           setTimeout(() => {
             btnEl.innerHTML = original;
@@ -1276,59 +1276,59 @@
     }
 
     // ============================================================
-    //  JVN API æ¤ç´¢
+    //  JVN API Ã¦Â¤ÂÃ§Â´Â¢
     // ============================================================
     async function searchJVN() {
       const keyword = document.getElementById('jvn-search').value.trim();
       if (!keyword) {
-        showToast('ã­ã¼ã¯ã¼ããå¥åãã¦ãã ãã');
+        showToast('Ã£ÂÂ­Ã£ÂÂ¼Ã£ÂÂ¯Ã£ÂÂ¼Ã£ÂÂÃ£ÂÂÃ¥ÂÂ¥Ã¥ÂÂÃ£ÂÂÃ£ÂÂ¦Ã£ÂÂÃ£ÂÂ Ã£ÂÂÃ£ÂÂ');
         return;
       }
 
       const resultsDiv = document.getElementById('jvn-results');
-      resultsDiv.innerHTML = '<div class="loading"><div class="spinner"></div>JVNãæ¤ç´¢ä¸­...</div>';
+      resultsDiv.innerHTML = '<div class="loading"><div class="spinner"></div>JVNÃ£ÂÂÃ¦Â¤ÂÃ§Â´Â¢Ã¤Â¸Â­...</div>';
 
       try {
-        // MyJVN APIãå¼ã³åºãï¼ç´æ¥ã¢ã¯ã»ã¹ â CORSãã­ã­ã·ã«ãã©ã¼ã«ããã¯ï¼
+        // MyJVN APIÃ£ÂÂÃ¥ÂÂ¼Ã£ÂÂ³Ã¥ÂÂºÃ£ÂÂÃ¯Â¼ÂÃ§ÂÂ´Ã¦ÂÂ¥Ã£ÂÂ¢Ã£ÂÂ¯Ã£ÂÂ»Ã£ÂÂ¹ Ã¢ÂÂ CORSÃ£ÂÂÃ£ÂÂ­Ã£ÂÂ­Ã£ÂÂ·Ã£ÂÂ«Ã£ÂÂÃ£ÂÂ©Ã£ÂÂ¼Ã£ÂÂ«Ã£ÂÂÃ£ÂÂÃ£ÂÂ¯Ã¯Â¼Â
         const jvnBaseUrl = `https://jvndb.jvn.jp/myjvn?method=getVulnOverviewList&feed=hnd&keyword=${encodeURIComponent(keyword)}&rangeDatePublished=m&rangeDatePublic=m`;
 
         let text;
         try {
-          // ã¾ãç´æ¥ã¢ã¯ã»ã¹ãè©¦è¡
+          // Ã£ÂÂ¾Ã£ÂÂÃ§ÂÂ´Ã¦ÂÂ¥Ã£ÂÂ¢Ã£ÂÂ¯Ã£ÂÂ»Ã£ÂÂ¹Ã£ÂÂÃ¨Â©Â¦Ã¨Â¡Â
           const directResponse = await fetch(jvnBaseUrl);
           if (!directResponse.ok) throw new Error('Direct failed');
           text = await directResponse.text();
         } catch (directError) {
-          // CORSå¶éã®å ´åããã­ã­ã·çµç±ã§ã¢ã¯ã»ã¹
-          console.log('[JVN] ç´æ¥ã¢ã¯ã»ã¹å¤±æããã­ã­ã·çµç±ã«åãæ¿ã...');
+          // CORSÃ¥ÂÂ¶Ã©ÂÂÃ£ÂÂ®Ã¥Â Â´Ã¥ÂÂÃ£ÂÂÃ£ÂÂÃ£ÂÂ­Ã£ÂÂ­Ã£ÂÂ·Ã§ÂµÂÃ§ÂÂ±Ã£ÂÂ§Ã£ÂÂ¢Ã£ÂÂ¯Ã£ÂÂ»Ã£ÂÂ¹
+          console.log('[JVN] Ã§ÂÂ´Ã¦ÂÂ¥Ã£ÂÂ¢Ã£ÂÂ¯Ã£ÂÂ»Ã£ÂÂ¹Ã¥Â¤Â±Ã¦ÂÂÃ£ÂÂÃ£ÂÂÃ£ÂÂ­Ã£ÂÂ­Ã£ÂÂ·Ã§ÂµÂÃ§ÂÂ±Ã£ÂÂ«Ã¥ÂÂÃ£ÂÂÃ¦ÂÂ¿Ã£ÂÂ...');
           const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(jvnBaseUrl)}`;
           const proxyResponse = await fetch(proxyUrl);
-          if (!proxyResponse.ok) throw new Error(`ãã­ã­ã·ã¨ã©ã¼: ${proxyResponse.status}`);
+          if (!proxyResponse.ok) throw new Error(`Ã£ÂÂÃ£ÂÂ­Ã£ÂÂ­Ã£ÂÂ·Ã£ÂÂ¨Ã£ÂÂ©Ã£ÂÂ¼: ${proxyResponse.status}`);
           text = await proxyResponse.text();
         }
 
         const parser = new DOMParser();
         const xml = parser.parseFromString(text, 'text/xml');
 
-        // RSSã¢ã¤ãã ãè§£æ
+        // RSSÃ£ÂÂ¢Ã£ÂÂ¤Ã£ÂÂÃ£ÂÂ Ã£ÂÂÃ¨Â§Â£Ã¦ÂÂ
         const items = xml.querySelectorAll('item');
 
         if (items.length === 0) {
           resultsDiv.innerHTML = `
             <div class="empty-state">
-              <div class="empty-icon">ð</div>
-              <p>ã${escapeHtml(keyword)}ãã«ä¸è´ããJVNæå ±ã¯è¦ã¤ããã¾ããã§ãã</p>
+              <div class="empty-icon">Ã°ÂÂÂ</div>
+              <p>Ã£ÂÂ${escapeHtml(keyword)}Ã£ÂÂÃ£ÂÂ«Ã¤Â¸ÂÃ¨ÂÂ´Ã£ÂÂÃ£ÂÂJVNÃ¦ÂÂÃ¥Â Â±Ã£ÂÂ¯Ã¨Â¦ÂÃ£ÂÂ¤Ã£ÂÂÃ£ÂÂÃ£ÂÂ¾Ã£ÂÂÃ£ÂÂÃ£ÂÂ§Ã£ÂÂÃ£ÂÂ</p>
             </div>`;
           return;
         }
 
-        let html = `<p style="font-size:13px; color:var(--text-light); margin-bottom:12px;">${items.length}ä»¶ã®çµæ</p>`;
+        let html = `<p style="font-size:13px; color:var(--text-light); margin-bottom:12px;">${items.length}Ã¤Â»Â¶Ã£ÂÂ®Ã§ÂµÂÃ¦ÂÂ</p>`;
 
         items.forEach(item => {
-          const title = item.querySelector('title')?.textContent || 'ä¸æ';
+          const title = item.querySelector('title')?.textContent || 'Ã¤Â¸ÂÃ¦ÂÂ';
           const link = item.querySelector('link')?.textContent || '#';
           const desc = item.querySelector('description')?.textContent || '';
-          // sec:cvss ã® severity ãåå¾
+          // sec:cvss Ã£ÂÂ® severity Ã£ÂÂÃ¥ÂÂÃ¥Â¾Â
           const cvss = item.querySelector('cvss');
           const severity = cvss?.getAttribute('severity') || '';
           const score = cvss?.getAttribute('score') || '';
@@ -1346,35 +1346,35 @@
               <div class="vuln-desc">${escapeHtml(desc)}</div>
               <div class="vuln-meta">
                 ${score ? `<span class="severity severity-${severityClass}">CVSS: ${escapeHtml(score)}</span>` : ''}
-                ${issued ? `<span>ð ${escapeHtml(issued)}</span>` : ''}
-                <span>ð è©³ç´°ãè¦ã</span>
+                ${issued ? `<span>Ã°ÂÂÂ ${escapeHtml(issued)}</span>` : ''}
+                <span>Ã°ÂÂÂ Ã¨Â©Â³Ã§Â´Â°Ã£ÂÂÃ¨Â¦ÂÃ£ÂÂ</span>
               </div>
             </div>`;
         });
 
         resultsDiv.innerHTML = html;
       } catch (error) {
-        // ç´æ¥ã¢ã¯ã»ã¹ããã­ã­ã·ãå¤±æããå ´å
+        // Ã§ÂÂ´Ã¦ÂÂ¥Ã£ÂÂ¢Ã£ÂÂ¯Ã£ÂÂ»Ã£ÂÂ¹Ã£ÂÂÃ£ÂÂÃ£ÂÂ­Ã£ÂÂ­Ã£ÂÂ·Ã£ÂÂÃ¥Â¤Â±Ã¦ÂÂÃ£ÂÂÃ£ÂÂÃ¥Â Â´Ã¥ÂÂ
         resultsDiv.innerHTML = `
           <div class="card" style="border-color:var(--medium);">
-            <div class="card-title" style="color:var(--medium);">â ï¸ JVN APIã«æ¥ç¶ã§ãã¾ããã§ãã</div>
+            <div class="card-title" style="color:var(--medium);">Ã¢ÂÂ Ã¯Â¸Â JVN APIÃ£ÂÂ«Ã¦ÂÂ¥Ã§Â¶ÂÃ£ÂÂ§Ã£ÂÂÃ£ÂÂ¾Ã£ÂÂÃ£ÂÂÃ£ÂÂ§Ã£ÂÂÃ£ÂÂ</div>
             <p style="font-size:14px; line-height:1.8;">
-              ç´æ¥ã¢ã¯ã»ã¹ã¨ãã­ã­ã·çµç±ã®ä¸¡æ¹ãå¤±æãã¾ããã<br>
-              ãããã¯ã¼ã¯æ¥ç¶ãç¢ºèªããããä»¥ä¸ã®æ¹æ³ããè©¦ããã ããã<br><br>
-              <strong>ä»£æ¿æ¡:</strong><br>
-              ã»<a href="https://jvndb.jvn.jp/search/index.php?mode=_vulnerability_search_IA_VulnSearch&keyword=${encodeURIComponent(keyword)}" target="_blank" rel="noopener">JVNãµã¤ãã§ç´æ¥æ¤ç´¢ãã â</a><br>
-              ã»æéãããã¦åè©¦è¡ãã<br>
-              ã»AIãã£ããã§èå¼±æ§ã«ã¤ãã¦è³ªåãã
+              Ã§ÂÂ´Ã¦ÂÂ¥Ã£ÂÂ¢Ã£ÂÂ¯Ã£ÂÂ»Ã£ÂÂ¹Ã£ÂÂ¨Ã£ÂÂÃ£ÂÂ­Ã£ÂÂ­Ã£ÂÂ·Ã§ÂµÂÃ§ÂÂ±Ã£ÂÂ®Ã¤Â¸Â¡Ã¦ÂÂ¹Ã£ÂÂÃ¥Â¤Â±Ã¦ÂÂÃ£ÂÂÃ£ÂÂ¾Ã£ÂÂÃ£ÂÂÃ£ÂÂ<br>
+              Ã£ÂÂÃ£ÂÂÃ£ÂÂÃ£ÂÂ¯Ã£ÂÂ¼Ã£ÂÂ¯Ã¦ÂÂ¥Ã§Â¶ÂÃ£ÂÂÃ§Â¢ÂºÃ¨ÂªÂÃ£ÂÂÃ£ÂÂÃ£ÂÂÃ£ÂÂÃ¤Â»Â¥Ã¤Â¸ÂÃ£ÂÂ®Ã¦ÂÂ¹Ã¦Â³ÂÃ£ÂÂÃ£ÂÂÃ¨Â©Â¦Ã£ÂÂÃ£ÂÂÃ£ÂÂ Ã£ÂÂÃ£ÂÂÃ£ÂÂ<br><br>
+              <strong>Ã¤Â»Â£Ã¦ÂÂ¿Ã¦Â¡Â:</strong><br>
+              Ã£ÂÂ»<a href="https://jvndb.jvn.jp/search/index.php?mode=_vulnerability_search_IA_VulnSearch&keyword=${encodeURIComponent(keyword)}" target="_blank" rel="noopener">JVNÃ£ÂÂµÃ£ÂÂ¤Ã£ÂÂÃ£ÂÂ§Ã§ÂÂ´Ã¦ÂÂ¥Ã¦Â¤ÂÃ§Â´Â¢Ã£ÂÂÃ£ÂÂ Ã¢ÂÂ</a><br>
+              Ã£ÂÂ»Ã¦ÂÂÃ©ÂÂÃ£ÂÂÃ£ÂÂÃ£ÂÂÃ£ÂÂ¦Ã¥ÂÂÃ¨Â©Â¦Ã¨Â¡ÂÃ£ÂÂÃ£ÂÂ<br>
+              Ã£ÂÂ»AIÃ£ÂÂÃ£ÂÂ£Ã£ÂÂÃ£ÂÂÃ£ÂÂ§Ã¨ÂÂÃ¥Â¼Â±Ã¦ÂÂ§Ã£ÂÂ«Ã£ÂÂ¤Ã£ÂÂÃ£ÂÂ¦Ã¨Â³ÂªÃ¥ÂÂÃ£ÂÂÃ£ÂÂ
             </p>
             <p style="font-size:12px; color:var(--text-light); margin-top:12px;">
-              ã¨ã©ã¼è©³ç´°: ${escapeHtml(error.message)}
+              Ã£ÂÂ¨Ã£ÂÂ©Ã£ÂÂ¼Ã¨Â©Â³Ã§Â´Â°: ${escapeHtml(error.message)}
             </p>
           </div>`;
       }
     }
 
     // ============================================================
-    //  Gemini AI ãã£ãã
+    //  Gemini AI Ã£ÂÂÃ£ÂÂ£Ã£ÂÂÃ£ÂÂ
     // ============================================================
     async function sendChat() {
       const input = document.getElementById('chat-input');
@@ -1382,30 +1382,30 @@
       if (!message) return;
 
       if (!geminiApiKey) {
-        showToast('è¨­å®ç»é¢ã§Gemini APIã­ã¼ãå¥åãã¦ãã ãã');
+        showToast('Ã¨Â¨Â­Ã¥Â®ÂÃ§ÂÂ»Ã©ÂÂ¢Ã£ÂÂ§Gemini APIÃ£ÂÂ­Ã£ÂÂ¼Ã£ÂÂÃ¥ÂÂ¥Ã¥ÂÂÃ£ÂÂÃ£ÂÂ¦Ã£ÂÂÃ£ÂÂ Ã£ÂÂÃ£ÂÂ');
         switchPage('settings', document.querySelectorAll('.nav-item')[4]);
         return;
       }
 
-      // ã¦ã¼ã¶ã¼ã¡ãã»ã¼ã¸ãè¡¨ç¤º
+      // Ã£ÂÂ¦Ã£ÂÂ¼Ã£ÂÂ¶Ã£ÂÂ¼Ã£ÂÂ¡Ã£ÂÂÃ£ÂÂ»Ã£ÂÂ¼Ã£ÂÂ¸Ã£ÂÂÃ¨Â¡Â¨Ã§Â¤Âº
       addChatBubble(message, 'user');
       input.value = '';
 
-      // ã¯ã¤ãã¯ãã­ã³ãããéè¡¨ç¤º
+      // Ã£ÂÂ¯Ã£ÂÂ¤Ã£ÂÂÃ£ÂÂ¯Ã£ÂÂÃ£ÂÂ­Ã£ÂÂ³Ã£ÂÂÃ£ÂÂÃ£ÂÂÃ©ÂÂÃ¨Â¡Â¨Ã§Â¤Âº
       document.getElementById('quick-prompts').style.display = 'none';
 
-      // éä¿¡ãã¿ã³ãç¡å¹å
+      // Ã©ÂÂÃ¤Â¿Â¡Ã£ÂÂÃ£ÂÂ¿Ã£ÂÂ³Ã£ÂÂÃ§ÂÂ¡Ã¥ÂÂ¹Ã¥ÂÂ
       const sendBtn = document.getElementById('chat-send-btn');
       sendBtn.disabled = true;
 
-      // ã­ã¼ãã£ã³ã°è¡¨ç¤º
-      const loadingId = addChatBubble('èãä¸­...', 'ai', true);
+      // Ã£ÂÂ­Ã£ÂÂ¼Ã£ÂÂÃ£ÂÂ£Ã£ÂÂ³Ã£ÂÂ°Ã¨Â¡Â¨Ã§Â¤Âº
+      const loadingId = addChatBubble('Ã¨ÂÂÃ£ÂÂÃ¤Â¸Â­...', 'ai', true);
 
       try {
-        // ãã£ããå±¥æ­´ã«ã¦ã¼ã¶ã¼ã¡ãã»ã¼ã¸ãè¿½å 
+        // Ã£ÂÂÃ£ÂÂ£Ã£ÂÂÃ£ÂÂÃ¥Â±Â¥Ã¦Â­Â´Ã£ÂÂ«Ã£ÂÂ¦Ã£ÂÂ¼Ã£ÂÂ¶Ã£ÂÂ¼Ã£ÂÂ¡Ã£ÂÂÃ£ÂÂ»Ã£ÂÂ¼Ã£ÂÂ¸Ã£ÂÂÃ¨Â¿Â½Ã¥ÂÂ 
         chatHistory.push({ role: 'user', parts: [{ text: message }] });
 
-        // Gemini APIãå¼ã³åºã
+        // Gemini APIÃ£ÂÂÃ¥ÂÂ¼Ã£ÂÂ³Ã¥ÂÂºÃ£ÂÂ
         const response = await fetch(
           `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${geminiApiKey}`,
           {
@@ -1414,10 +1414,10 @@
             body: JSON.stringify({
               system_instruction: {
                 parts: [{
-                  text: `ããªãã¯ãµã¤ãã¼ã»ã­ã¥ãªãã£ã®å°éå®¶ã¢ã·ã¹ã¿ã³ãã§ããæ¥æ¬èªã§åç­ãã¦ãã ããã
-èå¼±æ§æå ±ï¼CVEï¼ã®èª¬æãå½±é¿ç¯å²ã®åæãå¯¾ç­æ¹æ³ã®ã¢ããã¤ã¹ãåãããããæä¾ãã¦ãã ããã
-æè¡çãªåå®¹ããã­ã°ã©ãã³ã°åå¿èã«ãåããããã«èª¬æãã¦ãã ããã
-åç­ã¯ç°¡æ½ã«ãç®æ¡æ¸ããæ´»ç¨ãã¦ãã ããã`
+                  text: `Ã£ÂÂÃ£ÂÂªÃ£ÂÂÃ£ÂÂ¯Ã£ÂÂµÃ£ÂÂ¤Ã£ÂÂÃ£ÂÂ¼Ã£ÂÂ»Ã£ÂÂ­Ã£ÂÂ¥Ã£ÂÂªÃ£ÂÂÃ£ÂÂ£Ã£ÂÂ®Ã¥Â°ÂÃ©ÂÂÃ¥Â®Â¶Ã£ÂÂ¢Ã£ÂÂ·Ã£ÂÂ¹Ã£ÂÂ¿Ã£ÂÂ³Ã£ÂÂÃ£ÂÂ§Ã£ÂÂÃ£ÂÂÃ¦ÂÂ¥Ã¦ÂÂ¬Ã¨ÂªÂÃ£ÂÂ§Ã¥ÂÂÃ§Â­ÂÃ£ÂÂÃ£ÂÂ¦Ã£ÂÂÃ£ÂÂ Ã£ÂÂÃ£ÂÂÃ£ÂÂ
+Ã¨ÂÂÃ¥Â¼Â±Ã¦ÂÂ§Ã¦ÂÂÃ¥Â Â±Ã¯Â¼ÂCVEÃ¯Â¼ÂÃ£ÂÂ®Ã¨ÂªÂ¬Ã¦ÂÂÃ£ÂÂÃ¥Â½Â±Ã©ÂÂ¿Ã§Â¯ÂÃ¥ÂÂ²Ã£ÂÂ®Ã¥ÂÂÃ¦ÂÂÃ£ÂÂÃ¥Â¯Â¾Ã§Â­ÂÃ¦ÂÂ¹Ã¦Â³ÂÃ£ÂÂ®Ã£ÂÂ¢Ã£ÂÂÃ£ÂÂÃ£ÂÂ¤Ã£ÂÂ¹Ã£ÂÂÃ¥ÂÂÃ£ÂÂÃ£ÂÂÃ£ÂÂÃ£ÂÂÃ£ÂÂÃ¦ÂÂÃ¤Â¾ÂÃ£ÂÂÃ£ÂÂ¦Ã£ÂÂÃ£ÂÂ Ã£ÂÂÃ£ÂÂÃ£ÂÂ
+Ã¦ÂÂÃ¨Â¡ÂÃ§ÂÂÃ£ÂÂªÃ¥ÂÂÃ¥Â®Â¹Ã£ÂÂÃ£ÂÂÃ£ÂÂ­Ã£ÂÂ°Ã£ÂÂ©Ã£ÂÂÃ£ÂÂ³Ã£ÂÂ°Ã¥ÂÂÃ¥Â¿ÂÃ¨ÂÂÃ£ÂÂ«Ã£ÂÂÃ¥ÂÂÃ£ÂÂÃ£ÂÂÃ£ÂÂÃ£ÂÂÃ£ÂÂ«Ã¨ÂªÂ¬Ã¦ÂÂÃ£ÂÂÃ£ÂÂ¦Ã£ÂÂÃ£ÂÂ Ã£ÂÂÃ£ÂÂÃ£ÂÂ
+Ã¥ÂÂÃ§Â­ÂÃ£ÂÂ¯Ã§Â°Â¡Ã¦Â½ÂÃ£ÂÂ«Ã£ÂÂÃ§Â®ÂÃ¦ÂÂ¡Ã¦ÂÂ¸Ã£ÂÂÃ£ÂÂÃ¦Â´Â»Ã§ÂÂ¨Ã£ÂÂÃ£ÂÂ¦Ã£ÂÂÃ£ÂÂ Ã£ÂÂÃ£ÂÂÃ£ÂÂ`
                 }]
               },
               contents: chatHistory,
@@ -1431,29 +1431,29 @@
 
         if (!response.ok) {
           const err = await response.json();
-          throw new Error(err.error?.message || `APIã¨ã©ã¼: ${response.status}`);
+          throw new Error(err.error?.message || `APIÃ£ÂÂ¨Ã£ÂÂ©Ã£ÂÂ¼: ${response.status}`);
         }
 
         const data = await response.json();
-        const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || 'åç­ãåå¾ã§ãã¾ããã§ããã';
+        const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || 'Ã¥ÂÂÃ§Â­ÂÃ£ÂÂÃ¥ÂÂÃ¥Â¾ÂÃ£ÂÂ§Ã£ÂÂÃ£ÂÂ¾Ã£ÂÂÃ£ÂÂÃ£ÂÂ§Ã£ÂÂÃ£ÂÂÃ£ÂÂ';
 
-        // ãã£ããå±¥æ­´ã«AIå¿ç­ãè¿½å 
+        // Ã£ÂÂÃ£ÂÂ£Ã£ÂÂÃ£ÂÂÃ¥Â±Â¥Ã¦Â­Â´Ã£ÂÂ«AIÃ¥Â¿ÂÃ§Â­ÂÃ£ÂÂÃ¨Â¿Â½Ã¥ÂÂ 
         chatHistory.push({ role: 'model', parts: [{ text: reply }] });
 
-        // ã­ã¼ãã£ã³ã°ãåé¤ãã¦AIå¿ç­ãè¡¨ç¤º
+        // Ã£ÂÂ­Ã£ÂÂ¼Ã£ÂÂÃ£ÂÂ£Ã£ÂÂ³Ã£ÂÂ°Ã£ÂÂÃ¥ÂÂÃ©ÂÂ¤Ã£ÂÂÃ£ÂÂ¦AIÃ¥Â¿ÂÃ§Â­ÂÃ£ÂÂÃ¨Â¡Â¨Ã§Â¤Âº
         removeChatBubble(loadingId);
         addChatBubble(reply, 'ai');
 
       } catch (error) {
         removeChatBubble(loadingId);
-        addChatBubble(`ã¨ã©ã¼: ${error.message}`, 'system');
+        addChatBubble(`Ã£ÂÂ¨Ã£ÂÂ©Ã£ÂÂ¼: ${error.message}`, 'system');
       } finally {
         sendBtn.disabled = false;
         input.focus();
       }
     }
 
-    // ãã£ããããã«ãè¿½å 
+    // Ã£ÂÂÃ£ÂÂ£Ã£ÂÂÃ£ÂÂÃ£ÂÂÃ£ÂÂÃ£ÂÂ«Ã£ÂÂÃ¨Â¿Â½Ã¥ÂÂ 
     function addChatBubble(text, type, isLoading = false) {
       const messagesDiv = document.getElementById('chat-messages');
       const bubble = document.createElement('div');
@@ -1462,9 +1462,9 @@
       bubble.className = `chat-bubble ${type}`;
 
       if (isLoading) {
-        bubble.innerHTML = '<div class="spinner" style="width:18px;height:18px;border-width:2px;display:inline-block;vertical-align:middle;margin-right:8px;"></div>èãä¸­...';
+        bubble.innerHTML = '<div class="spinner" style="width:18px;height:18px;border-width:2px;display:inline-block;vertical-align:middle;margin-right:8px;"></div>Ã¨ÂÂÃ£ÂÂÃ¤Â¸Â­...';
       } else {
-        // ç°¡æçãªMarkdownã¬ã³ããªã³ã°
+        // Ã§Â°Â¡Ã¦ÂÂÃ§ÂÂÃ£ÂÂªMarkdownÃ£ÂÂ¬Ã£ÂÂ³Ã£ÂÂÃ£ÂÂªÃ£ÂÂ³Ã£ÂÂ°
         bubble.innerHTML = renderMarkdown(text);
       }
 
@@ -1473,13 +1473,13 @@
       return id;
     }
 
-    // ãã£ããããã«ãåé¤
+    // Ã£ÂÂÃ£ÂÂ£Ã£ÂÂÃ£ÂÂÃ£ÂÂÃ£ÂÂÃ£ÂÂ«Ã£ÂÂÃ¥ÂÂÃ©ÂÂ¤
     function removeChatBubble(id) {
       const el = document.getElementById(id);
       if (el) el.remove();
     }
 
-    // ç°¡æMarkdownã¬ã³ããªã³ã°
+    // Ã§Â°Â¡Ã¦ÂÂMarkdownÃ£ÂÂ¬Ã£ÂÂ³Ã£ÂÂÃ£ÂÂªÃ£ÂÂ³Ã£ÂÂ°
     function renderMarkdown(text) {
       return escapeHtml(text)
         .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
@@ -1489,22 +1489,22 @@
         .replace(/\n/g, '<br>');
     }
 
-    // ã¯ã¤ãã¯ãã­ã³ããéä¿¡
+    // Ã£ÂÂ¯Ã£ÂÂ¤Ã£ÂÂÃ£ÂÂ¯Ã£ÂÂÃ£ÂÂ­Ã£ÂÂ³Ã£ÂÂÃ£ÂÂÃ©ÂÂÃ¤Â¿Â¡
     function sendQuickPrompt(text) {
       document.getElementById('chat-input').value = text;
       sendChat();
     }
 
-    // CVEã«ã¤ãã¦AIã«è³ªå
+    // CVEÃ£ÂÂ«Ã£ÂÂ¤Ã£ÂÂÃ£ÂÂ¦AIÃ£ÂÂ«Ã¨Â³ÂªÃ¥ÂÂ
     function askAiAboutCve(id, desc) {
       closeModal();
       switchPage('chat', document.querySelectorAll('.nav-item')[3]);
-      document.getElementById('chat-input').value = `${id} ã«ã¤ãã¦åãããããèª¬æãã¦ãã ãããå½±é¿ã¨å¯¾ç­ãæãã¦ãã ããã\n\næ¦è¦: ${desc}`;
+      document.getElementById('chat-input').value = `${id} Ã£ÂÂ«Ã£ÂÂ¤Ã£ÂÂÃ£ÂÂ¦Ã¥ÂÂÃ£ÂÂÃ£ÂÂÃ£ÂÂÃ£ÂÂÃ£ÂÂÃ¨ÂªÂ¬Ã¦ÂÂÃ£ÂÂÃ£ÂÂ¦Ã£ÂÂÃ£ÂÂ Ã£ÂÂÃ£ÂÂÃ£ÂÂÃ¥Â½Â±Ã©ÂÂ¿Ã£ÂÂ¨Ã¥Â¯Â¾Ã§Â­ÂÃ£ÂÂÃ¦ÂÂÃ£ÂÂÃ£ÂÂ¦Ã£ÂÂÃ£ÂÂ Ã£ÂÂÃ£ÂÂÃ£ÂÂ\n\nÃ¦Â¦ÂÃ¨Â¦Â: ${desc}`;
       setTimeout(() => sendChat(), 300);
     }
 
     // ============================================================
-    //  ããã·ã¥ãã¼ã
+    //  Ã£ÂÂÃ£ÂÂÃ£ÂÂ·Ã£ÂÂ¥Ã£ÂÂÃ£ÂÂ¼Ã£ÂÂ
     // ============================================================
     function updateDashboardStats() {
       let critical = 0, high = 0, medium = 0, low = 0;
@@ -1521,17 +1521,17 @@
       document.getElementById('stat-low').textContent = low;
     }
 
-    // ããã·ã¥ãã¼ãã«ææ°èå¼±æ§ãèª­ã¿è¾¼ã¿ï¼èµ·åæã«èªåå®è¡ï¼
+    // Ã£ÂÂÃ£ÂÂÃ£ÂÂ·Ã£ÂÂ¥Ã£ÂÂÃ£ÂÂ¼Ã£ÂÂÃ£ÂÂ«Ã¦ÂÂÃ¦ÂÂ°Ã¨ÂÂÃ¥Â¼Â±Ã¦ÂÂ§Ã£ÂÂÃ¨ÂªÂ­Ã£ÂÂ¿Ã¨Â¾Â¼Ã£ÂÂ¿Ã¯Â¼ÂÃ¨ÂµÂ·Ã¥ÂÂÃ¦ÂÂÃ£ÂÂ«Ã¨ÂÂªÃ¥ÂÂÃ¥Â®ÂÃ¨Â¡ÂÃ¯Â¼Â
     async function loadDashboard() {
       const recentDiv = document.getElementById('dashboard-recent');
       const updateText = document.getElementById('last-update-text');
       const refreshBtn = document.getElementById('refresh-btn');
 
-      recentDiv.innerHTML = '<div class="loading"><div class="spinner"></div>ææ°ã®èå¼±æ§æå ±ãåå¾ä¸­...</div>';
+      recentDiv.innerHTML = '<div class="loading"><div class="spinner"></div>Ã¦ÂÂÃ¦ÂÂ°Ã£ÂÂ®Ã¨ÂÂÃ¥Â¼Â±Ã¦ÂÂ§Ã¦ÂÂÃ¥Â Â±Ã£ÂÂÃ¥ÂÂÃ¥Â¾ÂÃ¤Â¸Â­...</div>';
       if (refreshBtn) refreshBtn.disabled = true;
 
       try {
-        // ææ°20ä»¶ãåå¾ãã¦çµ±è¨ãæ´æ°
+        // Ã¦ÂÂÃ¦ÂÂ°20Ã¤Â»Â¶Ã£ÂÂÃ¥ÂÂÃ¥Â¾ÂÃ£ÂÂÃ£ÂÂ¦Ã§ÂµÂ±Ã¨Â¨ÂÃ£ÂÂÃ¦ÂÂ´Ã¦ÂÂ°
         const now = new Date();
         const weekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
         const fmt = d => d.toISOString().replace(/\.\d{3}Z$/, '.000');
@@ -1542,26 +1542,26 @@
         const vulns = data.vulnerabilities || [];
 
         if (vulns.length === 0) {
-          recentDiv.innerHTML = '<p style="color:var(--text-light);font-size:14px;">ãã¼ã¿ãåå¾ã§ãã¾ããã§ãã</p>';
-          if (updateText) updateText.textContent = 'â ãã¼ã¿ãªã';
+          recentDiv.innerHTML = '<p style="color:var(--text-light);font-size:14px;">Ã£ÂÂÃ£ÂÂ¼Ã£ÂÂ¿Ã£ÂÂÃ¥ÂÂÃ¥Â¾ÂÃ£ÂÂ§Ã£ÂÂÃ£ÂÂ¾Ã£ÂÂÃ£ÂÂÃ£ÂÂ§Ã£ÂÂÃ£ÂÂ</p>';
+          if (updateText) updateText.textContent = 'Ã¢ÂÂ Ã£ÂÂÃ£ÂÂ¼Ã£ÂÂ¿Ã£ÂÂªÃ£ÂÂ';
           return;
         }
 
-        // ããã·ã¥ãã¼ãç¨ã­ã£ãã·ã¥ã«ä¿å­ãã¦çµ±è¨æ´æ°
+        // Ã£ÂÂÃ£ÂÂÃ£ÂÂ·Ã£ÂÂ¥Ã£ÂÂÃ£ÂÂ¼Ã£ÂÂÃ§ÂÂ¨Ã£ÂÂ­Ã£ÂÂ£Ã£ÂÂÃ£ÂÂ·Ã£ÂÂ¥Ã£ÂÂ«Ã¤Â¿ÂÃ¥Â­ÂÃ£ÂÂÃ£ÂÂ¦Ã§ÂµÂ±Ã¨Â¨ÂÃ¦ÂÂ´Ã¦ÂÂ°
         nvdCache = vulns;
         updateDashboardStats();
 
-        // ä¸ä½10ä»¶ãè¡¨ç¤º
+        // Ã¤Â¸ÂÃ¤Â½Â10Ã¤Â»Â¶Ã£ÂÂÃ¨Â¡Â¨Ã§Â¤Âº
         recentDiv.innerHTML = vulns.slice(0, 10).map(v => renderNvdItem(v.cve)).join('');
 
-        // æçµæ´æ°æå»ãè¡¨ç¤º
-        const now = new Date();
-        const timeStr = `${now.getHours()}:${String(now.getMinutes()).padStart(2, '0')}`;
+        // Ã¦ÂÂÃ§ÂµÂÃ¦ÂÂ´Ã¦ÂÂ°Ã¦ÂÂÃ¥ÂÂ»Ã£ÂÂÃ¨Â¡Â¨Ã§Â¤Âº
+        const now2 = new Date();
+        const timeStr = `${now2.getHours()}:${String(now2.getMinutes()).padStart(2, '0')}`;
         if (updateText) {
-          updateText.innerHTML = `â æçµæ´æ°: ${timeStr}ã<span style="font-size:12px; color:var(--text-light);">ï¼${vulns.length}ä»¶åå¾ï¼</span>`;
+          updateText.innerHTML = `Ã¢ÂÂ Ã¦ÂÂÃ§ÂµÂÃ¦ÂÂ´Ã¦ÂÂ°: ${timeStr}Ã£ÂÂ<span style="font-size:12px; color:var(--text-light);">Ã¯Â¼Â${vulns.length}Ã¤Â»Â¶Ã¥ÂÂÃ¥Â¾ÂÃ¯Â¼Â</span>`;
         }
 
-        // localStorageã«ã­ã£ãã·ã¥ä¿å­ï¼ãªãã©ã¤ã³ç¨ï¼
+        // localStorageÃ£ÂÂ«Ã£ÂÂ­Ã£ÂÂ£Ã£ÂÂÃ£ÂÂ·Ã£ÂÂ¥Ã¤Â¿ÂÃ¥Â­ÂÃ¯Â¼ÂÃ£ÂÂªÃ£ÂÂÃ£ÂÂ©Ã£ÂÂ¤Ã£ÂÂ³Ã§ÂÂ¨Ã¯Â¼Â
         try {
           localStorage.setItem('vw_dashboard_cache', JSON.stringify({
             timestamp: now2.toISOString(),
@@ -1570,7 +1570,7 @@
         } catch(e) {}
 
       } catch (e) {
-        // ãªãã©ã¤ã³æã¯ã­ã£ãã·ã¥ããèª­ã¿è¾¼ã¿
+        // Ã£ÂÂªÃ£ÂÂÃ£ÂÂ©Ã£ÂÂ¤Ã£ÂÂ³Ã¦ÂÂÃ£ÂÂ¯Ã£ÂÂ­Ã£ÂÂ£Ã£ÂÂÃ£ÂÂ·Ã£ÂÂ¥Ã£ÂÂÃ£ÂÂÃ¨ÂªÂ­Ã£ÂÂ¿Ã¨Â¾Â¼Ã£ÂÂ¿
         try {
           const cached = JSON.parse(localStorage.getItem('vw_dashboard_cache'));
           if (cached && cached.vulnerabilities) {
@@ -1579,32 +1579,32 @@
             recentDiv.innerHTML = nvdCache.slice(0, 10).map(v => renderNvdItem(v.cve)).join('');
             const cachedTime = new Date(cached.timestamp);
             if (updateText) {
-              updateText.innerHTML = `ð¦ ã­ã£ãã·ã¥è¡¨ç¤ºï¼${cachedTime.toLocaleDateString('ja-JP')} ${cachedTime.getHours()}:${String(cachedTime.getMinutes()).padStart(2, '0')}æç¹ï¼`;
+              updateText.innerHTML = `Ã°ÂÂÂ¦ Ã£ÂÂ­Ã£ÂÂ£Ã£ÂÂÃ£ÂÂ·Ã£ÂÂ¥Ã¨Â¡Â¨Ã§Â¤ÂºÃ¯Â¼Â${cachedTime.toLocaleDateString('ja-JP')} ${cachedTime.getHours()}:${String(cachedTime.getMinutes()).padStart(2, '0')}Ã¦ÂÂÃ§ÂÂ¹Ã¯Â¼Â`;
             }
-            showToast('â ï¸ ãªãã©ã¤ã³ã®ããã­ã£ãã·ã¥ãè¡¨ç¤ºä¸­');
+            showToast('Ã¢ÂÂ Ã¯Â¸Â Ã£ÂÂªÃ£ÂÂÃ£ÂÂ©Ã£ÂÂ¤Ã£ÂÂ³Ã£ÂÂ®Ã£ÂÂÃ£ÂÂÃ£ÂÂ­Ã£ÂÂ£Ã£ÂÂÃ£ÂÂ·Ã£ÂÂ¥Ã£ÂÂÃ¨Â¡Â¨Ã§Â¤ÂºÃ¤Â¸Â­');
             return;
           }
         } catch(ex) {}
 
         recentDiv.innerHTML = `
           <p style="color:var(--text-light);font-size:14px;">
-            ææ°æå ±ã®åå¾ã«å¤±æãã¾ããã<br>
-            <small>NVD APIã®ã¬ã¼ãå¶éã®å¯è½æ§ãããã¾ãããð ä»ããæ´æ°ããã¿ã³ã§åè©¦è¡ãã¦ãã ããã</small>
+            Ã¦ÂÂÃ¦ÂÂ°Ã¦ÂÂÃ¥Â Â±Ã£ÂÂ®Ã¥ÂÂÃ¥Â¾ÂÃ£ÂÂ«Ã¥Â¤Â±Ã¦ÂÂÃ£ÂÂÃ£ÂÂ¾Ã£ÂÂÃ£ÂÂÃ£ÂÂ<br>
+            <small>NVD APIÃ£ÂÂ®Ã£ÂÂ¬Ã£ÂÂ¼Ã£ÂÂÃ¥ÂÂ¶Ã©ÂÂÃ£ÂÂ®Ã¥ÂÂ¯Ã¨ÂÂ½Ã¦ÂÂ§Ã£ÂÂÃ£ÂÂÃ£ÂÂÃ£ÂÂ¾Ã£ÂÂÃ£ÂÂÃ£ÂÂÃ°ÂÂÂ Ã¤Â»ÂÃ£ÂÂÃ£ÂÂÃ¦ÂÂ´Ã¦ÂÂ°Ã£ÂÂÃ£ÂÂÃ£ÂÂ¿Ã£ÂÂ³Ã£ÂÂ§Ã¥ÂÂÃ¨Â©Â¦Ã¨Â¡ÂÃ£ÂÂÃ£ÂÂ¦Ã£ÂÂÃ£ÂÂ Ã£ÂÂÃ£ÂÂÃ£ÂÂ</small>
           </p>`;
-        if (updateText) updateText.textContent = 'â åå¾å¤±æï¼ãªãã©ã¤ã³ï¼ï¼';
+        if (updateText) updateText.textContent = 'Ã¢ÂÂ Ã¥ÂÂÃ¥Â¾ÂÃ¥Â¤Â±Ã¦ÂÂÃ¯Â¼ÂÃ£ÂÂªÃ£ÂÂÃ£ÂÂ©Ã£ÂÂ¤Ã£ÂÂ³Ã¯Â¼ÂÃ¯Â¼Â';
       } finally {
         if (refreshBtn) refreshBtn.disabled = false;
       }
     }
 
-    // æåæ´æ°ãã¿ã³
+    // Ã¦ÂÂÃ¥ÂÂÃ¦ÂÂ´Ã¦ÂÂ°Ã£ÂÂÃ£ÂÂ¿Ã£ÂÂ³
     async function refreshDashboard() {
-      showToast('ð ææ°æå ±ãåå¾ä¸­...');
+      showToast('Ã°ÂÂÂ Ã¦ÂÂÃ¦ÂÂ°Ã¦ÂÂÃ¥Â Â±Ã£ÂÂÃ¥ÂÂÃ¥Â¾ÂÃ¤Â¸Â­...');
       await loadDashboard();
     }
 
     // ============================================================
-    //  ã¦ã¼ãã£ãªãã£
+    //  Ã£ÂÂ¦Ã£ÂÂ¼Ã£ÂÂÃ£ÂÂ£Ã£ÂÂªÃ£ÂÂÃ£ÂÂ£
     // ============================================================
     function escapeHtml(text) {
       if (!text) return '';
@@ -1613,7 +1613,7 @@
       return div.innerHTML;
     }
 
-    // Enterã­ã¼ã§æ¤ç´¢
+    // EnterÃ£ÂÂ­Ã£ÂÂ¼Ã£ÂÂ§Ã¦Â¤ÂÃ§Â´Â¢
     document.getElementById('nvd-search').addEventListener('keydown', e => {
       if (e.key === 'Enter') searchNVD();
     });
@@ -1622,31 +1622,31 @@
     });
 
     // ============================================================
-    //  PWA: Service Worker ç»é²
+    //  PWA: Service Worker Ã§ÂÂ»Ã©ÂÂ²
     // ============================================================
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('./sw.js')
           .then(reg => {
-            console.log('[PWA] Service Worker ç»é²æå:', reg.scope);
-            // æ´æ°ãã§ãã¯
+            console.log('[PWA] Service Worker Ã§ÂÂ»Ã©ÂÂ²Ã¦ÂÂÃ¥ÂÂ:', reg.scope);
+            // Ã¦ÂÂ´Ã¦ÂÂ°Ã£ÂÂÃ£ÂÂ§Ã£ÂÂÃ£ÂÂ¯
             reg.addEventListener('updatefound', () => {
               const newWorker = reg.installing;
               newWorker.addEventListener('statechange', () => {
                 if (newWorker.state === 'activated') {
-                  showToast('ð ã¢ããªãæ´æ°ããã¾ãã');
+                  showToast('Ã°ÂÂÂ Ã£ÂÂ¢Ã£ÂÂÃ£ÂÂªÃ£ÂÂÃ¦ÂÂ´Ã¦ÂÂ°Ã£ÂÂÃ£ÂÂÃ£ÂÂ¾Ã£ÂÂÃ£ÂÂ');
                 }
               });
             });
           })
           .catch(err => {
-            console.log('[PWA] Service Worker ç»é²å¤±æï¼ã­ã¼ã«ã«ãã¡ã¤ã«ã§ã¯æ­£å¸¸ï¼:', err.message);
+            console.log('[PWA] Service Worker Ã§ÂÂ»Ã©ÂÂ²Ã¥Â¤Â±Ã¦ÂÂÃ¯Â¼ÂÃ£ÂÂ­Ã£ÂÂ¼Ã£ÂÂ«Ã£ÂÂ«Ã£ÂÂÃ£ÂÂ¡Ã£ÂÂ¤Ã£ÂÂ«Ã£ÂÂ§Ã£ÂÂ¯Ã¦Â­Â£Ã¥Â¸Â¸Ã¯Â¼Â:', err.message);
           });
       });
     }
 
     // ============================================================
-    //  iOS PWA ã¤ã³ã¹ãã¼ã«ããã¼
+    //  iOS PWA Ã£ÂÂ¤Ã£ÂÂ³Ã£ÂÂ¹Ã£ÂÂÃ£ÂÂ¼Ã£ÂÂ«Ã£ÂÂÃ£ÂÂÃ£ÂÂ¼
     // ============================================================
     function isIos() {
       return /iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase());
@@ -1662,37 +1662,37 @@
         banner.innerHTML = `
           <div style="display:flex;justify-content:space-between;align-items:flex-start;">
             <div>
-              <strong>ð² ãã¼ã ç»é¢ã«è¿½å </strong><br>
+              <strong>Ã°ÂÂÂ² Ã£ÂÂÃ£ÂÂ¼Ã£ÂÂ Ã§ÂÂ»Ã©ÂÂ¢Ã£ÂÂ«Ã¨Â¿Â½Ã¥ÂÂ </strong><br>
               <span style="font-size:13px;color:var(--text-light);">
-                Safariä¸é¨ã® <span style="font-size:18px;">â¬</span> â ããã¼ã ç»é¢ã«è¿½å ãã§ã¢ããªã¨ãã¦ä½¿ãã¾ã
+                SafariÃ¤Â¸ÂÃ©ÂÂ¨Ã£ÂÂ® <span style="font-size:18px;">Ã¢Â¬Â</span> Ã¢ÂÂ Ã£ÂÂÃ£ÂÂÃ£ÂÂ¼Ã£ÂÂ Ã§ÂÂ»Ã©ÂÂ¢Ã£ÂÂ«Ã¨Â¿Â½Ã¥ÂÂ Ã£ÂÂÃ£ÂÂ§Ã£ÂÂ¢Ã£ÂÂÃ£ÂÂªÃ£ÂÂ¨Ã£ÂÂÃ£ÂÂ¦Ã¤Â½Â¿Ã£ÂÂÃ£ÂÂ¾Ã£ÂÂ
               </span>
             </div>
-            <button onclick="document.getElementById('ios-banner').remove()" style="background:none;border:none;font-size:20px;cursor:pointer;color:var(--text-light);padding:0 0 0 12px;">â</button>
+            <button onclick="document.getElementById('ios-banner').remove()" style="background:none;border:none;font-size:20px;cursor:pointer;color:var(--text-light);padding:0 0 0 12px;">Ã¢ÂÂ</button>
           </div>`;
         document.body.appendChild(banner);
-        // 10ç§å¾ã«èªåã§æ¶ãã
+        // 10Ã§Â§ÂÃ¥Â¾ÂÃ£ÂÂ«Ã¨ÂÂªÃ¥ÂÂÃ£ÂÂ§Ã¦Â¶ÂÃ£ÂÂÃ£ÂÂ
         setTimeout(() => { const b = document.getElementById('ios-banner'); if(b) b.remove(); }, 10000);
       }
     }
 
     // ============================================================
-    //  ã¢ããªæåæ´æ°
+    //  Ã£ÂÂ¢Ã£ÂÂÃ£ÂÂªÃ¦ÂÂÃ¥ÂÂÃ¦ÂÂ´Ã¦ÂÂ°
     // ============================================================
     async function updateApp() {
       const btn = document.getElementById('update-btn');
       const status = document.getElementById('update-status');
       btn.disabled = true;
-      status.textContent = 'â³ æ´æ°ä¸­...';
+      status.textContent = 'Ã¢ÂÂ³ Ã¦ÂÂ´Ã¦ÂÂ°Ã¤Â¸Â­...';
       status.style.color = 'var(--medium)';
 
       try {
-        // 1. Service Workerã®ã­ã£ãã·ã¥ããã¹ã¦åé¤
+        // 1. Service WorkerÃ£ÂÂ®Ã£ÂÂ­Ã£ÂÂ£Ã£ÂÂÃ£ÂÂ·Ã£ÂÂ¥Ã£ÂÂÃ£ÂÂÃ£ÂÂ¹Ã£ÂÂ¦Ã¥ÂÂÃ©ÂÂ¤
         if ('caches' in window) {
           const cacheNames = await caches.keys();
           await Promise.all(cacheNames.map(name => caches.delete(name)));
         }
 
-        // 2. Service Workerãæ´æ°
+        // 2. Service WorkerÃ£ÂÂÃ¦ÂÂ´Ã¦ÂÂ°
         if ('serviceWorker' in navigator) {
           const reg = await navigator.serviceWorker.getRegistration();
           if (reg) {
@@ -1700,16 +1700,16 @@
           }
         }
 
-        status.textContent = 'â æ´æ°å®äºï¼åèª­ã¿è¾¼ã¿ãã¾ã...';
+        status.textContent = 'Ã¢ÂÂ Ã¦ÂÂ´Ã¦ÂÂ°Ã¥Â®ÂÃ¤ÂºÂÃ¯Â¼ÂÃ¥ÂÂÃ¨ÂªÂ­Ã£ÂÂ¿Ã¨Â¾Â¼Ã£ÂÂ¿Ã£ÂÂÃ£ÂÂ¾Ã£ÂÂ...';
         status.style.color = 'var(--low)';
-        showToast('ð ã¢ããªãæ´æ°ãã¾ãã');
+        showToast('Ã°ÂÂÂ Ã£ÂÂ¢Ã£ÂÂÃ£ÂÂªÃ£ÂÂÃ¦ÂÂ´Ã¦ÂÂ°Ã£ÂÂÃ£ÂÂ¾Ã£ÂÂÃ£ÂÂ');
 
-        // 3. ãã¼ã¸ãåèª­ã¿è¾¼ã¿
+        // 3. Ã£ÂÂÃ£ÂÂ¼Ã£ÂÂ¸Ã£ÂÂÃ¥ÂÂÃ¨ÂªÂ­Ã£ÂÂ¿Ã¨Â¾Â¼Ã£ÂÂ¿
         setTimeout(() => {
           window.location.reload(true);
         }, 1500);
       } catch (error) {
-        status.textContent = 'â æ´æ°ã«å¤±æãã¾ãã';
+        status.textContent = 'Ã¢ÂÂ Ã¦ÂÂ´Ã¦ÂÂ°Ã£ÂÂ«Ã¥Â¤Â±Ã¦ÂÂÃ£ÂÂÃ£ÂÂ¾Ã£ÂÂÃ£ÂÂ';
         status.style.color = 'var(--critical)';
         btn.disabled = false;
         console.error('[Update]', error);
@@ -1717,11 +1717,11 @@
     }
 
     // ============================================================
-    //  åæå
+    //  Ã¥ÂÂÃ¦ÂÂÃ¥ÂÂ
     // ============================================================
-    loadSavedKey();         // ä¿å­æ¸ã¿APIã­ã¼ã®å¾©å
-    loadDashboard();        // ããã·ã¥ãã¼ããã¼ã¿èª­ã¿è¾¼ã¿
-    showIosInstallBanner(); // iOSã¤ã³ã¹ãã¼ã«æ¡å
+    loadSavedKey();         // Ã¤Â¿ÂÃ¥Â­ÂÃ¦Â¸ÂÃ£ÂÂ¿APIÃ£ÂÂ­Ã£ÂÂ¼Ã£ÂÂ®Ã¥Â¾Â©Ã¥ÂÂ
+    loadDashboard();        // Ã£ÂÂÃ£ÂÂÃ£ÂÂ·Ã£ÂÂ¥Ã£ÂÂÃ£ÂÂ¼Ã£ÂÂÃ£ÂÂÃ£ÂÂ¼Ã£ÂÂ¿Ã¨ÂªÂ­Ã£ÂÂ¿Ã¨Â¾Â¼Ã£ÂÂ¿
+    showIosInstallBanner(); // iOSÃ£ÂÂ¤Ã£ÂÂ³Ã£ÂÂ¹Ã£ÂÂÃ£ÂÂ¼Ã£ÂÂ«Ã¦Â¡ÂÃ¥ÂÂ
   </script>
 </body>
 </html>
