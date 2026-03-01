@@ -1,0 +1,1724 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>VulnWatch - 脆弱性情報収集ツール</title>
+  <meta name="description" content="NVD・JVNの脆弱性情報を収集し、Gemini AIと会話できるPWAツール">
+  <meta name="theme-color" content="#2563eb">
+  <!-- iOS PWA対応 -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="VulnWatch">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="format-detection" content="telephone=no">
+  <!-- Apple Splash Screen -->
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect width='180' height='180' rx='40' fill='%232563eb'/><text x='90' y='130' font-size='100' text-anchor='middle'>🛡️</text></svg>">
+  <link rel="manifest" href="./manifest.json">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+  <style>
+    /* ===== CSS変数（テーマカラー） ===== */
+    :root {
+      --primary: #2563eb;
+      --primary-light: #dbeafe;
+      --primary-dark: #1d4ed8;
+      --bg: #f0f4ff;
+      --card: #ffffff;
+      --text: #1e293b;
+      --text-light: #64748b;
+      --border: #e2e8f0;
+      --critical: #dc2626;
+      --critical-bg: #fef2f2;
+      --high: #ea580c;
+      --high-bg: #fff7ed;
+      --medium: #ca8a04;
+      --medium-bg: #fefce8;
+      --low: #16a34a;
+      --low-bg: #f0fdf4;
+      --info: #0891b2;
+      --info-bg: #ecfeff;
+      --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+      --shadow-lg: 0 4px 12px rgba(0,0,0,0.1);
+      --radius: 12px;
+    }
+
+    /* ===== リセット・基本スタイル ===== */
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    html { height: -webkit-fill-available; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      min-height: -webkit-fill-available;
+      padding-top: env(safe-area-inset-top);
+      padding-bottom: calc(72px + env(safe-area-inset-bottom));
+      -webkit-text-size-adjust: 100%;
+      overscroll-behavior-y: none;
+    }
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ===== ヘッダー ===== */
+    .header {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      padding: 16px 20px;
+      padding-top: calc(16px + env(safe-area-inset-top));
+      padding-left: calc(20px + env(safe-area-inset-left));
+      padding-right: calc(20px + env(safe-area-inset-right));
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: var(--shadow-lg);
+    }
+    .header-icon { font-size: 28px; }
+    .header h1 { font-size: 20px; font-weight: 700; }
+    .header-sub { font-size: 11px; opacity: 0.85; margin-top: 2px; }
+
+    /* ===== ボトムナビゲーション ===== */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--card);
+      border-top: 1px solid var(--border);
+      display: flex;
+      z-index: 100;
+      box-shadow: 0 -2px 8px rgba(0,0,0,0.06);
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+    .nav-item {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 8px 4px 10px;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+      background: none;
+      color: var(--text-light);
+      font-size: 10px;
+      font-family: inherit;
+      gap: 3px;
+    }
+    .nav-item:hover { color: var(--primary); }
+    .nav-item.active { color: var(--primary); font-weight: 600; }
+    .nav-item .nav-icon { font-size: 22px; }
+
+    /* ===== メインコンテンツ ===== */
+    .main { max-width: 800px; margin: 0 auto; padding: 16px; }
+    .page { display: none; }
+    .page.active { display: block; }
+
+    /* ===== カード ===== */
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 20px;
+      margin-bottom: 16px;
+      border: 1px solid var(--border);
+    }
+    .card-title {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* ===== 検索バー ===== */
+    .search-bar {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .search-input {
+      flex: 1;
+      padding: 12px 16px;
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 14px;
+      font-family: inherit;
+      transition: border-color 0.2s;
+      outline: none;
+    }
+    .search-input:focus { border-color: var(--primary); }
+    .search-input::placeholder { color: #94a3b8; }
+
+    /* ===== ボタン ===== */
+    .btn {
+      padding: 12px 20px;
+      border: none;
+      border-radius: var(--radius);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+    .btn-primary:hover { background: var(--primary-dark); }
+    .btn-primary:disabled {
+      background: #94a3b8;
+      cursor: not-allowed;
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+    }
+    .btn-outline:hover { background: var(--primary-light); }
+    .btn-sm {
+      padding: 6px 12px;
+      font-size: 12px;
+      border-radius: 8px;
+    }
+
+    /* ===== 深刻度バッジ ===== */
+    .severity {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .severity-critical { background: var(--critical-bg); color: var(--critical); }
+    .severity-high { background: var(--high-bg); color: var(--high); }
+    .severity-medium { background: var(--medium-bg); color: var(--medium); }
+    .severity-low { background: var(--low-bg); color: var(--low); }
+    .severity-info { background: var(--info-bg); color: var(--info); }
+
+    /* ===== 脆弱性リスト ===== */
+    .vuln-item {
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin-bottom: 10px;
+      transition: box-shadow 0.2s;
+      cursor: pointer;
+    }
+    .vuln-item:hover { box-shadow: var(--shadow-lg); }
+    .vuln-id {
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+    .vuln-desc {
+      font-size: 13px;
+      color: var(--text-light);
+      line-height: 1.5;
+      margin: 6px 0;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .vuln-meta {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      margin-top: 8px;
+      font-size: 12px;
+      color: var(--text-light);
+      flex-wrap: wrap;
+    }
+    .vuln-score {
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+
+    /* ===== 統計カード ===== */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .stat-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 16px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+    .stat-number { font-size: 28px; font-weight: 800; }
+    .stat-label { font-size: 12px; color: var(--text-light); margin-top: 4px; }
+
+    /* ===== チャット ===== */
+    .chat-container {
+      display: flex;
+      flex-direction: column;
+      height: calc(100vh - 200px);
+      max-height: 600px;
+    }
+    .chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .chat-bubble {
+      max-width: 85%;
+      padding: 12px 16px;
+      border-radius: 16px;
+      font-size: 14px;
+      line-height: 1.6;
+      word-break: break-word;
+    }
+    .chat-bubble.user {
+      background: var(--primary);
+      color: white;
+      align-self: flex-end;
+      border-bottom-right-radius: 4px;
+    }
+    .chat-bubble.ai {
+      background: var(--card);
+      border: 1px solid var(--border);
+      align-self: flex-start;
+      border-bottom-left-radius: 4px;
+    }
+    .chat-bubble.ai pre {
+      background: #f1f5f9;
+      padding: 8px 12px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 13px;
+      margin: 8px 0;
+    }
+    .chat-bubble.system {
+      background: var(--info-bg);
+      color: var(--info);
+      align-self: center;
+      font-size: 13px;
+      text-align: center;
+    }
+    .chat-input-area {
+      display: flex;
+      gap: 8px;
+      padding: 12px;
+      border-top: 1px solid var(--border);
+      background: var(--card);
+      border-radius: 0 0 var(--radius) var(--radius);
+    }
+    .chat-input {
+      flex: 1;
+      padding: 12px 16px;
+      border: 2px solid var(--border);
+      border-radius: 24px;
+      font-size: 14px;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .chat-input:focus { border-color: var(--primary); }
+    .chat-send {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    .chat-send:hover { background: var(--primary-dark); }
+    .chat-send:disabled { background: #94a3b8; cursor: not-allowed; }
+
+    /* ===== 設定 ===== */
+    .setting-group {
+      margin-bottom: 20px;
+    }
+    .setting-label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+    .setting-help {
+      font-size: 12px;
+      color: var(--text-light);
+      margin-top: 6px;
+      line-height: 1.5;
+    }
+    .setting-input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 14px;
+      font-family: monospace;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .setting-input:focus { border-color: var(--primary); }
+
+    /* ===== ローディング ===== */
+    .loading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      color: var(--text-light);
+      gap: 10px;
+    }
+    .spinner {
+      width: 24px;
+      height: 24px;
+      border: 3px solid var(--border);
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ===== 空状態 ===== */
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--text-light);
+    }
+    .empty-state .empty-icon { font-size: 48px; margin-bottom: 12px; }
+    .empty-state p { font-size: 14px; line-height: 1.6; }
+
+    /* ===== フィルター ===== */
+    .filter-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+    .filter-chip {
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1.5px solid var(--border);
+      background: var(--card);
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+      font-weight: 500;
+    }
+    .filter-chip:hover { border-color: var(--primary); }
+    .filter-chip.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    /* ===== クイックプロンプト ===== */
+    .quick-prompts {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      padding: 12px;
+    }
+    .quick-prompt {
+      padding: 8px 14px;
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      border-radius: 20px;
+      font-size: 12px;
+      cursor: pointer;
+      border: none;
+      font-family: inherit;
+      transition: all 0.2s;
+      font-weight: 500;
+    }
+    .quick-prompt:hover { background: var(--primary); color: white; }
+
+    /* ===== 詳細モーダル ===== */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal {
+      background: var(--card);
+      border-radius: var(--radius);
+      max-width: 600px;
+      width: 100%;
+      max-height: 80vh;
+      overflow-y: auto;
+      padding: 24px;
+      box-shadow: var(--shadow-lg);
+    }
+    .modal-close {
+      float: right;
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: var(--text-light);
+      padding: 4px;
+    }
+    .modal h2 { font-size: 18px; margin-bottom: 16px; padding-right: 30px; }
+    .modal-section { margin-bottom: 16px; }
+    .modal-section h3 {
+      font-size: 13px;
+      color: var(--text-light);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+    .modal-section p { font-size: 14px; line-height: 1.6; }
+
+    /* ===== トースト通知 ===== */
+    .toast {
+      position: fixed;
+      top: 80px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-20px);
+      background: var(--text);
+      color: white;
+      padding: 12px 24px;
+      border-radius: var(--radius);
+      font-size: 14px;
+      z-index: 300;
+      opacity: 0;
+      transition: all 0.3s;
+      pointer-events: none;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    /* ===== Notionコピーボタン ===== */
+    .btn-notion {
+      background: #000;
+      color: #fff;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.2s;
+    }
+    .btn-notion:hover { background: #333; }
+    .btn-notion.copied { background: var(--low); }
+    .notion-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      padding: 10px 14px;
+      background: #f8f9fa;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+    }
+    .notion-bar-text {
+      font-size: 13px;
+      color: var(--text-light);
+    }
+
+    /* ===== レスポンシブ ===== */
+    @media (min-width: 600px) {
+      .stats-grid { grid-template-columns: repeat(4, 1fr); }
+      .main { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== ヘッダー ===== -->
+  <header class="header">
+    <span class="header-icon">🛡️</span>
+    <div>
+      <h1>VulnWatch</h1>
+      <div class="header-sub">脆弱性情報収集 &amp; AI分析ツール</div>
+    </div>
+  </header>
+
+  <!-- ===== メインコンテンツ ===== -->
+  <div class="main">
+
+    <!-- ===== ダッシュボード ===== -->
+    <div id="page-dashboard" class="page active">
+      <div class="card" style="padding:12px 16px; margin-bottom:12px; display:flex; justify-content:space-between; align-items:center;">
+        <div>
+          <span style="font-size:13px; color:var(--text-light);" id="last-update-text">📡 起動時に自動取得中...</span>
+        </div>
+        <button class="btn btn-outline btn-sm" onclick="refreshDashboard()" id="refresh-btn">🔄 今すぐ更新</button>
+      </div>
+
+      <div class="stats-grid" id="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number" style="color:var(--critical)" id="stat-critical">-</div>
+          <div class="stat-label">Critical</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" style="color:var(--high)" id="stat-high">-</div>
+          <div class="stat-label">High</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" style="color:var(--medium)" id="stat-medium">-</div>
+          <div class="stat-label">Medium</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" style="color:var(--low)" id="stat-low">-</div>
+          <div class="stat-label">Low</div>
+        </div>
+      </div>
+
+      <div class="card" style="border-color:#000; border-width:1.5px;">
+        <div class="card-title">📓 Notion 脆弱性トラッカー</div>
+        <p style="font-size:14px; line-height:1.6; color:var(--text-light); margin-bottom:12px;">
+          脆弱性の検索結果を「Notionにコピー」ボタンで簡単にNotionへ記録できます。
+        </p>
+        <a href="https://www.notion.so/1b9ae28446bc4960872f841ecfadc8de" target="_blank" rel="noopener" class="btn btn-notion" style="font-size:14px; padding:10px 18px;">
+          📓 Notionデータベースを開く
+        </a>
+      </div>
+
+      <div class="card">
+        <div class="card-title">🔥 最新の重要な脆弱性</div>
+        <div id="dashboard-recent">
+          <div class="loading"><div class="spinner"></div>読み込み中...</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">📊 使い方ガイド</div>
+        <p style="font-size:14px; line-height:1.8; color:var(--text-light);">
+          <strong>NVD検索:</strong> 米国の脆弱性データベースからCVE情報を検索できます。キーワードを入力して検索してください。<br>
+          <strong>JVN検索:</strong> 日本語の脆弱性情報をJVNから取得します。<br>
+          <strong>AIチャット:</strong> Gemini AIに脆弱性について質問できます。設定画面でAPIキーを入力してください。<br>
+          <strong>設定:</strong> Gemini APIキーの設定を行います。
+        </p>
+      </div>
+    </div>
+
+    <!-- ===== NVD検索ページ ===== -->
+    <div id="page-nvd" class="page">
+      <div class="card">
+        <div class="card-title">🔍 NVD 脆弱性検索</div>
+        <div class="search-bar">
+          <input type="text" class="search-input" id="nvd-search" placeholder="キーワードを入力（例: Apache, Windows, Log4j）">
+          <button class="btn btn-primary" id="nvd-search-btn" onclick="searchNVD()">検索</button>
+        </div>
+        <div class="filter-row">
+          <button class="filter-chip active" onclick="setNvdFilter('all', this)">すべて</button>
+          <button class="filter-chip" onclick="setNvdFilter('CRITICAL', this)">Critical</button>
+          <button class="filter-chip" onclick="setNvdFilter('HIGH', this)">High</button>
+          <button class="filter-chip" onclick="setNvdFilter('MEDIUM', this)">Medium</button>
+          <button class="filter-chip" onclick="setNvdFilter('LOW', this)">Low</button>
+        </div>
+        <div id="export-bar" style="display:none;">
+          <div class="filter-row" style="margin-bottom:0;">
+            <button class="btn btn-outline btn-sm" onclick="exportCSV()">📄 CSVで保存</button>
+            <button class="btn btn-outline btn-sm" onclick="exportJSON()">📋 JSONで保存</button>
+          </div>
+        </div>
+      </div>
+      <div id="nvd-results">
+        <div class="empty-state">
+          <div class="empty-icon">🔎</div>
+          <p>キーワードを入力して脆弱性情報を検索してください</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== JVN検索ページ ===== -->
+    <div id="page-jvn" class="page">
+      <div class="card">
+        <div class="card-title">📋 JVN 脆弱性検索（日本語）</div>
+        <div class="search-bar">
+          <input type="text" class="search-input" id="jvn-search" placeholder="キーワードを入力（例: Apache, WordPress）">
+          <button class="btn btn-primary" id="jvn-search-btn" onclick="searchJVN()">検索</button>
+        </div>
+      </div>
+      <div id="jvn-results">
+        <div class="empty-state">
+          <div class="empty-icon">🔎</div>
+          <p>キーワードを入力してJVNの脆弱性情報を検索してください</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== AIチャットページ ===== -->
+    <div id="page-chat" class="page">
+      <div class="card" style="padding:0; overflow:hidden;">
+        <div class="chat-container">
+          <div class="quick-prompts" id="quick-prompts">
+            <button class="quick-prompt" onclick="sendQuickPrompt('最新の重大な脆弱性について教えてください')">🔥 最新の重大脆弱性</button>
+            <button class="quick-prompt" onclick="sendQuickPrompt('Log4Shellの脆弱性について分かりやすく説明してください')">📖 Log4Shellとは</button>
+            <button class="quick-prompt" onclick="sendQuickPrompt('脆弱性のCVSSスコアの読み方を教えてください')">📊 CVSSスコアの読み方</button>
+            <button class="quick-prompt" onclick="sendQuickPrompt('Webアプリケーションのセキュリティ対策の基本を教えてください')">🔒 Webセキュリティ基本</button>
+          </div>
+          <div class="chat-messages" id="chat-messages">
+            <div class="chat-bubble system">
+              🛡️ セキュリティAIアシスタントです。脆弱性について質問してください。<br>
+              <small>※ 設定画面でGemini APIキーを入力してください</small>
+            </div>
+          </div>
+          <div class="chat-input-area">
+            <input type="text" class="chat-input" id="chat-input" placeholder="脆弱性について質問..." onkeydown="if(event.key==='Enter')sendChat()">
+            <button class="chat-send" onclick="sendChat()" id="chat-send-btn">➤</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== 設定ページ ===== -->
+    <div id="page-settings" class="page">
+      <div class="card">
+        <div class="card-title">⚙️ 設定</div>
+
+        <div class="setting-group">
+          <label class="setting-label">Gemini APIキー</label>
+          <input type="password" class="setting-input" id="gemini-key" placeholder="AIzaSy...">
+          <div style="margin-top:10px; display:flex; align-items:center; gap:8px;">
+            <input type="checkbox" id="save-key-checkbox" style="width:18px; height:18px; cursor:pointer;">
+            <label for="save-key-checkbox" style="font-size:13px; cursor:pointer;">ブラウザに保存する（次回から自動入力）</label>
+          </div>
+          <p class="setting-help">
+            Google AI StudioでAPIキーを取得できまず:
+            <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">https://aistudio.google.com/apikey</a>
+            <br>⚠️ 「ブラウザに保存」をオンにすると、このブラウザのlocalStorageにキーが保存されます。共有PCでは推奨しません。
+          </p>
+        </div>
+
+        <button class="btn btn-primary" onclick="saveSettings()">💾 保存</button>
+        <button class="btn btn-outline" onclick="clearSavedKey()" style="margin-left:8px;">🗑️ 保存済みキーを削除</button>
+        <span id="settings-status" style="margin-left:12px; font-size:14px; color:var(--low);"></span>
+      </div>
+
+      <div class="card">
+        <div class="card-title">ℹ️ このアプリについて</div>
+        <p style="font-size:14px; line-height:1.8; color:var(--text-light);">
+          <strong>VulnWatch</strong>は脆弱性情報を収集・分析するためのPWA（Progressive Web App）です。<br><br>
+          <strong>データソース:</strong><br>
+          ・NVD (National Vulnerability Database) - 米国NISTが提供<br>
+          ・JVN (Japan Vulnerability Notes) - IPAとJPCERT/CCが提供<br><br>
+          <strong>AI機能:</strong><br>
+          ・Google Gemini APIを使用して脆弱性について質問・分析ができます<br><br>
+          <strong>プライバシー:</strong><br>
+          ・APIキーはサーバーに送信されません（ブラウザ内で直接APIと通信します）<br>
+          ・データはローカルのみに保持されます
+        </p>
+      </div>
+
+      <div class="card" style="border-color:#000; border-width:1.5px;">
+        <div class="card-title">📓 Notion連携</div>
+        <p style="font-size:14px; line-height:1.8; color:var(--text-light);">
+          脆弱性トラッカーデータベースがNotionに用意されています。<br>
+          NVD検索結果の各アイテムにある「📓」ボタンで、情報をコピーしてNotionに貼り付けできます。<br><br>
+          <strong>使い方:</strong><br>
+          1. NVDで脆弱性を検索<br>
+          2. 「📓」ボタンまたは「全件Notionにコピー」をクリック<br>
+          3. Notionデータベースを開いて貼り付け
+        </p>
+        <a href="https://www.notion.so/1b9ae28446bc4960872f841ecfadc8de" target="_blank" rel="noopener" class="btn-notion" style="margin-top:12px; font-size:14px; padding:10px 18px; display:inline-flex;">
+          📓 Notionデータベースを開く
+        </a>
+      </div>
+
+      <div class="card">
+        <div class="card-title">🔄 アプリの更新</div>
+        <p style="font-size:14px; line-height:1.8; color:var(--text-light); margin-bottom:12px;">
+          アプリが正しく動作しない場合や、最新版に更新したい場合にお使いください。<br>
+          キャッシュをクリアして最新のデータを再取得します。
+        </p>
+        <button class="btn btn-primary" id="update-btn" onclick="updateApp()">🔄 アプリを更新する</button>
+        <span id="update-status" style="margin-left:12px; font-size:14px;"></span>
+      </div>
+
+      <div class="card">
+        <div class="card-title">📱 PWAとしてインストール</div>
+        <p style="font-size:14px; line-height:1.8; color:var(--text-light);">
+          このアプリはWebサーバーにホストすると、スマホやPCにインストールできるPWAになります。<br><br>
+          <strong>🚀 Netlifyで公開（一番簡単）:</strong><br>
+          1. <a href="https://app.netlify.com/drop" target="_blank" rel="noopener">Netlify Drop</a> を開く<br>
+          2. vulnwatch-pwaフォルダをドラッグ＆ドロップ<br>
+          3. 数秒で公開完了！URLが発行されます<br><br>
+          <strong>🐙 GitHub Pagesで公開:</strong><br>
+          1. GitHubにリポジトリを作成<br>
+          2. vulnwatch-pwaフォルダの中身をアップロード<br>
+          3. Settings → Pages → Source: main → Save<br>
+          4. 数分後にURLが発行されます<br><br>
+          <strong>📲 スマホにインストール:</strong><br>
+          公開後、ブラウザで開いて「ホーム画面に追加」を選択
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 詳細モーダル ===== -->
+  <div class="modal-overlay" id="modal-overlay" onclick="if(event.target===this)closeModal()">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <h2 id="modal-title"></h2>
+      <div id="modal-content"></div>
+    </div>
+  </div>
+
+  <!-- ===== トースト通知 ===== -->
+  <div class="toast" id="toast"></div>
+
+  <!-- ===== ボトムナビ ===== -->
+  <nav class="bottom-nav">
+    <button class="nav-item active" onclick="switchPage('dashboard', this)">
+      <span class="nav-icon">🏠</span>ホーム
+    </button>
+    <button class="nav-item" onclick="switchPage('nvd', this)">
+      <span class="nav-icon">🌐</span>NVD
+    </button>
+    <button class="nav-item" onclick="switchPage('jvn', this)">
+      <span class="nav-icon">🇯🇵</span>JVN
+    </button>
+    <button class="nav-item" onclick="switchPage('chat', this)">
+      <span class="nav-icon">💬</span>AIチャット
+    </button>
+    <button class="nav-item" onclick="switchPage('settings', this)">
+      <span class="nav-icon">⚙️</span>設定
+    </button>
+  </nav>
+
+  <script>
+    // ===== グローバル変数 =====
+    let geminiApiKey = '';          // Gemini APIキー（メモリ内のみ）
+    let chatHistory = [];           // チャット履歴
+    let nvdCache = [];              // NVD検索結果キャッシュ
+    let currentNvdFilter = 'all';   // NVDフィルター状態
+
+    // ===== ページ切り替え =====
+    function switchPage(pageId, navEl) {
+      // 全ページを非表示
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      // 全ナビアイテムを非アクティブ
+      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+      // 指定ページを表示
+      document.getElementById('page-' + pageId).classList.add('active');
+      if (navEl) navEl.classList.add('active');
+      // ページトップへスクロール
+      window.scrollTo(0, 0);
+    }
+
+    // ===== トースト通知 =====
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+
+    // ===== モーダル =====
+    function openModal(title, content) {
+      document.getElementById('modal-title').textContent = title;
+      document.getElementById('modal-content').innerHTML = content;
+      document.getElementById('modal-overlay').classList.add('active');
+    }
+    function closeModal() {
+      document.getElementById('modal-overlay').classList.remove('active');
+    }
+
+    // ===== 設定の保存（localStorage永続化対応） =====
+    function saveSettings() {
+      geminiApiKey = document.getElementById('gemini-key').value.trim();
+      const shouldSave = document.getElementById('save-key-checkbox').checked;
+
+      if (geminiApiKey) {
+        if (shouldSave) {
+          try { localStorage.setItem('vw_gemini_key', btoa(geminiApiKey)); } catch(e) {}
+        } else {
+          try { localStorage.removeItem('vw_gemini_key'); } catch(e) {}
+        }
+        document.getElementById('settings-status').textContent = '✅ 保存しました';
+        showToast(shouldSave ? 'APIキーをブラウザに保存しました' : 'APIキーを設定しました（セッション中のみ）');
+      } else {
+        document.getElementById('settings-status').textContent = '⚠️ キーが空です';
+      }
+      setTimeout(() => { document.getElementById('settings-status').textContent = ''; }, 3000);
+    }
+
+    // 保存済みキーの削除
+    function clearSavedKey() {
+      try { localStorage.removeItem('vw_gemini_key'); } catch(e) {}
+      geminiApiKey = '';
+      document.getElementById('gemini-key').value = '';
+      document.getElementById('save-key-checkbox').checked = false;
+      showToast('保存済みAPIキーを削除しました');
+    }
+
+    // 起動時にlocalStorageからキーを復元
+    function loadSavedKey() {
+      try {
+        const saved = localStorage.getItem('vw_gemini_key');
+        if (saved) {
+          geminiApiKey = atob(saved);
+          document.getElementById('gemini-key').value = geminiApiKey;
+          document.getElementById('save-key-checkbox').checked = true;
+        }
+      } catch(e) {}
+    }
+
+    // ============================================================
+    //  NVD API 検索
+    // ============================================================
+    async function searchNVD() {
+      const keyword = document.getElementById('nvd-search').value.trim();
+      if (!keyword) {
+        showToast('キーワードを入力してください');
+        return;
+      }
+
+      const resultsDiv = document.getElementById('nvd-results');
+      resultsDiv.innerHTML = '<div class="loading"><div class="spinner"></div>NVDを検索中...</div>';
+
+      try {
+        // NVD API v2.0 を呼び出し
+        const url = `https://services.nvd.nist.gov/rest/json/cves/2.0?keywordSearch=${encodeURIComponent(keyword)}&resultsPerPage=20`;
+        const response = await fetch(url);
+
+        if (!response.ok) {
+          throw new Error(`APIエラー: ${response.status}`);
+        }
+
+        const data = await response.json();
+        nvdCache = data.vulnerabilities || [];
+
+        if (nvdCache.length === 0) {
+          resultsDiv.innerHTML = `
+            <div class="empty-state">
+              <div class="empty-icon">😕</div>
+              <p>「${escapeHtml(keyword)}」に一致する脆弱性は見つかりませんでした</p>
+            </div>`;
+          return;
+        }
+
+        renderNvdResults();
+        updateDashboardStats();
+      } catch (error) {
+        resultsDiv.innerHTML = `
+          <div class="card" style="border-color:var(--critical);">
+            <div class="card-title" style="color:var(--critical);">❌ エラーが発生しました</div>
+            <p style="font-size:14px;">${escapeHtml(error.message)}</p>
+            <p style="font-size:13px; color:var(--text-light); margin-top:8px;">
+              NVD APIはレート制限があります（30秒あたり5リクエスト）。<br>
+              少し待ってから再試行してください。
+            </p>
+          </div>`;
+      }
+    }
+
+    // NVD結果の描画
+    function renderNvdResults() {
+      const resultsDiv = document.getElementById('nvd-results');
+      let filtered = nvdCache;
+
+      if (currentNvdFilter !== 'all') {
+        filtered = nvdCache.filter(v => {
+          const severity = getNvdSeverity(v.cve);
+          return severity === currentNvdFilter;
+        });
+      }
+
+      if (filtered.length === 0) {
+        resultsDiv.innerHTML = `
+          <div class="empty-state">
+            <div class="empty-icon">🔍</div>
+            <p>このフィルターに一致する結果はありません</p>
+          </div>`;
+        return;
+      }
+
+      resultsDiv.innerHTML = `
+        <div class="notion-bar">
+          <span class="notion-bar-text">${nvdCache.length}件中 ${filtered.length}件を表示</span>
+          <button class="btn-notion" onclick="copyAllToNotion(event)">📓 全件Notionにコピー</button>
+        </div>` +
+        filtered.map(v => renderNvdItem(v.cve)).join('');
+
+      // エクスポートバーを表示
+      document.getElementById('export-bar').style.display = 'block';
+    }
+
+    // NVDアイテムのHTML生成
+    function renderNvdItem(cve) {
+      const id = cve.id;
+      const desc = getEnglishDesc(cve);
+      const severity = getNvdSeverity(cve);
+      const score = getNvdScore(cve);
+      const published = cve.published ? new Date(cve.published).toLocaleDateString('ja-JP') : '不明';
+
+      return `
+        <div class="vuln-item" onclick='showNvdDetail(${JSON.stringify(JSON.stringify(cve))})'>
+          <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+            <div class="vuln-id">${escapeHtml(id)}</div>
+            <button class="btn-notion" onclick="copyOneToNotion(event, '${escapeHtml(id)}', '${severity}', '${score || ''}', '${escapeHtml(published)}', 'NVD')" title="Notionにコピー">📓</button>
+          </div>
+          <div class="vuln-desc">${escapeHtml(desc)}</div>
+          <div class="vuln-meta">
+            <span class="severity severity-${severity.toLowerCase()}">${severity}</span>
+            ${score ? `<span class="vuln-score" style="background:${getScoreColor(score)}15; color:${getScoreColor(score)}">${score}</span>` : ''}
+            <span>📅 ${published}</span>
+          </div>
+        </div>`;
+    }
+
+    // NVD詳細表示
+    function showNvdDetail(cveJson) {
+      const cve = JSON.parse(cveJson);
+      const id = cve.id;
+      const desc = getEnglishDesc(cve);
+      const severity = getNvdSeverity(cve);
+      const score = getNvdScore(cve);
+      const published = cve.published ? new Date(cve.published).toLocaleDateString('ja-JP') : '不明';
+      const modified = cve.lastModified ? new Date(cve.lastModified).toLocaleDateString('ja-JP') : '不明';
+      const refs = (cve.references || []).slice(0, 5);
+
+      // CVSSメトリクス情報を取得
+      const cvssData = cve.metrics?.cvssMetricV31?.[0]?.cvssData
+        || cve.metrics?.cvssMetricV30?.[0]?.cvssData
+        || null;
+
+      let content = `
+        <div class="modal-section">
+          <h3>深刻度</h3>
+          <p><span class="severity severity-${severity.toLowerCase()}">${severity}</span>
+          ${score ? ` CVSS: <strong>${score}</strong>` : ''}</p>
+          ${score ? `<div style="margin-top:8px; background:#f1f5f9; border-radius:8px; overflow:hidden; height:12px;">
+            <div style="height:100%; width:${(score/10)*100}%; background:${getScoreColor(score)}; border-radius:8px; transition:width 0.5s;"></div>
+          </div>
+          <div style="display:flex; justify-content:space-between; font-size:11px; color:var(--text-light); margin-top:2px;">
+            <span>0</span><span>10</span>
+          </div>` : ''}
+        </div>
+        ${cvssData ? renderCvssMetrics(cvssData) : ''}
+        <div class="modal-section">
+          <h3>説明</h3>
+          <p>${escapeHtml(desc)}</p>
+        </div>
+        <div class="modal-section">
+          <h3>日付</h3>
+          <p>公開: ${published} / 更新: ${modified}</p>
+        </div>`;
+
+      if (refs.length > 0) {
+        content += `<div class="modal-section"><h3>参考リンク</h3>`;
+        refs.forEach(r => {
+          content += `<p><a href="${escapeHtml(r.url)}" target="_blank" rel="noopener">${escapeHtml(r.url)}</a></p>`;
+        });
+        content += `</div>`;
+      }
+
+      content += `
+        <div class="modal-section">
+          <p><a href="https://nvd.nist.gov/vuln/detail/${escapeHtml(id)}" target="_blank" rel="noopener">
+            NVDで詳細を見る →
+          </a></p>
+        </div>
+        <div style="margin-top:16px; display:flex; gap:8px; flex-wrap:wrap;">
+          <button class="btn btn-outline btn-sm" onclick="askAiAboutCve('${escapeHtml(id)}', '${escapeHtml(desc.substring(0, 200))}')">
+            💬 AIに質問する
+          </button>
+          <button class="btn-notion" onclick="copyDetailToNotion('${escapeHtml(id)}', '${severity}', '${score || ''}', '${escapeHtml(published)}', 'NVD', \`${escapeHtml(desc.substring(0, 300))}\`)">
+            📓 Notionにコピー
+          </button>
+        </div>`;
+
+      openModal(id, content);
+    }
+
+    // NVDフィルター設定
+    function setNvdFilter(filter, el) {
+      currentNvdFilter = filter;
+      document.querySelectorAll('#page-nvd .filter-chip').forEach(c => c.classList.remove('active'));
+      el.classList.add('active');
+      if (nvdCache.length > 0) renderNvdResults();
+    }
+
+    // ============================================================
+    //  CVSS メトリクス可視化
+    // ============================================================
+    function renderCvssMetrics(cvss) {
+      const metrics = [
+        { key: 'attackVector', label: '攻撃元', values: { NETWORK: '🌐 ネットワーク', ADJACENT_NETWORK: '📡 隣接', LOCAL: '💻 ローカル', PHYSICAL: '🔌 物理' }},
+        { key: 'attackComplexity', label: '攻撃条件', values: { LOW: '⚡ 低い（容易）', HIGH: '🔒 高い（困難）' }},
+        { key: 'privilegesRequired', label: '必要な権限', values: { NONE: '🔓 不要', LOW: '🔑 低い', HIGH: '🔐 高い' }},
+        { key: 'userInteraction', label: 'ユーザー操作', values: { NONE: '🤖 不要', REQUIRED: '👆 必要' }},
+        { key: 'confidentialityImpact', label: '機密性への影響', values: { NONE: '✅ なし', LOW: '⚠️ 低い', HIGH: '🔴 高い' }},
+        { key: 'integrityImpact', label: '完全性への影響', values: { NONE: '✅ なし', LOW: '⚠️ 低い', HIGH: '🔴 高い' }},
+        { key: 'availabilityImpact', label: '可用性への影響', values: { NONE: '✅ なし', LOW: '⚠️ 低い', HIGH: '🔴 高い' }}
+      ];
+
+      let html = `<div class="modal-section"><h3>CVSSメトリクス詳細</h3>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; font-size:13px;">`;
+      metrics.forEach(m => {
+        const val = cvss[m.key];
+        if (val) {
+          const display = m.values[val] || val;
+          const isHigh = val === 'HIGH' || val === 'NONE' && (m.key === 'privilegesRequired' || m.key === 'userInteraction');
+          html += `<div style="padding:6px 10px; background:${display.includes('🔴') || display.includes('⚡') || display.includes('🌐') || display.includes('🔓') || display.includes('🤖') ? '#fef2f2' : '#f0fdf4'}; border-radius:6px;">
+            <div style="font-size:11px; color:var(--text-light);">${m.label}</div>
+            <div style="font-weight:600; margin-top:2px;">${display}</div>
+          </div>`;
+        }
+      });
+      html += `</div>`;
+
+      // CVSSベクター文字列
+      if (cvss.vectorString) {
+        html += `<p style="margin-top:8px; font-family:monospace; font-size:12px; color:var(--text-light); word-break:break-all;">
+          Vector: ${escapeHtml(cvss.vectorString)}</p>`;
+      }
+      html += `</div>`;
+      return html;
+    }
+
+    // ============================================================
+    //  データエクスポート（CSV / JSON）
+    // ============================================================
+    function getFilteredResults() {
+      let filtered = nvdCache;
+      if (currentNvdFilter !== 'all') {
+        filtered = nvdCache.filter(v => getNvdSeverity(v.cve) === currentNvdFilter);
+      }
+      return filtered;
+    }
+
+    function exportCSV() {
+      const filtered = getFilteredResults();
+      if (filtered.length === 0) { showToast('エクスポートするデータがありません'); return; }
+
+      // BOM付きUTF-8でCSV生成（Excelでの日本語文字化け防止）
+      let csv = '\uFEFFCVE ID,深刻度,CVSSスコア,ソース,公開日,説明\n';
+      filtered.forEach(v => {
+        const cve = v.cve;
+        const desc = getEnglishDesc(cve).replace(/"/g, '""').replace(/\n/g, ' ').substring(0, 300);
+        csv += `"${cve.id}","${getNvdSeverity(cve)}","${getNvdScore(cve) || ''}","NVD","${cve.published ? cve.published.split('T')[0] : ''}","${desc}"\n`;
+      });
+
+      downloadFile(csv, `vulnwatch-${getDateStr()}.csv`, 'text/csv;charset=utf-8');
+      showToast(`📄 ${filtered.length}件をCSVで保存しました`);
+    }
+
+    function exportJSON() {
+      const filtered = getFilteredResults();
+      if (filtered.length === 0) { showToast('エクスポートするデータがありません'); return; }
+
+      const data = filtered.map(v => {
+        const cve = v.cve;
+        return {
+          id: cve.id,
+          severity: getNvdSeverity(cve),
+          cvssScore: getNvdScore(cve),
+          source: 'NVD',
+          published: cve.published ? cve.published.split('T')[0] : null,
+          description: getEnglishDesc(cve),
+          references: (cve.references || []).map(r => r.url),
+          nvdUrl: `https://nvd.nist.gov/vuln/detail/${cve.id}`
+        };
+      });
+
+      downloadFile(JSON.stringify(data, null, 2), `vulnwatch-${getDateStr()}.json`, 'application/json');
+      showToast(`📋 ${filtered.length}件をJSONで保存しました`);
+    }
+
+    function downloadFile(content, filename, mimeType) {
+      const blob = new Blob([content], { type: mimeType });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    function getDateStr() {
+      const d = new Date();
+      return `${d.getFullYear()}${String(d.getMonth()+1).padStart(2,'0')}${String(d.getDate()).padStart(2,'0')}`;
+    }
+
+    // NVDヘルパー関数
+    function getEnglishDesc(cve) {
+      if (!cve.descriptions) return '説明なし';
+      const en = cve.descriptions.find(d => d.lang === 'en');
+      return en ? en.value : (cve.descriptions[0]?.value || '説明なし');
+    }
+
+    function getNvdSeverity(cve) {
+      const metrics = cve.metrics;
+      if (!metrics) return 'INFO';
+      const v31 = metrics.cvssMetricV31?.[0]?.cvssData?.baseSeverity;
+      const v30 = metrics.cvssMetricV30?.[0]?.cvssData?.baseSeverity;
+      const v2 = metrics.cvssMetricV2?.[0]?.baseSeverity;
+      return v31 || v30 || v2 || 'INFO';
+    }
+
+    function getNvdScore(cve) {
+      const metrics = cve.metrics;
+      if (!metrics) return null;
+      return metrics.cvssMetricV31?.[0]?.cvssData?.baseScore
+        || metrics.cvssMetricV30?.[0]?.cvssData?.baseScore
+        || metrics.cvssMetricV2?.[0]?.cvssData?.baseScore
+        || null;
+    }
+
+    function getScoreColor(score) {
+      if (score >= 9.0) return 'var(--critical)';
+      if (score >= 7.0) return 'var(--high)';
+      if (score >= 4.0) return 'var(--medium)';
+      return 'var(--low)';
+    }
+
+    // ============================================================
+    //  Notion連携（クリップボードコピー）
+    // ============================================================
+    const NOTION_DB_URL = 'https://www.notion.so/1b9ae28446bc4960872f841ecfadc8de';
+
+    // 1件のCVEをNotionフォーマットでコピー
+    function copyOneToNotion(event, id, severity, score, published, source) {
+      event.stopPropagation(); // 親のonclickを防止
+      const text = formatForNotion(id, severity, score, published, source, '');
+      copyToClipboard(text, event.currentTarget);
+    }
+
+    // 詳細モーダルからNotionにコピー
+    function copyDetailToNotion(id, severity, score, published, source, desc) {
+      const text = formatForNotion(id, severity, score, published, source, desc);
+      navigator.clipboard.writeText(text).then(() => {
+        showToast('📓 Notionにコピーしました！データベースに貼り付けてください');
+      });
+    }
+
+    // 全件をNotionフォーマットでコピー
+    function copyAllToNotion(event) {
+      event.stopPropagation();
+      let filtered = nvdCache;
+      if (currentNvdFilter !== 'all') {
+        filtered = nvdCache.filter(v => getNvdSeverity(v.cve) === currentNvdFilter);
+      }
+
+      // TSV形式（タブ区切り）でコピー → Notionテーブルに直接貼り付け可能
+      let tsv = 'CVE ID\t深刻度\tCVSSスコア\tソース\t公開日\t説明\n';
+      filtered.forEach(v => {
+        const cve = v.cve;
+        const id = cve.id;
+        const severity = getNvdSeverity(cve);
+        const score = getNvdScore(cve) || '';
+        const published = cve.published ? cve.published.split('T')[0] : '';
+        const desc = getEnglishDesc(cve).substring(0, 200).replace(/\t/g, ' ').replace(/\n/g, ' ');
+        tsv += `${id}\t${severity}\t${score}\t${'NVD'}\t${published}\t${desc}\n`;
+      });
+
+      navigator.clipboard.writeText(tsv).then(() => {
+        showToast(`📓 ${filtered.length}件をコピーしました！Notionデータベースに貼り付けてください`);
+        const btn = event.currentTarget;
+        btn.innerHTML = '✅ コピー済み';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.innerHTML = '📓 全件Notionにコピー';
+          btn.classList.remove('copied');
+        }, 2500);
+      });
+    }
+
+    // Notion用フォーマット生成
+    function formatForNotion(id, severity, score, published, source, desc) {
+      let lines = [`${id}`];
+      lines.push(`深刻度: ${severity}`);
+      if (score) lines.push(`CVSSスコア: ${score}`);
+      lines.push(`ソース: ${source}`);
+      if (published) lines.push(`公開日: ${published}`);
+      if (desc) lines.push(`\n説明:\n${desc}`);
+      lines.push(`\n詳細: https://nvd.nist.gov/vuln/detail/${id}`);
+      return lines.join('\n');
+    }
+
+    // クリップボードにコピー
+    function copyToClipboard(text, btnEl) {
+      navigator.clipboard.writeText(text).then(() => {
+        showToast('📓 コピーしました！Notionに貼り付けてください');
+        if (btnEl) {
+          const original = btnEl.innerHTML;
+          btnEl.innerHTML = '✅';
+          btnEl.classList.add('copied');
+          setTimeout(() => {
+            btnEl.innerHTML = original;
+            btnEl.classList.remove('copied');
+          }, 2000);
+        }
+      });
+    }
+
+    // ============================================================
+    //  JVN API 検索
+    // ============================================================
+    async function searchJVN() {
+      const keyword = document.getElementById('jvn-search').value.trim();
+      if (!keyword) {
+        showToast('キーワードを入力してください');
+        return;
+      }
+
+      const resultsDiv = document.getElementById('jvn-results');
+      resultsDiv.innerHTML = '<div class="loading"><div class="spinner"></div>JVNを検索中...</div>';
+
+      try {
+        // MyJVN APIを呼び出し（直接アクセス → CORSプロキシにフォールバック）
+        const jvnBaseUrl = `https://jvndb.jvn.jp/myjvn?method=getVulnOverviewList&feed=hnd&keyword=${encodeURIComponent(keyword)}&rangeDatePublished=m&rangeDatePublic=m`;
+
+        let text;
+        try {
+          // まず直接アクセスを試行
+          const directResponse = await fetch(jvnBaseUrl);
+          if (!directResponse.ok) throw new Error('Direct failed');
+          text = await directResponse.text();
+        } catch (directError) {
+          // CORS制限の場合、プロキシ経由でアクセス
+          console.log('[JVN] 直接アクセス失敗、プロキシ経由に切り替え...');
+          const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(jvnBaseUrl)}`;
+          const proxyResponse = await fetch(proxyUrl);
+          if (!proxyResponse.ok) throw new Error(`プロキシエラー: ${proxyResponse.status}`);
+          text = await proxyResponse.text();
+        }
+
+        const parser = new DOMParser();
+        const xml = parser.parseFromString(text, 'text/xml');
+
+        // RSSアイテムを解析
+        const items = xml.querySelectorAll('item');
+
+        if (items.length === 0) {
+          resultsDiv.innerHTML = `
+            <div class="empty-state">
+              <div class="empty-icon">😕</div>
+              <p>「${escapeHtml(keyword)}」に一致するJVN情報は見つかりませんでした</p>
+            </div>`;
+          return;
+        }
+
+        let html = `<p style="font-size:13px; color:var(--text-light); margin-bottom:12px;">${items.length}件の結果</p>`;
+
+        items.forEach(item => {
+          const title = item.querySelector('title')?.textContent || '不明';
+          const link = item.querySelector('link')?.textContent || '#';
+          const desc = item.querySelector('description')?.textContent || '';
+          // sec:cvss の severity を取得
+          const cvss = item.querySelector('cvss');
+          const severity = cvss?.getAttribute('severity') || '';
+          const score = cvss?.getAttribute('score') || '';
+          const issued = item.querySelector('issued')?.textContent || '';
+
+          let severityClass = 'info';
+          if (severity === 'High' || parseFloat(score) >= 7.0) severityClass = 'high';
+          else if (severity === 'Critical' || parseFloat(score) >= 9.0) severityClass = 'critical';
+          else if (severity === 'Medium' || parseFloat(score) >= 4.0) severityClass = 'medium';
+          else if (severity === 'Low') severityClass = 'low';
+
+          html += `
+            <div class="vuln-item" onclick="window.open('${escapeHtml(link)}', '_blank')">
+              <div class="vuln-id" style="font-size:13px;">${escapeHtml(title)}</div>
+              <div class="vuln-desc">${escapeHtml(desc)}</div>
+              <div class="vuln-meta">
+                ${score ? `<span class="severity severity-${severityClass}">CVSS: ${escapeHtml(score)}</span>` : ''}
+                ${issued ? `<span>📅 ${escapeHtml(issued)}</span>` : ''}
+                <span>🔗 詳細を見る</span>
+              </div>
+            </div>`;
+        });
+
+        resultsDiv.innerHTML = html;
+      } catch (error) {
+        // 直接アクセスもプロキシも失敗した場合
+        resultsDiv.innerHTML = `
+          <div class="card" style="border-color:var(--medium);">
+            <div class="card-title" style="color:var(--medium);">⚠️ JVN APIに接続できませんでした</div>
+            <p style="font-size:14px; line-height:1.8;">
+              直接アクセスとプロキシ経由の両方が失敗しました。<br>
+              ネットワーク接続を確認するか、以下の方法をお試しください。<br><br>
+              <strong>代替案:</strong><br>
+              ・<a href="https://jvndb.jvn.jp/search/index.php?mode=_vulnerability_search_IA_VulnSearch&keyword=${encodeURIComponent(keyword)}" target="_blank" rel="noopener">JVNサイトで直接検索する →</a><br>
+              ・時間をおいて再試行する<br>
+              ・AIチャットで脆弱性について質問する
+            </p>
+            <p style="font-size:12px; color:var(--text-light); margin-top:12px;">
+              エラー詳細: ${escapeHtml(error.message)}
+            </p>
+          </div>`;
+      }
+    }
+
+    // ============================================================
+    //  Gemini AI チャット
+    // ============================================================
+    async function sendChat() {
+      const input = document.getElementById('chat-input');
+      const message = input.value.trim();
+      if (!message) return;
+
+      if (!geminiApiKey) {
+        showToast('設定画面でGemini APIキーを入力してください');
+        switchPage('settings', document.querySelectorAll('.nav-item')[4]);
+        return;
+      }
+
+      // ユーザーメッセージを表示
+      addChatBubble(message, 'user');
+      input.value = '';
+
+      // クイックプロンプトを非表示
+      document.getElementById('quick-prompts').style.display = 'none';
+
+      // 送信ボタンを無効化
+      const sendBtn = document.getElementById('chat-send-btn');
+      sendBtn.disabled = true;
+
+      // ローディング表示
+      const loadingId = addChatBubble('考え中...', 'ai', true);
+
+      try {
+        // チャット履歴にユーザーメッセージを追加
+        chatHistory.push({ role: 'user', parts: [{ text: message }] });
+
+        // Gemini APIを呼び出し
+        const response = await fetch(
+          `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${geminiApiKey}`,
+          {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              system_instruction: {
+                parts: [{
+                  text: `あなたはサイバーセキュリティの専門家アシスタントです。日本語で回答してください。
+脆弱性情報（CVE）の説明、影響範囲の分析、対策方法のアドバイスを分かりやすく提供してください。
+技術的な内容もプログラミング初心者にも分かるように説明してください。
+回答は簡潔に、箇条書きを活用してください。`
+                }]
+              },
+              contents: chatHistory,
+              generationConfig: {
+                temperature: 0.7,
+                maxOutputTokens: 2048
+              }
+            })
+          }
+        );
+
+        if (!response.ok) {
+          const err = await response.json();
+          throw new Error(err.error?.message || `APIエラー: ${response.status}`);
+        }
+
+        const data = await response.json();
+        const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || '回答を取得できませんでした。';
+
+        // チャット履歴にAI応答を追加
+        chatHistory.push({ role: 'model', parts: [{ text: reply }] });
+
+        // ローディングを削除してAI応答を表示
+        removeChatBubble(loadingId);
+        addChatBubble(reply, 'ai');
+
+      } catch (error) {
+        removeChatBubble(loadingId);
+        addChatBubble(`エラー: ${error.message}`, 'system');
+      } finally {
+        sendBtn.disabled = false;
+        input.focus();
+      }
+    }
+
+    // チャットバブルを追加
+    function addChatBubble(text, type, isLoading = false) {
+      const messagesDiv = document.getElementById('chat-messages');
+      const bubble = document.createElement('div');
+      const id = 'msg-' + Date.now();
+      bubble.id = id;
+      bubble.className = `chat-bubble ${type}`;
+
+      if (isLoading) {
+        bubble.innerHTML = '<div class="spinner" style="width:18px;height:18px;border-width:2px;display:inline-block;vertical-align:middle;margin-right:8px;"></div>考え中...';
+      } else {
+        // 簡易的なMarkdownレンダリング
+        bubble.innerHTML = renderMarkdown(text);
+      }
+
+      messagesDiv.appendChild(bubble);
+      messagesDiv.scrollTop = messagesDiv.scrollHeight;
+      return id;
+    }
+
+    // チャットバブルを削除
+    function removeChatBubble(id) {
+      const el = document.getElementById(id);
+      if (el) el.remove();
+    }
+
+    // 簡易Markdownレンダリング
+    function renderMarkdown(text) {
+      return escapeHtml(text)
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*(.*?)\*/g, '<em>$1</em>')
+        .replace(/`([^`]+)`/g, '<code style="background:#f1f5f9;padding:2px 6px;border-radius:4px;font-size:13px;">$1</code>')
+        .replace(/```([\s\S]*?)```/g, '<pre>$1</pre>')
+        .replace(/\n/g, '<br>');
+    }
+
+    // クイックプロンプト送信
+    function sendQuickPrompt(text) {
+      document.getElementById('chat-input').value = text;
+      sendChat();
+    }
+
+    // CVEについてAIに質問
+    function askAiAboutCve(id, desc) {
+      closeModal();
+      switchPage('chat', document.querySelectorAll('.nav-item')[3]);
+      document.getElementById('chat-input').value = `${id} について分かりやすく説明してください。影響と対策も教えてください。\n\n概要: ${desc}`;
+      setTimeout(() => sendChat(), 300);
+    }
+
+    // ============================================================
+    //  ダッシュボード
+    // ============================================================
+    function updateDashboardStats() {
+      let critical = 0, high = 0, medium = 0, low = 0;
+      nvdCache.forEach(v => {
+        const s = getNvdSeverity(v.cve);
+        if (s === 'CRITICAL') critical++;
+        else if (s === 'HIGH') high++;
+        else if (s === 'MEDIUM') medium++;
+        else if (s === 'LOW') low++;
+      });
+      document.getElementById('stat-critical').textContent = critical;
+      document.getElementById('stat-high').textContent = high;
+      document.getElementById('stat-medium').textContent = medium;
+      document.getElementById('stat-low').textContent = low;
+    }
+
+    // ダッシュボードに最新脆弱性を読み込み（起動時に自動実行）
+    async function loadDashboard() {
+      const recentDiv = document.getElementById('dashboard-recent');
+      const updateText = document.getElementById('last-update-text');
+      const refreshBtn = document.getElementById('refresh-btn');
+
+      recentDiv.innerHTML = '<div class="loading"><div class="spinner"></div>最新の脆弱性情報を取得中...</div>';
+      if (refreshBtn) refreshBtn.disabled = true;
+
+      try {
+        // 最新20件を取得して統計も更新
+        const url = 'https://services.nvd.nist.gov/rest/json/cves/2.0?resultsPerPage=20';
+        const response = await fetch(url);
+        if (!response.ok) throw new Error('API error');
+        const data = await response.json();
+        const vulns = data.vulnerabilities || [];
+
+        if (vulns.length === 0) {
+          recentDiv.innerHTML = '<p style="color:var(--text-light);font-size:14px;">データを取得できませんでした</p>';
+          if (updateText) updateText.textContent = '❌ データなし';
+          return;
+        }
+
+        // ダッシュボード用キャッシュに保存して統計更新
+        nvdCache = vulns;
+        updateDashboardStats();
+
+        // 上位10件を表示
+        recentDiv.innerHTML = vulns.slice(0, 10).map(v => renderNvdItem(v.cve)).join('');
+
+        // 最終更新時刻を表示
+        const now = new Date();
+        const timeStr = `${now.getHours()}:${String(now.getMinutes()).padStart(2, '0')}`;
+        if (updateText) {
+          updateText.innerHTML = `✅ 最終更新: ${timeStr}　<span style="font-size:12px; color:var(--text-light);">（${vulns.length}件取得）</span>`;
+        }
+
+        // localStorageにキャッシュ保存（オフライン用）
+        try {
+          localStorage.setItem('vw_dashboard_cache', JSON.stringify({
+            timestamp: now.toISOString(),
+            vulnerabilities: vulns
+          }));
+        } catch(e) {}
+
+      } catch (e) {
+        // オフライン時はキャッシュから読み込み
+        try {
+          const cached = JSON.parse(localStorage.getItem('vw_dashboard_cache'));
+          if (cached && cached.vulnerabilities) {
+            nvdCache = cached.vulnerabilities;
+            updateDashboardStats();
+            recentDiv.innerHTML = nvdCache.slice(0, 10).map(v => renderNvdItem(v.cve)).join('');
+            const cachedTime = new Date(cached.timestamp);
+            if (updateText) {
+              updateText.innerHTML = `📦 キャッシュ表示（${cachedTime.toLocaleDateString('ja-JP')} ${cachedTime.getHours()}:${String(cachedTime.getMinutes()).padStart(2, '0')}時点）`;
+            }
+            showToast('⚠️ オフラインのためキャッシュを表示中');
+            return;
+          }
+        } catch(ex) {}
+
+        recentDiv.innerHTML = `
+          <p style="color:var(--text-light);font-size:14px;">
+            最新情報の取得に失敗しました。<br>
+            <small>NVD APIのレート制限の可能性があります。「🔄 今すぐ更新」ボタンで再試行してください。</small>
+          </p>`;
+        if (updateText) updateText.textContent = '❌ 取得失敗（オフライン？）';
+      } finally {
+        if (refreshBtn) refreshBtn.disabled = false;
+      }
+    }
+
+    // 手動更新ボタン
+    async function refreshDashboard() {
+      showToast('🔄 最新情報を取得中...');
+      await loadDashboard();
+    }
+
+    // ============================================================
+    //  ユーティリティ
+    // ============================================================
+    function escapeHtml(text) {
+      if (!text) return '';
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    // Enterキーで検索
+    document.getElementById('nvd-search').addEventListener('keydown', e => {
+      if (e.key === 'Enter') searchNVD();
+    });
+    document.getElementById('jvn-search').addEventListener('keydown', e => {
+      if (e.key === 'Enter') searchJVN();
+    });
+
+    // ============================================================
+    //  PWA: Service Worker 登録
+    // ============================================================
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+          .then(reg => {
+            console.log('[PWA] Service Worker 登録成功:', reg.scope);
+            // 更新チェック
+            reg.addEventListener('updatefound', () => {
+              const newWorker = reg.installing;
+              newWorker.addEventListener('statechange', () => {
+                if (newWorker.state === 'activated') {
+                  showToast('🔄 アプリが更新されました');
+                }
+              });
+            });
+          })
+          .catch(err => {
+            console.log('[PWA] Service Worker 登録失敗（ローカルファイルでは正常）:', err.message);
+          });
+      });
+    }
+
+    // ============================================================
+    //  iOS PWA インストールバナー
+    // ============================================================
+    function isIos() {
+      return /iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase());
+    }
+    function isStandalone() {
+      return window.navigator.standalone === true || window.matchMedia('(display-mode: standalone)').matches;
+    }
+    function showIosInstallBanner() {
+      if (isIos() && !isStandalone()) {
+        const banner = document.createElement('div');
+        banner.id = 'ios-banner';
+        banner.style.cssText = 'position:fixed;bottom:80px;left:16px;right:16px;background:#fff;border-radius:12px;padding:16px;box-shadow:0 4px 20px rgba(0,0,0,0.15);z-index:150;font-size:14px;line-height:1.6;border:1px solid var(--border);';
+        banner.innerHTML = `
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+            <div>
+              <strong>📲 ホーム画面に追加</strong><br>
+              <span style="font-size:13px;color:var(--text-light);">
+                Safari下部の <span style="font-size:18px;">⬆</span> → 「ホーム画面に追加」でアプリとして使えます
+              </span>
+            </div>
+            <button onclick="document.getElementById('ios-banner').remove()" style="background:none;border:none;font-size:20px;cursor:pointer;color:var(--text-light);padding:0 0 0 12px;">✕</button>
+          </div>`;
+        document.body.appendChild(banner);
+        // 10秒後に自動で消える
+        setTimeout(() => { const b = document.getElementById('ios-banner'); if(b) b.remove(); }, 10000);
+      }
+    }
+
+    // ============================================================
+    //  アプリ手動更新
+    // ============================================================
+    async function updateApp() {
+      const btn = document.getElementById('update-btn');
+      const status = document.getElementById('update-status');
+      btn.disabled = true;
+      status.textContent = '⏳ 更新中...';
+      status.style.color = 'var(--medium)';
+
+      try {
+        // 1. Service Workerのキャッシュをすべて削除
+        if ('caches' in window) {
+          const cacheNames = await caches.keys();
+          await Promise.all(cacheNames.map(name => caches.delete(name)));
+        }
+
+        // 2. Service Workerを更新
+        if ('serviceWorker' in navigator) {
+          const reg = await navigator.serviceWorker.getRegistration();
+          if (reg) {
+            await reg.update();
+          }
+        }
+
+        status.textContent = '✅ 更新完了！再読み込みします...';
+        status.style.color = 'var(--low)';
+        showToast('🔄 アプリを更新しました');
+
+        // 3. ページを再読み込み
+        setTimeout(() => {
+          window.location.reload(true);
+        }, 1500);
+      } catch (error) {
+        status.textContent = '❌ 更新に失敗しました';
+        status.style.color = 'var(--critical)';
+        btn.disabled = false;
+        console.error('[Update]', error);
+      }
+    }
+
+    // ============================================================
+    //  初期化
+    // ============================================================
+    loadSavedKey();         // 保存済みAPIキーの復元
+    loadDashboard();        // ダッシュボードデータ読み込み
+    showIosInstallBanner(); // iOSインストール案内
+  </script>
+</body>
+</html>
