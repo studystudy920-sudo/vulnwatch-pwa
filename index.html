@@ -3,20 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>VulnWatch - 脆弱性情報収集ツール</title>
-  <meta name="description" content="NVD・JVNの脆弱性情報を収集し、Gemini AIと会話できるPWAツール">
+  <title>VulnWatch - èå¼±æ§æå ±åéãã¼ã«</title>
+  <meta name="description" content="NVDã»JVNã®èå¼±æ§æå ±ãåéããGemini AIã¨ä¼è©±ã§ããPWAãã¼ã«">
   <meta name="theme-color" content="#2563eb">
-  <!-- iOS PWA対応 -->
+  <!-- iOS PWAå¯¾å¿ -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="VulnWatch">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="format-detection" content="telephone=no">
   <!-- Apple Splash Screen -->
-  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect width='180' height='180' rx='40' fill='%232563eb'/><text x='90' y='130' font-size='100' text-anchor='middle'>🛡️</text></svg>">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect width='180' height='180' rx='40' fill='%232563eb'/><text x='90' y='130' font-size='100' text-anchor='middle'>ð¡ï¸</text></svg>">
   <link rel="manifest" href="./manifest.json">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>ð¡ï¸</text></svg>">
   <style>
-    /* ===== CSS変数（テーマカラー） ===== */
+    /* ===== CSSå¤æ°ï¼ãã¼ãã«ã©ã¼ï¼ ===== */
     :root {
       --primary: #2563eb;
       --primary-light: #dbeafe;
@@ -41,7 +41,7 @@
       --radius: 12px;
     }
 
-    /* ===== リセット・基本スタイル ===== */
+    /* ===== ãªã»ããã»åºæ¬ã¹ã¿ã¤ã« ===== */
     * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
     html { height: -webkit-fill-available; }
     body {
@@ -58,7 +58,7 @@
     a { color: var(--primary); text-decoration: none; }
     a:hover { text-decoration: underline; }
 
-    /* ===== ヘッダー ===== */
+    /* ===== ãããã¼ ===== */
     .header {
       background: linear-gradient(135deg, var(--primary), var(--primary-dark));
       color: white;
@@ -78,7 +78,7 @@
     .header h1 { font-size: 20px; font-weight: 700; }
     .header-sub { font-size: 11px; opacity: 0.85; margin-top: 2px; }
 
-    /* ===== ボトムナビゲーション ===== */
+    /* ===== ããã ããã²ã¼ã·ã§ã³ ===== */
     .bottom-nav {
       position: fixed;
       bottom: 0;
@@ -110,12 +110,12 @@
     .nav-item.active { color: var(--primary); font-weight: 600; }
     .nav-item .nav-icon { font-size: 22px; }
 
-    /* ===== メインコンテンツ ===== */
+    /* ===== ã¡ã¤ã³ã³ã³ãã³ã ===== */
     .main { max-width: 800px; margin: 0 auto; padding: 16px; }
     .page { display: none; }
     .page.active { display: block; }
 
-    /* ===== カード ===== */
+    /* ===== ã«ã¼ã ===== */
     .card {
       background: var(--card);
       border-radius: var(--radius);
@@ -133,7 +133,7 @@
       gap: 8px;
     }
 
-    /* ===== 検索バー ===== */
+    /* ===== æ¤ç´¢ãã¼ ===== */
     .search-bar {
       display: flex;
       gap: 8px;
@@ -152,7 +152,7 @@
     .search-input:focus { border-color: var(--primary); }
     .search-input::placeholder { color: #94a3b8; }
 
-    /* ===== ボタン ===== */
+    /* ===== ãã¿ã³ ===== */
     .btn {
       padding: 12px 20px;
       border: none;
@@ -187,7 +187,7 @@
       border-radius: 8px;
     }
 
-    /* ===== 深刻度バッジ ===== */
+    /* ===== æ·±å»åº¦ããã¸ ===== */
     .severity {
       display: inline-block;
       padding: 3px 10px;
@@ -202,7 +202,7 @@
     .severity-low { background: var(--low-bg); color: var(--low); }
     .severity-info { background: var(--info-bg); color: var(--info); }
 
-    /* ===== 脆弱性リスト ===== */
+    /* ===== èå¼±æ§ãªã¹ã ===== */
     .vuln-item {
       padding: 14px;
       border: 1px solid var(--border);
@@ -243,7 +243,7 @@
       border-radius: 6px;
     }
 
-    /* ===== 統計カード ===== */
+    /* ===== çµ±è¨ã«ã¼ã ===== */
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -261,7 +261,7 @@
     .stat-number { font-size: 28px; font-weight: 800; }
     .stat-label { font-size: 12px; color: var(--text-light); margin-top: 4px; }
 
-    /* ===== チャット ===== */
+    /* ===== ãã£ãã ===== */
     .chat-container {
       display: flex;
       flex-direction: column;
@@ -347,7 +347,7 @@
     .chat-send:hover { background: var(--primary-dark); }
     .chat-send:disabled { background: #94a3b8; cursor: not-allowed; }
 
-    /* ===== 設定 ===== */
+    /* ===== è¨­å® ===== */
     .setting-group {
       margin-bottom: 20px;
     }
@@ -375,7 +375,7 @@
     }
     .setting-input:focus { border-color: var(--primary); }
 
-    /* ===== ローディング ===== */
+    /* ===== ã­ã¼ãã£ã³ã° ===== */
     .loading {
       display: flex;
       align-items: center;
@@ -394,7 +394,7 @@
     }
     @keyframes spin { to { transform: rotate(360deg); } }
 
-    /* ===== 空状態 ===== */
+    /* ===== ç©ºç¶æ ===== */
     .empty-state {
       text-align: center;
       padding: 40px 20px;
@@ -403,7 +403,7 @@
     .empty-state .empty-icon { font-size: 48px; margin-bottom: 12px; }
     .empty-state p { font-size: 14px; line-height: 1.6; }
 
-    /* ===== フィルター ===== */
+    /* ===== ãã£ã«ã¿ã¼ ===== */
     .filter-row {
       display: flex;
       gap: 8px;
@@ -428,7 +428,7 @@
       border-color: var(--primary);
     }
 
-    /* ===== クイックプロンプト ===== */
+    /* ===== ã¯ã¤ãã¯ãã­ã³ãã ===== */
     .quick-prompts {
       display: flex;
       gap: 8px;
@@ -449,7 +449,7 @@
     }
     .quick-prompt:hover { background: var(--primary); color: white; }
 
-    /* ===== 詳細モーダル ===== */
+    /* ===== è©³ç´°ã¢ã¼ãã« ===== */
     .modal-overlay {
       display: none;
       position: fixed;
@@ -491,7 +491,7 @@
     }
     .modal-section p { font-size: 14px; line-height: 1.6; }
 
-    /* ===== トースト通知 ===== */
+    /* ===== ãã¼ã¹ãéç¥ ===== */
     .toast {
       position: fixed;
       top: 80px;
@@ -509,7 +509,7 @@
     }
     .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-    /* ===== Notionコピーボタン ===== */
+    /* ===== Notionã³ãã¼ãã¿ã³ ===== */
     .btn-notion {
       background: #000;
       color: #fff;
@@ -542,7 +542,7 @@
       color: var(--text-light);
     }
 
-    /* ===== レスポンシブ ===== */
+    /* ===== ã¬ã¹ãã³ã·ã ===== */
     @media (min-width: 600px) {
       .stats-grid { grid-template-columns: repeat(4, 1fr); }
       .main { padding: 24px; }
@@ -551,25 +551,25 @@
 </head>
 <body>
 
-  <!-- ===== ヘッダー ===== -->
+  <!-- ===== ãããã¼ ===== -->
   <header class="header">
-    <span class="header-icon">🛡️</span>
+    <span class="header-icon">ð¡ï¸</span>
     <div>
       <h1>VulnWatch</h1>
-      <div class="header-sub">脆弱性情報収集 &amp; AI分析ツール</div>
+      <div class="header-sub">èå¼±æ§æå ±åé &amp; AIåæãã¼ã«</div>
     </div>
   </header>
 
-  <!-- ===== メインコンテンツ ===== -->
+  <!-- ===== ã¡ã¤ã³ã³ã³ãã³ã ===== -->
   <div class="main">
 
-    <!-- ===== ダッシュボード ===== -->
+    <!-- ===== ããã·ã¥ãã¼ã ===== -->
     <div id="page-dashboard" class="page active">
       <div class="card" style="padding:12px 16px; margin-bottom:12px; display:flex; justify-content:space-between; align-items:center;">
         <div>
-          <span style="font-size:13px; color:var(--text-light);" id="last-update-text">📡 起動時に自動取得中...</span>
+          <span style="font-size:13px; color:var(--text-light);" id="last-update-text">ð¡ èµ·åæã«èªååå¾ä¸­...</span>
         </div>
-        <button class="btn btn-outline btn-sm" onclick="refreshDashboard()" id="refresh-btn">🔄 今すぐ更新</button>
+        <button class="btn btn-outline btn-sm" onclick="refreshDashboard()" id="refresh-btn">ð ä»ããæ´æ°</button>
       </div>
 
       <div class="stats-grid" id="stats-grid">
@@ -592,43 +592,43 @@
       </div>
 
       <div class="card" style="border-color:#000; border-width:1.5px;">
-        <div class="card-title">📓 Notion 脆弱性トラッカー</div>
+        <div class="card-title">ð Notion èå¼±æ§ãã©ãã«ã¼</div>
         <p style="font-size:14px; line-height:1.6; color:var(--text-light); margin-bottom:12px;">
-          脆弱性の検索結果を「Notionにコピー」ボタンで簡単にNotionへ記録できます。
+          èå¼±æ§ã®æ¤ç´¢çµæããNotionã«ã³ãã¼ããã¿ã³ã§ç°¡åã«Notionã¸è¨é²ã§ãã¾ãã
         </p>
         <a href="https://www.notion.so/1b9ae28446bc4960872f841ecfadc8de" target="_blank" rel="noopener" class="btn btn-notion" style="font-size:14px; padding:10px 18px;">
-          📓 Notionデータベースを開く
+          ð Notionãã¼ã¿ãã¼ã¹ãéã
         </a>
       </div>
 
       <div class="card">
-        <div class="card-title">🔥 最新の重要な脆弱性</div>
+        <div class="card-title">ð¥ ææ°ã®éè¦ãªèå¼±æ§</div>
         <div id="dashboard-recent">
-          <div class="loading"><div class="spinner"></div>読み込み中...</div>
+          <div class="loading"><div class="spinner"></div>èª­ã¿è¾¼ã¿ä¸­...</div>
         </div>
       </div>
 
       <div class="card">
-        <div class="card-title">📊 使い方ガイド</div>
+        <div class="card-title">ð ä½¿ãæ¹ã¬ã¤ã</div>
         <p style="font-size:14px; line-height:1.8; color:var(--text-light);">
-          <strong>NVD検索:</strong> 米国の脆弱性データベースからCVE情報を検索できます。キーワードを入力して検索してください。<br>
-          <strong>JVN検索:</strong> 日本語の脆弱性情報をJVNから取得します。<br>
-          <strong>AIチャット:</strong> Gemini AIに脆弱性について質問できます。設定画面でAPIキーを入力してください。<br>
-          <strong>設定:</strong> Gemini APIキーの設定を行います。
+          <strong>NVDæ¤ç´¢:</strong> ç±³å½ã®èå¼±æ§ãã¼ã¿ãã¼ã¹ããCVEæå ±ãæ¤ç´¢ã§ãã¾ããã­ã¼ã¯ã¼ããå¥åãã¦æ¤ç´¢ãã¦ãã ããã<br>
+          <strong>JVNæ¤ç´¢:</strong> æ¥æ¬èªã®èå¼±æ§æå ±ãJVNããåå¾ãã¾ãã<br>
+          <strong>AIãã£ãã:</strong> Gemini AIã«èå¼±æ§ã«ã¤ãã¦è³ªåã§ãã¾ããè¨­å®ç»é¢ã§APIã­ã¼ãå¥åãã¦ãã ããã<br>
+          <strong>è¨­å®:</strong> Gemini APIã­ã¼ã®è¨­å®ãè¡ãã¾ãã
         </p>
       </div>
     </div>
 
-    <!-- ===== NVD検索ページ ===== -->
+    <!-- ===== NVDæ¤ç´¢ãã¼ã¸ ===== -->
     <div id="page-nvd" class="page">
       <div class="card">
-        <div class="card-title">🔍 NVD 脆弱性検索</div>
+        <div class="card-title">ð NVD èå¼±æ§æ¤ç´¢</div>
         <div class="search-bar">
-          <input type="text" class="search-input" id="nvd-search" placeholder="キーワードを入力（例: Apache, Windows, Log4j）">
-          <button class="btn btn-primary" id="nvd-search-btn" onclick="searchNVD()">検索</button>
+          <input type="text" class="search-input" id="nvd-search" placeholder="ã­ã¼ã¯ã¼ããå¥åï¼ä¾: Apache, Windows, Log4jï¼">
+          <button class="btn btn-primary" id="nvd-search-btn" onclick="searchNVD()">æ¤ç´¢</button>
         </div>
         <div class="filter-row">
-          <button class="filter-chip active" onclick="setNvdFilter('all', this)">すべて</button>
+          <button class="filter-chip active" onclick="setNvdFilter('all', this)">ãã¹ã¦</button>
           <button class="filter-chip" onclick="setNvdFilter('CRITICAL', this)">Critical</button>
           <button class="filter-chip" onclick="setNvdFilter('HIGH', this)">High</button>
           <button class="filter-chip" onclick="setNvdFilter('MEDIUM', this)">Medium</button>
@@ -636,196 +636,196 @@
         </div>
         <div id="export-bar" style="display:none;">
           <div class="filter-row" style="margin-bottom:0;">
-            <button class="btn btn-outline btn-sm" onclick="exportCSV()">📄 CSVで保存</button>
-            <button class="btn btn-outline btn-sm" onclick="exportJSON()">📋 JSONで保存</button>
+            <button class="btn btn-outline btn-sm" onclick="exportCSV()">ð CSVã§ä¿å­</button>
+            <button class="btn btn-outline btn-sm" onclick="exportJSON()">ð JSONã§ä¿å­</button>
           </div>
         </div>
       </div>
       <div id="nvd-results">
         <div class="empty-state">
-          <div class="empty-icon">🔎</div>
-          <p>キーワードを入力して脆弱性情報を検索してください</p>
+          <div class="empty-icon">ð</div>
+          <p>ã­ã¼ã¯ã¼ããå¥åãã¦èå¼±æ§æå ±ãæ¤ç´¢ãã¦ãã ãã</p>
         </div>
       </div>
     </div>
 
-    <!-- ===== JVN検索ページ ===== -->
+    <!-- ===== JVNæ¤ç´¢ãã¼ã¸ ===== -->
     <div id="page-jvn" class="page">
       <div class="card">
-        <div class="card-title">📋 JVN 脆弱性検索（日本語）</div>
+        <div class="card-title">ð JVN èå¼±æ§æ¤ç´¢ï¼æ¥æ¬èªï¼</div>
         <div class="search-bar">
-          <input type="text" class="search-input" id="jvn-search" placeholder="キーワードを入力（例: Apache, WordPress）">
-          <button class="btn btn-primary" id="jvn-search-btn" onclick="searchJVN()">検索</button>
+          <input type="text" class="search-input" id="jvn-search" placeholder="ã­ã¼ã¯ã¼ããå¥åï¼ä¾: Apache, WordPressï¼">
+          <button class="btn btn-primary" id="jvn-search-btn" onclick="searchJVN()">æ¤ç´¢</button>
         </div>
       </div>
       <div id="jvn-results">
         <div class="empty-state">
-          <div class="empty-icon">🔎</div>
-          <p>キーワードを入力してJVNの脆弱性情報を検索してください</p>
+          <div class="empty-icon">ð</div>
+          <p>ã­ã¼ã¯ã¼ããå¥åãã¦JVNã®èå¼±æ§æå ±ãæ¤ç´¢ãã¦ãã ãã</p>
         </div>
       </div>
     </div>
 
-    <!-- ===== AIチャットページ ===== -->
+    <!-- ===== AIãã£ãããã¼ã¸ ===== -->
     <div id="page-chat" class="page">
       <div class="card" style="padding:0; overflow:hidden;">
         <div class="chat-container">
           <div class="quick-prompts" id="quick-prompts">
-            <button class="quick-prompt" onclick="sendQuickPrompt('最新の重大な脆弱性について教えてください')">🔥 最新の重大脆弱性</button>
-            <button class="quick-prompt" onclick="sendQuickPrompt('Log4Shellの脆弱性について分かりやすく説明してください')">📖 Log4Shellとは</button>
-            <button class="quick-prompt" onclick="sendQuickPrompt('脆弱性のCVSSスコアの読み方を教えてください')">📊 CVSSスコアの読み方</button>
-            <button class="quick-prompt" onclick="sendQuickPrompt('Webアプリケーションのセキュリティ対策の基本を教えてください')">🔒 Webセキュリティ基本</button>
+            <button class="quick-prompt" onclick="sendQuickPrompt('ææ°ã®éå¤§ãªèå¼±æ§ã«ã¤ãã¦æãã¦ãã ãã')">ð¥ ææ°ã®éå¤§èå¼±æ§</button>
+            <button class="quick-prompt" onclick="sendQuickPrompt('Log4Shellã®èå¼±æ§ã«ã¤ãã¦åãããããèª¬æãã¦ãã ãã')">ð Log4Shellã¨ã¯</button>
+            <button class="quick-prompt" onclick="sendQuickPrompt('èå¼±æ§ã®CVSSã¹ã³ã¢ã®èª­ã¿æ¹ãæãã¦ãã ãã')">ð CVSSã¹ã³ã¢ã®èª­ã¿æ¹</button>
+            <button class="quick-prompt" onclick="sendQuickPrompt('Webã¢ããªã±ã¼ã·ã§ã³ã®ã»ã­ã¥ãªãã£å¯¾ç­ã®åºæ¬ãæãã¦ãã ãã')">ð Webã»ã­ã¥ãªãã£åºæ¬</button>
           </div>
           <div class="chat-messages" id="chat-messages">
             <div class="chat-bubble system">
-              🛡️ セキュリティAIアシスタントです。脆弱性について質問してください。<br>
-              <small>※ 設定画面でGemini APIキーを入力してください</small>
+              ð¡ï¸ ã»ã­ã¥ãªãã£AIã¢ã·ã¹ã¿ã³ãã§ããèå¼±æ§ã«ã¤ãã¦è³ªåãã¦ãã ããã<br>
+              <small>â» è¨­å®ç»é¢ã§Gemini APIã­ã¼ãå¥åãã¦ãã ãã</small>
             </div>
           </div>
           <div class="chat-input-area">
-            <input type="text" class="chat-input" id="chat-input" placeholder="脆弱性について質問..." onkeydown="if(event.key==='Enter')sendChat()">
-            <button class="chat-send" onclick="sendChat()" id="chat-send-btn">➤</button>
+            <input type="text" class="chat-input" id="chat-input" placeholder="èå¼±æ§ã«ã¤ãã¦è³ªå..." onkeydown="if(event.key==='Enter')sendChat()">
+            <button class="chat-send" onclick="sendChat()" id="chat-send-btn">â¤</button>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- ===== 設定ページ ===== -->
+    <!-- ===== è¨­å®ãã¼ã¸ ===== -->
     <div id="page-settings" class="page">
       <div class="card">
-        <div class="card-title">⚙️ 設定</div>
+        <div class="card-title">âï¸ è¨­å®</div>
 
         <div class="setting-group">
-          <label class="setting-label">Gemini APIキー</label>
+          <label class="setting-label">Gemini APIã­ã¼</label>
           <input type="password" class="setting-input" id="gemini-key" placeholder="AIzaSy...">
           <div style="margin-top:10px; display:flex; align-items:center; gap:8px;">
             <input type="checkbox" id="save-key-checkbox" style="width:18px; height:18px; cursor:pointer;">
-            <label for="save-key-checkbox" style="font-size:13px; cursor:pointer;">ブラウザに保存する（次回から自動入力）</label>
+            <label for="save-key-checkbox" style="font-size:13px; cursor:pointer;">ãã©ã¦ã¶ã«ä¿å­ããï¼æ¬¡åããèªåå¥åï¼</label>
           </div>
           <p class="setting-help">
-            Google AI StudioでAPIキーを取得できまず:
+            Google AI Studioã§APIã­ã¼ãåå¾ã§ãã¾ã:
             <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">https://aistudio.google.com/apikey</a>
-            <br>⚠️ 「ブラウザに保存」をオンにすると、このブラウザのlocalStorageにキーが保存されます。共有PCでは推奨しません。
+            <br>â ï¸ ããã©ã¦ã¶ã«ä¿å­ãããªã³ã«ããã¨ããã®ãã©ã¦ã¶ã®localStorageã«ã­ã¼ãä¿å­ããã¾ããå±æPCã§ã¯æ¨å¥¨ãã¾ããã
           </p>
         </div>
 
-        <button class="btn btn-primary" onclick="saveSettings()">💾 保存</button>
-        <button class="btn btn-outline" onclick="clearSavedKey()" style="margin-left:8px;">🗑️ 保存済みキーを削除</button>
+        <button class="btn btn-primary" onclick="saveSettings()">ð¾ ä¿å­</button>
+        <button class="btn btn-outline" onclick="clearSavedKey()" style="margin-left:8px;">ðï¸ ä¿å­æ¸ã¿ã­ã¼ãåé¤</button>
         <span id="settings-status" style="margin-left:12px; font-size:14px; color:var(--low);"></span>
       </div>
 
       <div class="card">
-        <div class="card-title">ℹ️ このアプリについて</div>
+        <div class="card-title">â¹ï¸ ãã®ã¢ããªã«ã¤ãã¦</div>
         <p style="font-size:14px; line-height:1.8; color:var(--text-light);">
-          <strong>VulnWatch</strong>は脆弱性情報を収集・分析するためのPWA（Progressive Web App）です。<br><br>
-          <strong>データソース:</strong><br>
-          ・NVD (National Vulnerability Database) - 米国NISTが提供<br>
-          ・JVN (Japan Vulnerability Notes) - IPAとJPCERT/CCが提供<br><br>
-          <strong>AI機能:</strong><br>
-          ・Google Gemini APIを使用して脆弱性について質問・分析ができます<br><br>
-          <strong>プライバシー:</strong><br>
-          ・APIキーはサーバーに送信されません（ブラウザ内で直接APIと通信します）<br>
-          ・データはローカルのみに保持されます
+          <strong>VulnWatch</strong>ã¯èå¼±æ§æå ±ãåéã»åæããããã®PWAï¼Progressive Web Appï¼ã§ãã<br><br>
+          <strong>ãã¼ã¿ã½ã¼ã¹:</strong><br>
+          ã»NVD (National Vulnerability Database) - ç±³å½NISTãæä¾<br>
+          ã»JVN (Japan Vulnerability Notes) - IPAã¨JPCERT/CCãæä¾<br><br>
+          <strong>AIæ©è½:</strong><br>
+          ã»Google Gemini APIãä½¿ç¨ãã¦èå¼±æ§ã«ã¤ãã¦è³ªåã»åæãã§ãã¾ã<br><br>
+          <strong>ãã©ã¤ãã·ã¼:</strong><br>
+          ã»APIã­ã¼ã¯ãµã¼ãã¼ã«éä¿¡ããã¾ããï¼ãã©ã¦ã¶åã§ç´æ¥APIã¨éä¿¡ãã¾ãï¼<br>
+          ã»ãã¼ã¿ã¯ã­ã¼ã«ã«ã®ã¿ã«ä¿æããã¾ã
         </p>
       </div>
 
       <div class="card" style="border-color:#000; border-width:1.5px;">
-        <div class="card-title">📓 Notion連携</div>
+        <div class="card-title">ð Notioné£æº</div>
         <p style="font-size:14px; line-height:1.8; color:var(--text-light);">
-          脆弱性トラッカーデータベースがNotionに用意されています。<br>
-          NVD検索結果の各アイテムにある「📓」ボタンで、情報をコピーしてNotionに貼り付けできます。<br><br>
-          <strong>使い方:</strong><br>
-          1. NVDで脆弱性を検索<br>
-          2. 「📓」ボタンまたは「全件Notionにコピー」をクリック<br>
-          3. Notionデータベースを開いて貼り付け
+          èå¼±æ§ãã©ãã«ã¼ãã¼ã¿ãã¼ã¹ãNotionã«ç¨æããã¦ãã¾ãã<br>
+          NVDæ¤ç´¢çµæã®åã¢ã¤ãã ã«ãããðããã¿ã³ã§ãæå ±ãã³ãã¼ãã¦Notionã«è²¼ãä»ãã§ãã¾ãã<br><br>
+          <strong>ä½¿ãæ¹:</strong><br>
+          1. NVDã§èå¼±æ§ãæ¤ç´¢<br>
+          2. ãðããã¿ã³ã¾ãã¯ãå¨ä»¶Notionã«ã³ãã¼ããã¯ãªãã¯<br>
+          3. Notionãã¼ã¿ãã¼ã¹ãéãã¦è²¼ãä»ã
         </p>
         <a href="https://www.notion.so/1b9ae28446bc4960872f841ecfadc8de" target="_blank" rel="noopener" class="btn-notion" style="margin-top:12px; font-size:14px; padding:10px 18px; display:inline-flex;">
-          📓 Notionデータベースを開く
+          ð Notionãã¼ã¿ãã¼ã¹ãéã
         </a>
       </div>
 
       <div class="card">
-        <div class="card-title">🔄 アプリの更新</div>
+        <div class="card-title">ð ã¢ããªã®æ´æ°</div>
         <p style="font-size:14px; line-height:1.8; color:var(--text-light); margin-bottom:12px;">
-          アプリが正しく動作しない場合や、最新版に更新したい場合にお使いください。<br>
-          キャッシュをクリアして最新のデータを再取得します。
+          ã¢ããªãæ­£ããåä½ããªãå ´åããææ°çã«æ´æ°ãããå ´åã«ãä½¿ããã ããã<br>
+          ã­ã£ãã·ã¥ãã¯ãªã¢ãã¦ææ°ã®ãã¼ã¿ãååå¾ãã¾ãã
         </p>
-        <button class="btn btn-primary" id="update-btn" onclick="updateApp()">🔄 アプリを更新する</button>
+        <button class="btn btn-primary" id="update-btn" onclick="updateApp()">ð ã¢ããªãæ´æ°ãã</button>
         <span id="update-status" style="margin-left:12px; font-size:14px;"></span>
       </div>
 
       <div class="card">
-        <div class="card-title">📱 PWAとしてインストール</div>
+        <div class="card-title">ð± PWAã¨ãã¦ã¤ã³ã¹ãã¼ã«</div>
         <p style="font-size:14px; line-height:1.8; color:var(--text-light);">
-          このアプリはWebサーバーにホストすると、スマホやPCにインストールできるPWAになります。<br><br>
-          <strong>🚀 Netlifyで公開（一番簡単）:</strong><br>
-          1. <a href="https://app.netlify.com/drop" target="_blank" rel="noopener">Netlify Drop</a> を開く<br>
-          2. vulnwatch-pwaフォルダをドラッグ＆ドロップ<br>
-          3. 数秒で公開完了！URLが発行されます<br><br>
-          <strong>🐙 GitHub Pagesで公開:</strong><br>
-          1. GitHubにリポジトリを作成<br>
-          2. vulnwatch-pwaフォルダの中身をアップロード<br>
-          3. Settings → Pages → Source: main → Save<br>
-          4. 数分後にURLが発行されます<br><br>
-          <strong>📲 スマホにインストール:</strong><br>
-          公開後、ブラウザで開いて「ホーム画面に追加」を選択
+          ãã®ã¢ããªã¯Webãµã¼ãã¼ã«ãã¹ãããã¨ãã¹ãããPCã«ã¤ã³ã¹ãã¼ã«ã§ããPWAã«ãªãã¾ãã<br><br>
+          <strong>ð Netlifyã§å¬éï¼ä¸çªç°¡åï¼:</strong><br>
+          1. <a href="https://app.netlify.com/drop" target="_blank" rel="noopener">Netlify Drop</a> ãéã<br>
+          2. vulnwatch-pwaãã©ã«ãããã©ãã°ï¼ãã­ãã<br>
+          3. æ°ç§ã§å¬éå®äºï¼URLãçºè¡ããã¾ã<br><br>
+          <strong>ð GitHub Pagesã§å¬é:</strong><br>
+          1. GitHubã«ãªãã¸ããªãä½æ<br>
+          2. vulnwatch-pwaãã©ã«ãã®ä¸­èº«ãã¢ããã­ã¼ã<br>
+          3. Settings â Pages â Source: main â Save<br>
+          4. æ°åå¾ã«URLãçºè¡ããã¾ã<br><br>
+          <strong>ð² ã¹ããã«ã¤ã³ã¹ãã¼ã«:</strong><br>
+          å¬éå¾ããã©ã¦ã¶ã§éãã¦ããã¼ã ç»é¢ã«è¿½å ããé¸æ
         </p>
       </div>
     </div>
   </div>
 
-  <!-- ===== 詳細モーダル ===== -->
+  <!-- ===== è©³ç´°ã¢ã¼ãã« ===== -->
   <div class="modal-overlay" id="modal-overlay" onclick="if(event.target===this)closeModal()">
     <div class="modal">
-      <button class="modal-close" onclick="closeModal()">✕</button>
+      <button class="modal-close" onclick="closeModal()">â</button>
       <h2 id="modal-title"></h2>
       <div id="modal-content"></div>
     </div>
   </div>
 
-  <!-- ===== トースト通知 ===== -->
+  <!-- ===== ãã¼ã¹ãéç¥ ===== -->
   <div class="toast" id="toast"></div>
 
-  <!-- ===== ボトムナビ ===== -->
+  <!-- ===== ããã ãã ===== -->
   <nav class="bottom-nav">
     <button class="nav-item active" onclick="switchPage('dashboard', this)">
-      <span class="nav-icon">🏠</span>ホーム
+      <span class="nav-icon">ð </span>ãã¼ã 
     </button>
     <button class="nav-item" onclick="switchPage('nvd', this)">
-      <span class="nav-icon">🌐</span>NVD
+      <span class="nav-icon">ð</span>NVD
     </button>
     <button class="nav-item" onclick="switchPage('jvn', this)">
-      <span class="nav-icon">🇯🇵</span>JVN
+      <span class="nav-icon">ð¯ðµ</span>JVN
     </button>
     <button class="nav-item" onclick="switchPage('chat', this)">
-      <span class="nav-icon">💬</span>AIチャット
+      <span class="nav-icon">ð¬</span>AIãã£ãã
     </button>
     <button class="nav-item" onclick="switchPage('settings', this)">
-      <span class="nav-icon">⚙️</span>設定
+      <span class="nav-icon">âï¸</span>è¨­å®
     </button>
   </nav>
 
   <script>
-    // ===== グローバル変数 =====
-    let geminiApiKey = '';          // Gemini APIキー（メモリ内のみ）
-    let chatHistory = [];           // チャット履歴
-    let nvdCache = [];              // NVD検索結果キャッシュ
-    let currentNvdFilter = 'all';   // NVDフィルター状態
+    // ===== ã°ã­ã¼ãã«å¤æ° =====
+    let geminiApiKey = '';          // Gemini APIã­ã¼ï¼ã¡ã¢ãªåã®ã¿ï¼
+    let chatHistory = [];           // ãã£ããå±¥æ­´
+    let nvdCache = [];              // NVDæ¤ç´¢çµæã­ã£ãã·ã¥
+    let currentNvdFilter = 'all';   // NVDãã£ã«ã¿ã¼ç¶æ
 
-    // ===== ページ切り替え =====
+    // ===== ãã¼ã¸åãæ¿ã =====
     function switchPage(pageId, navEl) {
-      // 全ページを非表示
+      // å¨ãã¼ã¸ãéè¡¨ç¤º
       document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-      // 全ナビアイテムを非アクティブ
+      // å¨ããã¢ã¤ãã ãéã¢ã¯ãã£ã
       document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-      // 指定ページを表示
+      // æå®ãã¼ã¸ãè¡¨ç¤º
       document.getElementById('page-' + pageId).classList.add('active');
       if (navEl) navEl.classList.add('active');
-      // ページトップへスクロール
+      // ãã¼ã¸ãããã¸ã¹ã¯ã­ã¼ã«
       window.scrollTo(0, 0);
     }
 
-    // ===== トースト通知 =====
+    // ===== ãã¼ã¹ãéç¥ =====
     function showToast(message) {
       const toast = document.getElementById('toast');
       toast.textContent = message;
@@ -833,7 +833,7 @@
       setTimeout(() => toast.classList.remove('show'), 3000);
     }
 
-    // ===== モーダル =====
+    // ===== ã¢ã¼ãã« =====
     function openModal(title, content) {
       document.getElementById('modal-title').textContent = title;
       document.getElementById('modal-content').innerHTML = content;
@@ -843,7 +843,7 @@
       document.getElementById('modal-overlay').classList.remove('active');
     }
 
-    // ===== 設定の保存（localStorage永続化対応） =====
+    // ===== è¨­å®ã®ä¿å­ï¼localStorageæ°¸ç¶åå¯¾å¿ï¼ =====
     function saveSettings() {
       geminiApiKey = document.getElementById('gemini-key').value.trim();
       const shouldSave = document.getElementById('save-key-checkbox').checked;
@@ -854,24 +854,24 @@
         } else {
           try { localStorage.removeItem('vw_gemini_key'); } catch(e) {}
         }
-        document.getElementById('settings-status').textContent = '✅ 保存しました';
-        showToast(shouldSave ? 'APIキーをブラウザに保存しました' : 'APIキーを設定しました（セッション中のみ）');
+        document.getElementById('settings-status').textContent = 'â ä¿å­ãã¾ãã';
+        showToast(shouldSave ? 'APIã­ã¼ããã©ã¦ã¶ã«ä¿å­ãã¾ãã' : 'APIã­ã¼ãè¨­å®ãã¾ããï¼ã»ãã·ã§ã³ä¸­ã®ã¿ï¼');
       } else {
-        document.getElementById('settings-status').textContent = '⚠️ キーが空です';
+        document.getElementById('settings-status').textContent = 'â ï¸ ã­ã¼ãç©ºã§ã';
       }
       setTimeout(() => { document.getElementById('settings-status').textContent = ''; }, 3000);
     }
 
-    // 保存済みキーの削除
+    // ä¿å­æ¸ã¿ã­ã¼ã®åé¤
     function clearSavedKey() {
       try { localStorage.removeItem('vw_gemini_key'); } catch(e) {}
       geminiApiKey = '';
       document.getElementById('gemini-key').value = '';
       document.getElementById('save-key-checkbox').checked = false;
-      showToast('保存済みAPIキーを削除しました');
+      showToast('ä¿å­æ¸ã¿APIã­ã¼ãåé¤ãã¾ãã');
     }
 
-    // 起動時にlocalStorageからキーを復元
+    // èµ·åæã«localStorageããã­ã¼ãå¾©å
     function loadSavedKey() {
       try {
         const saved = localStorage.getItem('vw_gemini_key');
@@ -884,25 +884,25 @@
     }
 
     // ============================================================
-    //  NVD API 検索
+    //  NVD API æ¤ç´¢
     // ============================================================
     async function searchNVD() {
       const keyword = document.getElementById('nvd-search').value.trim();
       if (!keyword) {
-        showToast('キーワードを入力してください');
+        showToast('ã­ã¼ã¯ã¼ããå¥åãã¦ãã ãã');
         return;
       }
 
       const resultsDiv = document.getElementById('nvd-results');
-      resultsDiv.innerHTML = '<div class="loading"><div class="spinner"></div>NVDを検索中...</div>';
+      resultsDiv.innerHTML = '<div class="loading"><div class="spinner"></div>NVDãæ¤ç´¢ä¸­...</div>';
 
       try {
-        // NVD API v2.0 を呼び出し
+        // NVD API v2.0 ãå¼ã³åºã
         const url = `https://services.nvd.nist.gov/rest/json/cves/2.0?keywordSearch=${encodeURIComponent(keyword)}&resultsPerPage=20`;
         const response = await fetch(url);
 
         if (!response.ok) {
-          throw new Error(`APIエラー: ${response.status}`);
+          throw new Error(`APIã¨ã©ã¼: ${response.status}`);
         }
 
         const data = await response.json();
@@ -911,8 +911,8 @@
         if (nvdCache.length === 0) {
           resultsDiv.innerHTML = `
             <div class="empty-state">
-              <div class="empty-icon">😕</div>
-              <p>「${escapeHtml(keyword)}」に一致する脆弱性は見つかりませんでした</p>
+              <div class="empty-icon">ð</div>
+              <p>ã${escapeHtml(keyword)}ãã«ä¸è´ããèå¼±æ§ã¯è¦ã¤ããã¾ããã§ãã</p>
             </div>`;
           return;
         }
@@ -922,17 +922,17 @@
       } catch (error) {
         resultsDiv.innerHTML = `
           <div class="card" style="border-color:var(--critical);">
-            <div class="card-title" style="color:var(--critical);">❌ エラーが発生しました</div>
+            <div class="card-title" style="color:var(--critical);">â ã¨ã©ã¼ãçºçãã¾ãã</div>
             <p style="font-size:14px;">${escapeHtml(error.message)}</p>
             <p style="font-size:13px; color:var(--text-light); margin-top:8px;">
-              NVD APIはレート制限があります（30秒あたり5リクエスト）。<br>
-              少し待ってから再試行してください。
+              NVD APIã¯ã¬ã¼ãå¶éãããã¾ãï¼30ç§ããã5ãªã¯ã¨ã¹ãï¼ã<br>
+              å°ãå¾ã£ã¦ããåè©¦è¡ãã¦ãã ããã
             </p>
           </div>`;
       }
     }
 
-    // NVD結果の描画
+    // NVDçµæã®æç»
     function renderNvdResults() {
       const resultsDiv = document.getElementById('nvd-results');
       let filtered = nvdCache;
@@ -947,65 +947,65 @@
       if (filtered.length === 0) {
         resultsDiv.innerHTML = `
           <div class="empty-state">
-            <div class="empty-icon">🔍</div>
-            <p>このフィルターに一致する結果はありません</p>
+            <div class="empty-icon">ð</div>
+            <p>ãã®ãã£ã«ã¿ã¼ã«ä¸è´ããçµæã¯ããã¾ãã</p>
           </div>`;
         return;
       }
 
       resultsDiv.innerHTML = `
         <div class="notion-bar">
-          <span class="notion-bar-text">${nvdCache.length}件中 ${filtered.length}件を表示</span>
-          <button class="btn-notion" onclick="copyAllToNotion(event)">📓 全件Notionにコピー</button>
+          <span class="notion-bar-text">${nvdCache.length}ä»¶ä¸­ ${filtered.length}ä»¶ãè¡¨ç¤º</span>
+          <button class="btn-notion" onclick="copyAllToNotion(event)">ð å¨ä»¶Notionã«ã³ãã¼</button>
         </div>` +
         filtered.map(v => renderNvdItem(v.cve)).join('');
 
-      // エクスポートバーを表示
+      // ã¨ã¯ã¹ãã¼ããã¼ãè¡¨ç¤º
       document.getElementById('export-bar').style.display = 'block';
     }
 
-    // NVDアイテムのHTML生成
+    // NVDã¢ã¤ãã ã®HTMLçæ
     function renderNvdItem(cve) {
       const id = cve.id;
       const desc = getEnglishDesc(cve);
       const severity = getNvdSeverity(cve);
       const score = getNvdScore(cve);
-      const published = cve.published ? new Date(cve.published).toLocaleDateString('ja-JP') : '不明';
+      const published = cve.published ? new Date(cve.published).toLocaleDateString('ja-JP') : 'ä¸æ';
 
       return `
         <div class="vuln-item" onclick='showNvdDetail(${JSON.stringify(JSON.stringify(cve))})'>
           <div style="display:flex; justify-content:space-between; align-items:flex-start;">
             <div class="vuln-id">${escapeHtml(id)}</div>
-            <button class="btn-notion" onclick="copyOneToNotion(event, '${escapeHtml(id)}', '${severity}', '${score || ''}', '${escapeHtml(published)}', 'NVD')" title="Notionにコピー">📓</button>
+            <button class="btn-notion" onclick="copyOneToNotion(event, '${escapeHtml(id)}', '${severity}', '${score || ''}', '${escapeHtml(published)}', 'NVD')" title="Notionã«ã³ãã¼">ð</button>
           </div>
           <div class="vuln-desc">${escapeHtml(desc)}</div>
           <div class="vuln-meta">
             <span class="severity severity-${severity.toLowerCase()}">${severity}</span>
             ${score ? `<span class="vuln-score" style="background:${getScoreColor(score)}15; color:${getScoreColor(score)}">${score}</span>` : ''}
-            <span>📅 ${published}</span>
+            <span>ð ${published}</span>
           </div>
         </div>`;
     }
 
-    // NVD詳細表示
+    // NVDè©³ç´°è¡¨ç¤º
     function showNvdDetail(cveJson) {
       const cve = JSON.parse(cveJson);
       const id = cve.id;
       const desc = getEnglishDesc(cve);
       const severity = getNvdSeverity(cve);
       const score = getNvdScore(cve);
-      const published = cve.published ? new Date(cve.published).toLocaleDateString('ja-JP') : '不明';
-      const modified = cve.lastModified ? new Date(cve.lastModified).toLocaleDateString('ja-JP') : '不明';
+      const published = cve.published ? new Date(cve.published).toLocaleDateString('ja-JP') : 'ä¸æ';
+      const modified = cve.lastModified ? new Date(cve.lastModified).toLocaleDateString('ja-JP') : 'ä¸æ';
       const refs = (cve.references || []).slice(0, 5);
 
-      // CVSSメトリクス情報を取得
+      // CVSSã¡ããªã¯ã¹æå ±ãåå¾
       const cvssData = cve.metrics?.cvssMetricV31?.[0]?.cvssData
         || cve.metrics?.cvssMetricV30?.[0]?.cvssData
         || null;
 
       let content = `
         <div class="modal-section">
-          <h3>深刻度</h3>
+          <h3>æ·±å»åº¦</h3>
           <p><span class="severity severity-${severity.toLowerCase()}">${severity}</span>
           ${score ? ` CVSS: <strong>${score}</strong>` : ''}</p>
           ${score ? `<div style="margin-top:8px; background:#f1f5f9; border-radius:8px; overflow:hidden; height:12px;">
@@ -1017,16 +1017,16 @@
         </div>
         ${cvssData ? renderCvssMetrics(cvssData) : ''}
         <div class="modal-section">
-          <h3>説明</h3>
+          <h3>èª¬æ</h3>
           <p>${escapeHtml(desc)}</p>
         </div>
         <div class="modal-section">
-          <h3>日付</h3>
-          <p>公開: ${published} / 更新: ${modified}</p>
+          <h3>æ¥ä»</h3>
+          <p>å¬é: ${published} / æ´æ°: ${modified}</p>
         </div>`;
 
       if (refs.length > 0) {
-        content += `<div class="modal-section"><h3>参考リンク</h3>`;
+        content += `<div class="modal-section"><h3>åèãªã³ã¯</h3>`;
         refs.forEach(r => {
           content += `<p><a href="${escapeHtml(r.url)}" target="_blank" rel="noopener">${escapeHtml(r.url)}</a></p>`;
         });
@@ -1036,22 +1036,22 @@
       content += `
         <div class="modal-section">
           <p><a href="https://nvd.nist.gov/vuln/detail/${escapeHtml(id)}" target="_blank" rel="noopener">
-            NVDで詳細を見る →
+            NVDã§è©³ç´°ãè¦ã â
           </a></p>
         </div>
         <div style="margin-top:16px; display:flex; gap:8px; flex-wrap:wrap;">
           <button class="btn btn-outline btn-sm" onclick="askAiAboutCve('${escapeHtml(id)}', '${escapeHtml(desc.substring(0, 200))}')">
-            💬 AIに質問する
+            ð¬ AIã«è³ªåãã
           </button>
           <button class="btn-notion" onclick="copyDetailToNotion('${escapeHtml(id)}', '${severity}', '${score || ''}', '${escapeHtml(published)}', 'NVD', \`${escapeHtml(desc.substring(0, 300))}\`)">
-            📓 Notionにコピー
+            ð Notionã«ã³ãã¼
           </button>
         </div>`;
 
       openModal(id, content);
     }
 
-    // NVDフィルター設定
+    // NVDãã£ã«ã¿ã¼è¨­å®
     function setNvdFilter(filter, el) {
       currentNvdFilter = filter;
       document.querySelectorAll('#page-nvd .filter-chip').forEach(c => c.classList.remove('active'));
@@ -1060,27 +1060,27 @@
     }
 
     // ============================================================
-    //  CVSS メトリクス可視化
+    //  CVSS ã¡ããªã¯ã¹å¯è¦å
     // ============================================================
     function renderCvssMetrics(cvss) {
       const metrics = [
-        { key: 'attackVector', label: '攻撃元', values: { NETWORK: '🌐 ネットワーク', ADJACENT_NETWORK: '📡 隣接', LOCAL: '💻 ローカル', PHYSICAL: '🔌 物理' }},
-        { key: 'attackComplexity', label: '攻撃条件', values: { LOW: '⚡ 低い（容易）', HIGH: '🔒 高い（困難）' }},
-        { key: 'privilegesRequired', label: '必要な権限', values: { NONE: '🔓 不要', LOW: '🔑 低い', HIGH: '🔐 高い' }},
-        { key: 'userInteraction', label: 'ユーザー操作', values: { NONE: '🤖 不要', REQUIRED: '👆 必要' }},
-        { key: 'confidentialityImpact', label: '機密性への影響', values: { NONE: '✅ なし', LOW: '⚠️ 低い', HIGH: '🔴 高い' }},
-        { key: 'integrityImpact', label: '完全性への影響', values: { NONE: '✅ なし', LOW: '⚠️ 低い', HIGH: '🔴 高い' }},
-        { key: 'availabilityImpact', label: '可用性への影響', values: { NONE: '✅ なし', LOW: '⚠️ 低い', HIGH: '🔴 高い' }}
+        { key: 'attackVector', label: 'æ»æå', values: { NETWORK: 'ð ãããã¯ã¼ã¯', ADJACENT_NETWORK: 'ð¡ é£æ¥', LOCAL: 'ð» ã­ã¼ã«ã«', PHYSICAL: 'ð ç©ç' }},
+        { key: 'attackComplexity', label: 'æ»ææ¡ä»¶', values: { LOW: 'â¡ ä½ãï¼å®¹æï¼', HIGH: 'ð é«ãï¼å°é£ï¼' }},
+        { key: 'privilegesRequired', label: 'å¿è¦ãªæ¨©é', values: { NONE: 'ð ä¸è¦', LOW: 'ð ä½ã', HIGH: 'ð é«ã' }},
+        { key: 'userInteraction', label: 'ã¦ã¼ã¶ã¼æä½', values: { NONE: 'ð¤ ä¸è¦', REQUIRED: 'ð å¿è¦' }},
+        { key: 'confidentialityImpact', label: 'æ©å¯æ§ã¸ã®å½±é¿', values: { NONE: 'â ãªã', LOW: 'â ï¸ ä½ã', HIGH: 'ð´ é«ã' }},
+        { key: 'integrityImpact', label: 'å®å¨æ§ã¸ã®å½±é¿', values: { NONE: 'â ãªã', LOW: 'â ï¸ ä½ã', HIGH: 'ð´ é«ã' }},
+        { key: 'availabilityImpact', label: 'å¯ç¨æ§ã¸ã®å½±é¿', values: { NONE: 'â ãªã', LOW: 'â ï¸ ä½ã', HIGH: 'ð´ é«ã' }}
       ];
 
-      let html = `<div class="modal-section"><h3>CVSSメトリクス詳細</h3>
+      let html = `<div class="modal-section"><h3>CVSSã¡ããªã¯ã¹è©³ç´°</h3>
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; font-size:13px;">`;
       metrics.forEach(m => {
         const val = cvss[m.key];
         if (val) {
           const display = m.values[val] || val;
           const isHigh = val === 'HIGH' || val === 'NONE' && (m.key === 'privilegesRequired' || m.key === 'userInteraction');
-          html += `<div style="padding:6px 10px; background:${display.includes('🔴') || display.includes('⚡') || display.includes('🌐') || display.includes('🔓') || display.includes('🤖') ? '#fef2f2' : '#f0fdf4'}; border-radius:6px;">
+          html += `<div style="padding:6px 10px; background:${display.includes('ð´') || display.includes('â¡') || display.includes('ð') || display.includes('ð') || display.includes('ð¤') ? '#fef2f2' : '#f0fdf4'}; border-radius:6px;">
             <div style="font-size:11px; color:var(--text-light);">${m.label}</div>
             <div style="font-weight:600; margin-top:2px;">${display}</div>
           </div>`;
@@ -1088,7 +1088,7 @@
       });
       html += `</div>`;
 
-      // CVSSベクター文字列
+      // CVSSãã¯ã¿ã¼æå­å
       if (cvss.vectorString) {
         html += `<p style="margin-top:8px; font-family:monospace; font-size:12px; color:var(--text-light); word-break:break-all;">
           Vector: ${escapeHtml(cvss.vectorString)}</p>`;
@@ -1098,7 +1098,7 @@
     }
 
     // ============================================================
-    //  データエクスポート（CSV / JSON）
+    //  ãã¼ã¿ã¨ã¯ã¹ãã¼ãï¼CSV / JSONï¼
     // ============================================================
     function getFilteredResults() {
       let filtered = nvdCache;
@@ -1110,10 +1110,10 @@
 
     function exportCSV() {
       const filtered = getFilteredResults();
-      if (filtered.length === 0) { showToast('エクスポートするデータがありません'); return; }
+      if (filtered.length === 0) { showToast('ã¨ã¯ã¹ãã¼ããããã¼ã¿ãããã¾ãã'); return; }
 
-      // BOM付きUTF-8でCSV生成（Excelでの日本語文字化け防止）
-      let csv = '\uFEFFCVE ID,深刻度,CVSSスコア,ソース,公開日,説明\n';
+      // BOMä»ãUTF-8ã§CSVçæï¼Excelã§ã®æ¥æ¬èªæå­åãé²æ­¢ï¼
+      let csv = '\uFEFFCVE ID,æ·±å»åº¦,CVSSã¹ã³ã¢,ã½ã¼ã¹,å¬éæ¥,èª¬æ\n';
       filtered.forEach(v => {
         const cve = v.cve;
         const desc = getEnglishDesc(cve).replace(/"/g, '""').replace(/\n/g, ' ').substring(0, 300);
@@ -1121,12 +1121,12 @@
       });
 
       downloadFile(csv, `vulnwatch-${getDateStr()}.csv`, 'text/csv;charset=utf-8');
-      showToast(`📄 ${filtered.length}件をCSVで保存しました`);
+      showToast(`ð ${filtered.length}ä»¶ãCSVã§ä¿å­ãã¾ãã`);
     }
 
     function exportJSON() {
       const filtered = getFilteredResults();
-      if (filtered.length === 0) { showToast('エクスポートするデータがありません'); return; }
+      if (filtered.length === 0) { showToast('ã¨ã¯ã¹ãã¼ããããã¼ã¿ãããã¾ãã'); return; }
 
       const data = filtered.map(v => {
         const cve = v.cve;
@@ -1143,7 +1143,7 @@
       });
 
       downloadFile(JSON.stringify(data, null, 2), `vulnwatch-${getDateStr()}.json`, 'application/json');
-      showToast(`📋 ${filtered.length}件をJSONで保存しました`);
+      showToast(`ð ${filtered.length}ä»¶ãJSONã§ä¿å­ãã¾ãã`);
     }
 
     function downloadFile(content, filename, mimeType) {
@@ -1163,11 +1163,11 @@
       return `${d.getFullYear()}${String(d.getMonth()+1).padStart(2,'0')}${String(d.getDate()).padStart(2,'0')}`;
     }
 
-    // NVDヘルパー関数
+    // NVDãã«ãã¼é¢æ°
     function getEnglishDesc(cve) {
-      if (!cve.descriptions) return '説明なし';
+      if (!cve.descriptions) return 'èª¬æãªã';
       const en = cve.descriptions.find(d => d.lang === 'en');
-      return en ? en.value : (cve.descriptions[0]?.value || '説明なし');
+      return en ? en.value : (cve.descriptions[0]?.value || 'èª¬æãªã');
     }
 
     function getNvdSeverity(cve) {
@@ -1196,26 +1196,26 @@
     }
 
     // ============================================================
-    //  Notion連携（クリップボードコピー）
+    //  Notioné£æºï¼ã¯ãªãããã¼ãã³ãã¼ï¼
     // ============================================================
     const NOTION_DB_URL = 'https://www.notion.so/1b9ae28446bc4960872f841ecfadc8de';
 
-    // 1件のCVEをNotionフォーマットでコピー
+    // 1ä»¶ã®CVEãNotionãã©ã¼ãããã§ã³ãã¼
     function copyOneToNotion(event, id, severity, score, published, source) {
-      event.stopPropagation(); // 親のonclickを防止
+      event.stopPropagation(); // è¦ªã®onclickãé²æ­¢
       const text = formatForNotion(id, severity, score, published, source, '');
       copyToClipboard(text, event.currentTarget);
     }
 
-    // 詳細モーダルからNotionにコピー
+    // è©³ç´°ã¢ã¼ãã«ããNotionã«ã³ãã¼
     function copyDetailToNotion(id, severity, score, published, source, desc) {
       const text = formatForNotion(id, severity, score, published, source, desc);
       navigator.clipboard.writeText(text).then(() => {
-        showToast('📓 Notionにコピーしました！データベースに貼り付けてください');
+        showToast('ð Notionã«ã³ãã¼ãã¾ããï¼ãã¼ã¿ãã¼ã¹ã«è²¼ãä»ãã¦ãã ãã');
       });
     }
 
-    // 全件をNotionフォーマットでコピー
+    // å¨ä»¶ãNotionãã©ã¼ãããã§ã³ãã¼
     function copyAllToNotion(event) {
       event.stopPropagation();
       let filtered = nvdCache;
@@ -1223,8 +1223,8 @@
         filtered = nvdCache.filter(v => getNvdSeverity(v.cve) === currentNvdFilter);
       }
 
-      // TSV形式（タブ区切り）でコピー → Notionテーブルに直接貼り付け可能
-      let tsv = 'CVE ID\t深刻度\tCVSSスコア\tソース\t公開日\t説明\n';
+      // TSVå½¢å¼ï¼ã¿ãåºåãï¼ã§ã³ãã¼ â Notionãã¼ãã«ã«ç´æ¥è²¼ãä»ãå¯è½
+      let tsv = 'CVE ID\tæ·±å»åº¦\tCVSSã¹ã³ã¢\tã½ã¼ã¹\tå¬éæ¥\tèª¬æ\n';
       filtered.forEach(v => {
         const cve = v.cve;
         const id = cve.id;
@@ -1236,36 +1236,36 @@
       });
 
       navigator.clipboard.writeText(tsv).then(() => {
-        showToast(`📓 ${filtered.length}件をコピーしました！Notionデータベースに貼り付けてください`);
+        showToast(`ð ${filtered.length}ä»¶ãã³ãã¼ãã¾ããï¼Notionãã¼ã¿ãã¼ã¹ã«è²¼ãä»ãã¦ãã ãã`);
         const btn = event.currentTarget;
-        btn.innerHTML = '✅ コピー済み';
+        btn.innerHTML = 'â ã³ãã¼æ¸ã¿';
         btn.classList.add('copied');
         setTimeout(() => {
-          btn.innerHTML = '📓 全件Notionにコピー';
+          btn.innerHTML = 'ð å¨ä»¶Notionã«ã³ãã¼';
           btn.classList.remove('copied');
         }, 2500);
       });
     }
 
-    // Notion用フォーマット生成
+    // Notionç¨ãã©ã¼ãããçæ
     function formatForNotion(id, severity, score, published, source, desc) {
       let lines = [`${id}`];
-      lines.push(`深刻度: ${severity}`);
-      if (score) lines.push(`CVSSスコア: ${score}`);
-      lines.push(`ソース: ${source}`);
-      if (published) lines.push(`公開日: ${published}`);
-      if (desc) lines.push(`\n説明:\n${desc}`);
-      lines.push(`\n詳細: https://nvd.nist.gov/vuln/detail/${id}`);
+      lines.push(`æ·±å»åº¦: ${severity}`);
+      if (score) lines.push(`CVSSã¹ã³ã¢: ${score}`);
+      lines.push(`ã½ã¼ã¹: ${source}`);
+      if (published) lines.push(`å¬éæ¥: ${published}`);
+      if (desc) lines.push(`\nèª¬æ:\n${desc}`);
+      lines.push(`\nè©³ç´°: https://nvd.nist.gov/vuln/detail/${id}`);
       return lines.join('\n');
     }
 
-    // クリップボードにコピー
+    // ã¯ãªãããã¼ãã«ã³ãã¼
     function copyToClipboard(text, btnEl) {
       navigator.clipboard.writeText(text).then(() => {
-        showToast('📓 コピーしました！Notionに貼り付けてください');
+        showToast('ð ã³ãã¼ãã¾ããï¼Notionã«è²¼ãä»ãã¦ãã ãã');
         if (btnEl) {
           const original = btnEl.innerHTML;
-          btnEl.innerHTML = '✅';
+          btnEl.innerHTML = 'â';
           btnEl.classList.add('copied');
           setTimeout(() => {
             btnEl.innerHTML = original;
@@ -1276,59 +1276,59 @@
     }
 
     // ============================================================
-    //  JVN API 検索
+    //  JVN API æ¤ç´¢
     // ============================================================
     async function searchJVN() {
       const keyword = document.getElementById('jvn-search').value.trim();
       if (!keyword) {
-        showToast('キーワードを入力してください');
+        showToast('ã­ã¼ã¯ã¼ããå¥åãã¦ãã ãã');
         return;
       }
 
       const resultsDiv = document.getElementById('jvn-results');
-      resultsDiv.innerHTML = '<div class="loading"><div class="spinner"></div>JVNを検索中...</div>';
+      resultsDiv.innerHTML = '<div class="loading"><div class="spinner"></div>JVNãæ¤ç´¢ä¸­...</div>';
 
       try {
-        // MyJVN APIを呼び出し（直接アクセス → CORSプロキシにフォールバック）
+        // MyJVN APIãå¼ã³åºãï¼ç´æ¥ã¢ã¯ã»ã¹ â CORSãã­ã­ã·ã«ãã©ã¼ã«ããã¯ï¼
         const jvnBaseUrl = `https://jvndb.jvn.jp/myjvn?method=getVulnOverviewList&feed=hnd&keyword=${encodeURIComponent(keyword)}&rangeDatePublished=m&rangeDatePublic=m`;
 
         let text;
         try {
-          // まず直接アクセスを試行
+          // ã¾ãç´æ¥ã¢ã¯ã»ã¹ãè©¦è¡
           const directResponse = await fetch(jvnBaseUrl);
           if (!directResponse.ok) throw new Error('Direct failed');
           text = await directResponse.text();
         } catch (directError) {
-          // CORS制限の場合、プロキシ経由でアクセス
-          console.log('[JVN] 直接アクセス失敗、プロキシ経由に切り替え...');
+          // CORSå¶éã®å ´åããã­ã­ã·çµç±ã§ã¢ã¯ã»ã¹
+          console.log('[JVN] ç´æ¥ã¢ã¯ã»ã¹å¤±æããã­ã­ã·çµç±ã«åãæ¿ã...');
           const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(jvnBaseUrl)}`;
           const proxyResponse = await fetch(proxyUrl);
-          if (!proxyResponse.ok) throw new Error(`プロキシエラー: ${proxyResponse.status}`);
+          if (!proxyResponse.ok) throw new Error(`ãã­ã­ã·ã¨ã©ã¼: ${proxyResponse.status}`);
           text = await proxyResponse.text();
         }
 
         const parser = new DOMParser();
         const xml = parser.parseFromString(text, 'text/xml');
 
-        // RSSアイテムを解析
+        // RSSã¢ã¤ãã ãè§£æ
         const items = xml.querySelectorAll('item');
 
         if (items.length === 0) {
           resultsDiv.innerHTML = `
             <div class="empty-state">
-              <div class="empty-icon">😕</div>
-              <p>「${escapeHtml(keyword)}」に一致するJVN情報は見つかりませんでした</p>
+              <div class="empty-icon">ð</div>
+              <p>ã${escapeHtml(keyword)}ãã«ä¸è´ããJVNæå ±ã¯è¦ã¤ããã¾ããã§ãã</p>
             </div>`;
           return;
         }
 
-        let html = `<p style="font-size:13px; color:var(--text-light); margin-bottom:12px;">${items.length}件の結果</p>`;
+        let html = `<p style="font-size:13px; color:var(--text-light); margin-bottom:12px;">${items.length}ä»¶ã®çµæ</p>`;
 
         items.forEach(item => {
-          const title = item.querySelector('title')?.textContent || '不明';
+          const title = item.querySelector('title')?.textContent || 'ä¸æ';
           const link = item.querySelector('link')?.textContent || '#';
           const desc = item.querySelector('description')?.textContent || '';
-          // sec:cvss の severity を取得
+          // sec:cvss ã® severity ãåå¾
           const cvss = item.querySelector('cvss');
           const severity = cvss?.getAttribute('severity') || '';
           const score = cvss?.getAttribute('score') || '';
@@ -1346,35 +1346,35 @@
               <div class="vuln-desc">${escapeHtml(desc)}</div>
               <div class="vuln-meta">
                 ${score ? `<span class="severity severity-${severityClass}">CVSS: ${escapeHtml(score)}</span>` : ''}
-                ${issued ? `<span>📅 ${escapeHtml(issued)}</span>` : ''}
-                <span>🔗 詳細を見る</span>
+                ${issued ? `<span>ð ${escapeHtml(issued)}</span>` : ''}
+                <span>ð è©³ç´°ãè¦ã</span>
               </div>
             </div>`;
         });
 
         resultsDiv.innerHTML = html;
       } catch (error) {
-        // 直接アクセスもプロキシも失敗した場合
+        // ç´æ¥ã¢ã¯ã»ã¹ããã­ã­ã·ãå¤±æããå ´å
         resultsDiv.innerHTML = `
           <div class="card" style="border-color:var(--medium);">
-            <div class="card-title" style="color:var(--medium);">⚠️ JVN APIに接続できませんでした</div>
+            <div class="card-title" style="color:var(--medium);">â ï¸ JVN APIã«æ¥ç¶ã§ãã¾ããã§ãã</div>
             <p style="font-size:14px; line-height:1.8;">
-              直接アクセスとプロキシ経由の両方が失敗しました。<br>
-              ネットワーク接続を確認するか、以下の方法をお試しください。<br><br>
-              <strong>代替案:</strong><br>
-              ・<a href="https://jvndb.jvn.jp/search/index.php?mode=_vulnerability_search_IA_VulnSearch&keyword=${encodeURIComponent(keyword)}" target="_blank" rel="noopener">JVNサイトで直接検索する →</a><br>
-              ・時間をおいて再試行する<br>
-              ・AIチャットで脆弱性について質問する
+              ç´æ¥ã¢ã¯ã»ã¹ã¨ãã­ã­ã·çµç±ã®ä¸¡æ¹ãå¤±æãã¾ããã<br>
+              ãããã¯ã¼ã¯æ¥ç¶ãç¢ºèªããããä»¥ä¸ã®æ¹æ³ããè©¦ããã ããã<br><br>
+              <strong>ä»£æ¿æ¡:</strong><br>
+              ã»<a href="https://jvndb.jvn.jp/search/index.php?mode=_vulnerability_search_IA_VulnSearch&keyword=${encodeURIComponent(keyword)}" target="_blank" rel="noopener">JVNãµã¤ãã§ç´æ¥æ¤ç´¢ãã â</a><br>
+              ã»æéãããã¦åè©¦è¡ãã<br>
+              ã»AIãã£ããã§èå¼±æ§ã«ã¤ãã¦è³ªåãã
             </p>
             <p style="font-size:12px; color:var(--text-light); margin-top:12px;">
-              エラー詳細: ${escapeHtml(error.message)}
+              ã¨ã©ã¼è©³ç´°: ${escapeHtml(error.message)}
             </p>
           </div>`;
       }
     }
 
     // ============================================================
-    //  Gemini AI チャット
+    //  Gemini AI ãã£ãã
     // ============================================================
     async function sendChat() {
       const input = document.getElementById('chat-input');
@@ -1382,30 +1382,30 @@
       if (!message) return;
 
       if (!geminiApiKey) {
-        showToast('設定画面でGemini APIキーを入力してください');
+        showToast('è¨­å®ç»é¢ã§Gemini APIã­ã¼ãå¥åãã¦ãã ãã');
         switchPage('settings', document.querySelectorAll('.nav-item')[4]);
         return;
       }
 
-      // ユーザーメッセージを表示
+      // ã¦ã¼ã¶ã¼ã¡ãã»ã¼ã¸ãè¡¨ç¤º
       addChatBubble(message, 'user');
       input.value = '';
 
-      // クイックプロンプトを非表示
+      // ã¯ã¤ãã¯ãã­ã³ãããéè¡¨ç¤º
       document.getElementById('quick-prompts').style.display = 'none';
 
-      // 送信ボタンを無効化
+      // éä¿¡ãã¿ã³ãç¡å¹å
       const sendBtn = document.getElementById('chat-send-btn');
       sendBtn.disabled = true;
 
-      // ローディング表示
-      const loadingId = addChatBubble('考え中...', 'ai', true);
+      // ã­ã¼ãã£ã³ã°è¡¨ç¤º
+      const loadingId = addChatBubble('èãä¸­...', 'ai', true);
 
       try {
-        // チャット履歴にユーザーメッセージを追加
+        // ãã£ããå±¥æ­´ã«ã¦ã¼ã¶ã¼ã¡ãã»ã¼ã¸ãè¿½å 
         chatHistory.push({ role: 'user', parts: [{ text: message }] });
 
-        // Gemini APIを呼び出し
+        // Gemini APIãå¼ã³åºã
         const response = await fetch(
           `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${geminiApiKey}`,
           {
@@ -1414,10 +1414,10 @@
             body: JSON.stringify({
               system_instruction: {
                 parts: [{
-                  text: `あなたはサイバーセキュリティの専門家アシスタントです。日本語で回答してください。
-脆弱性情報（CVE）の説明、影響範囲の分析、対策方法のアドバイスを分かりやすく提供してください。
-技術的な内容もプログラミング初心者にも分かるように説明してください。
-回答は簡潔に、箇条書きを活用してください。`
+                  text: `ããªãã¯ãµã¤ãã¼ã»ã­ã¥ãªãã£ã®å°éå®¶ã¢ã·ã¹ã¿ã³ãã§ããæ¥æ¬èªã§åç­ãã¦ãã ããã
+èå¼±æ§æå ±ï¼CVEï¼ã®èª¬æãå½±é¿ç¯å²ã®åæãå¯¾ç­æ¹æ³ã®ã¢ããã¤ã¹ãåãããããæä¾ãã¦ãã ããã
+æè¡çãªåå®¹ããã­ã°ã©ãã³ã°åå¿èã«ãåããããã«èª¬æãã¦ãã ããã
+åç­ã¯ç°¡æ½ã«ãç®æ¡æ¸ããæ´»ç¨ãã¦ãã ããã`
                 }]
               },
               contents: chatHistory,
@@ -1431,29 +1431,29 @@
 
         if (!response.ok) {
           const err = await response.json();
-          throw new Error(err.error?.message || `APIエラー: ${response.status}`);
+          throw new Error(err.error?.message || `APIã¨ã©ã¼: ${response.status}`);
         }
 
         const data = await response.json();
-        const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || '回答を取得できませんでした。';
+        const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || 'åç­ãåå¾ã§ãã¾ããã§ããã';
 
-        // チャット履歴にAI応答を追加
+        // ãã£ããå±¥æ­´ã«AIå¿ç­ãè¿½å 
         chatHistory.push({ role: 'model', parts: [{ text: reply }] });
 
-        // ローディングを削除してAI応答を表示
+        // ã­ã¼ãã£ã³ã°ãåé¤ãã¦AIå¿ç­ãè¡¨ç¤º
         removeChatBubble(loadingId);
         addChatBubble(reply, 'ai');
 
       } catch (error) {
         removeChatBubble(loadingId);
-        addChatBubble(`エラー: ${error.message}`, 'system');
+        addChatBubble(`ã¨ã©ã¼: ${error.message}`, 'system');
       } finally {
         sendBtn.disabled = false;
         input.focus();
       }
     }
 
-    // チャットバブルを追加
+    // ãã£ããããã«ãè¿½å 
     function addChatBubble(text, type, isLoading = false) {
       const messagesDiv = document.getElementById('chat-messages');
       const bubble = document.createElement('div');
@@ -1462,9 +1462,9 @@
       bubble.className = `chat-bubble ${type}`;
 
       if (isLoading) {
-        bubble.innerHTML = '<div class="spinner" style="width:18px;height:18px;border-width:2px;display:inline-block;vertical-align:middle;margin-right:8px;"></div>考え中...';
+        bubble.innerHTML = '<div class="spinner" style="width:18px;height:18px;border-width:2px;display:inline-block;vertical-align:middle;margin-right:8px;"></div>èãä¸­...';
       } else {
-        // 簡易的なMarkdownレンダリング
+        // ç°¡æçãªMarkdownã¬ã³ããªã³ã°
         bubble.innerHTML = renderMarkdown(text);
       }
 
@@ -1473,13 +1473,13 @@
       return id;
     }
 
-    // チャットバブルを削除
+    // ãã£ããããã«ãåé¤
     function removeChatBubble(id) {
       const el = document.getElementById(id);
       if (el) el.remove();
     }
 
-    // 簡易Markdownレンダリング
+    // ç°¡æMarkdownã¬ã³ããªã³ã°
     function renderMarkdown(text) {
       return escapeHtml(text)
         .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
@@ -1489,22 +1489,22 @@
         .replace(/\n/g, '<br>');
     }
 
-    // クイックプロンプト送信
+    // ã¯ã¤ãã¯ãã­ã³ããéä¿¡
     function sendQuickPrompt(text) {
       document.getElementById('chat-input').value = text;
       sendChat();
     }
 
-    // CVEについてAIに質問
+    // CVEã«ã¤ãã¦AIã«è³ªå
     function askAiAboutCve(id, desc) {
       closeModal();
       switchPage('chat', document.querySelectorAll('.nav-item')[3]);
-      document.getElementById('chat-input').value = `${id} について分かりやすく説明してください。影響と対策も教えてください。\n\n概要: ${desc}`;
+      document.getElementById('chat-input').value = `${id} ã«ã¤ãã¦åãããããèª¬æãã¦ãã ãããå½±é¿ã¨å¯¾ç­ãæãã¦ãã ããã\n\næ¦è¦: ${desc}`;
       setTimeout(() => sendChat(), 300);
     }
 
     // ============================================================
-    //  ダッシュボード
+    //  ããã·ã¥ãã¼ã
     // ============================================================
     function updateDashboardStats() {
       let critical = 0, high = 0, medium = 0, low = 0;
@@ -1521,53 +1521,56 @@
       document.getElementById('stat-low').textContent = low;
     }
 
-    // ダッシュボードに最新脆弱性を読み込み（起動時に自動実行）
+    // ããã·ã¥ãã¼ãã«ææ°èå¼±æ§ãèª­ã¿è¾¼ã¿ï¼èµ·åæã«èªåå®è¡ï¼
     async function loadDashboard() {
       const recentDiv = document.getElementById('dashboard-recent');
       const updateText = document.getElementById('last-update-text');
       const refreshBtn = document.getElementById('refresh-btn');
 
-      recentDiv.innerHTML = '<div class="loading"><div class="spinner"></div>最新の脆弱性情報を取得中...</div>';
+      recentDiv.innerHTML = '<div class="loading"><div class="spinner"></div>ææ°ã®èå¼±æ§æå ±ãåå¾ä¸­...</div>';
       if (refreshBtn) refreshBtn.disabled = true;
 
       try {
-        // 最新20件を取得して統計も更新
-        const url = 'https://services.nvd.nist.gov/rest/json/cves/2.0?resultsPerPage=20';
+        // ææ°20ä»¶ãåå¾ãã¦çµ±è¨ãæ´æ°
+        const now = new Date();
+        const weekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+        const fmt = d => d.toISOString().replace(/\.\d{3}Z$/, '.000');
+        const url = `https://services.nvd.nist.gov/rest/json/cves/2.0?pubStartDate=${fmt(weekAgo)}&pubEndDate=${fmt(now)}&resultsPerPage=20`;
         const response = await fetch(url);
         if (!response.ok) throw new Error('API error');
         const data = await response.json();
         const vulns = data.vulnerabilities || [];
 
         if (vulns.length === 0) {
-          recentDiv.innerHTML = '<p style="color:var(--text-light);font-size:14px;">データを取得できませんでした</p>';
-          if (updateText) updateText.textContent = '❌ データなし';
+          recentDiv.innerHTML = '<p style="color:var(--text-light);font-size:14px;">ãã¼ã¿ãåå¾ã§ãã¾ããã§ãã</p>';
+          if (updateText) updateText.textContent = 'â ãã¼ã¿ãªã';
           return;
         }
 
-        // ダッシュボード用キャッシュに保存して統計更新
+        // ããã·ã¥ãã¼ãç¨ã­ã£ãã·ã¥ã«ä¿å­ãã¦çµ±è¨æ´æ°
         nvdCache = vulns;
         updateDashboardStats();
 
-        // 上位10件を表示
+        // ä¸ä½10ä»¶ãè¡¨ç¤º
         recentDiv.innerHTML = vulns.slice(0, 10).map(v => renderNvdItem(v.cve)).join('');
 
-        // 最終更新時刻を表示
+        // æçµæ´æ°æå»ãè¡¨ç¤º
         const now = new Date();
         const timeStr = `${now.getHours()}:${String(now.getMinutes()).padStart(2, '0')}`;
         if (updateText) {
-          updateText.innerHTML = `✅ 最終更新: ${timeStr}　<span style="font-size:12px; color:var(--text-light);">（${vulns.length}件取得）</span>`;
+          updateText.innerHTML = `â æçµæ´æ°: ${timeStr}ã<span style="font-size:12px; color:var(--text-light);">ï¼${vulns.length}ä»¶åå¾ï¼</span>`;
         }
 
-        // localStorageにキャッシュ保存（オフライン用）
+        // localStorageã«ã­ã£ãã·ã¥ä¿å­ï¼ãªãã©ã¤ã³ç¨ï¼
         try {
           localStorage.setItem('vw_dashboard_cache', JSON.stringify({
-            timestamp: now.toISOString(),
+            timestamp: now2.toISOString(),
             vulnerabilities: vulns
           }));
         } catch(e) {}
 
       } catch (e) {
-        // オフライン時はキャッシュから読み込み
+        // ãªãã©ã¤ã³æã¯ã­ã£ãã·ã¥ããèª­ã¿è¾¼ã¿
         try {
           const cached = JSON.parse(localStorage.getItem('vw_dashboard_cache'));
           if (cached && cached.vulnerabilities) {
@@ -1576,32 +1579,32 @@
             recentDiv.innerHTML = nvdCache.slice(0, 10).map(v => renderNvdItem(v.cve)).join('');
             const cachedTime = new Date(cached.timestamp);
             if (updateText) {
-              updateText.innerHTML = `📦 キャッシュ表示（${cachedTime.toLocaleDateString('ja-JP')} ${cachedTime.getHours()}:${String(cachedTime.getMinutes()).padStart(2, '0')}時点）`;
+              updateText.innerHTML = `ð¦ ã­ã£ãã·ã¥è¡¨ç¤ºï¼${cachedTime.toLocaleDateString('ja-JP')} ${cachedTime.getHours()}:${String(cachedTime.getMinutes()).padStart(2, '0')}æç¹ï¼`;
             }
-            showToast('⚠️ オフラインのためキャッシュを表示中');
+            showToast('â ï¸ ãªãã©ã¤ã³ã®ããã­ã£ãã·ã¥ãè¡¨ç¤ºä¸­');
             return;
           }
         } catch(ex) {}
 
         recentDiv.innerHTML = `
           <p style="color:var(--text-light);font-size:14px;">
-            最新情報の取得に失敗しました。<br>
-            <small>NVD APIのレート制限の可能性があります。「🔄 今すぐ更新」ボタンで再試行してください。</small>
+            ææ°æå ±ã®åå¾ã«å¤±æãã¾ããã<br>
+            <small>NVD APIã®ã¬ã¼ãå¶éã®å¯è½æ§ãããã¾ãããð ä»ããæ´æ°ããã¿ã³ã§åè©¦è¡ãã¦ãã ããã</small>
           </p>`;
-        if (updateText) updateText.textContent = '❌ 取得失敗（オフライン？）';
+        if (updateText) updateText.textContent = 'â åå¾å¤±æï¼ãªãã©ã¤ã³ï¼ï¼';
       } finally {
         if (refreshBtn) refreshBtn.disabled = false;
       }
     }
 
-    // 手動更新ボタン
+    // æåæ´æ°ãã¿ã³
     async function refreshDashboard() {
-      showToast('🔄 最新情報を取得中...');
+      showToast('ð ææ°æå ±ãåå¾ä¸­...');
       await loadDashboard();
     }
 
     // ============================================================
-    //  ユーティリティ
+    //  ã¦ã¼ãã£ãªãã£
     // ============================================================
     function escapeHtml(text) {
       if (!text) return '';
@@ -1610,7 +1613,7 @@
       return div.innerHTML;
     }
 
-    // Enterキーで検索
+    // Enterã­ã¼ã§æ¤ç´¢
     document.getElementById('nvd-search').addEventListener('keydown', e => {
       if (e.key === 'Enter') searchNVD();
     });
@@ -1619,31 +1622,31 @@
     });
 
     // ============================================================
-    //  PWA: Service Worker 登録
+    //  PWA: Service Worker ç»é²
     // ============================================================
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('./sw.js')
           .then(reg => {
-            console.log('[PWA] Service Worker 登録成功:', reg.scope);
-            // 更新チェック
+            console.log('[PWA] Service Worker ç»é²æå:', reg.scope);
+            // æ´æ°ãã§ãã¯
             reg.addEventListener('updatefound', () => {
               const newWorker = reg.installing;
               newWorker.addEventListener('statechange', () => {
                 if (newWorker.state === 'activated') {
-                  showToast('🔄 アプリが更新されました');
+                  showToast('ð ã¢ããªãæ´æ°ããã¾ãã');
                 }
               });
             });
           })
           .catch(err => {
-            console.log('[PWA] Service Worker 登録失敗（ローカルファイルでは正常）:', err.message);
+            console.log('[PWA] Service Worker ç»é²å¤±æï¼ã­ã¼ã«ã«ãã¡ã¤ã«ã§ã¯æ­£å¸¸ï¼:', err.message);
           });
       });
     }
 
     // ============================================================
-    //  iOS PWA インストールバナー
+    //  iOS PWA ã¤ã³ã¹ãã¼ã«ããã¼
     // ============================================================
     function isIos() {
       return /iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase());
@@ -1659,37 +1662,37 @@
         banner.innerHTML = `
           <div style="display:flex;justify-content:space-between;align-items:flex-start;">
             <div>
-              <strong>📲 ホーム画面に追加</strong><br>
+              <strong>ð² ãã¼ã ç»é¢ã«è¿½å </strong><br>
               <span style="font-size:13px;color:var(--text-light);">
-                Safari下部の <span style="font-size:18px;">⬆</span> → 「ホーム画面に追加」でアプリとして使えます
+                Safariä¸é¨ã® <span style="font-size:18px;">â¬</span> â ããã¼ã ç»é¢ã«è¿½å ãã§ã¢ããªã¨ãã¦ä½¿ãã¾ã
               </span>
             </div>
-            <button onclick="document.getElementById('ios-banner').remove()" style="background:none;border:none;font-size:20px;cursor:pointer;color:var(--text-light);padding:0 0 0 12px;">✕</button>
+            <button onclick="document.getElementById('ios-banner').remove()" style="background:none;border:none;font-size:20px;cursor:pointer;color:var(--text-light);padding:0 0 0 12px;">â</button>
           </div>`;
         document.body.appendChild(banner);
-        // 10秒後に自動で消える
+        // 10ç§å¾ã«èªåã§æ¶ãã
         setTimeout(() => { const b = document.getElementById('ios-banner'); if(b) b.remove(); }, 10000);
       }
     }
 
     // ============================================================
-    //  アプリ手動更新
+    //  ã¢ããªæåæ´æ°
     // ============================================================
     async function updateApp() {
       const btn = document.getElementById('update-btn');
       const status = document.getElementById('update-status');
       btn.disabled = true;
-      status.textContent = '⏳ 更新中...';
+      status.textContent = 'â³ æ´æ°ä¸­...';
       status.style.color = 'var(--medium)';
 
       try {
-        // 1. Service Workerのキャッシュをすべて削除
+        // 1. Service Workerã®ã­ã£ãã·ã¥ããã¹ã¦åé¤
         if ('caches' in window) {
           const cacheNames = await caches.keys();
           await Promise.all(cacheNames.map(name => caches.delete(name)));
         }
 
-        // 2. Service Workerを更新
+        // 2. Service Workerãæ´æ°
         if ('serviceWorker' in navigator) {
           const reg = await navigator.serviceWorker.getRegistration();
           if (reg) {
@@ -1697,16 +1700,16 @@
           }
         }
 
-        status.textContent = '✅ 更新完了！再読み込みします...';
+        status.textContent = 'â æ´æ°å®äºï¼åèª­ã¿è¾¼ã¿ãã¾ã...';
         status.style.color = 'var(--low)';
-        showToast('🔄 アプリを更新しました');
+        showToast('ð ã¢ããªãæ´æ°ãã¾ãã');
 
-        // 3. ページを再読み込み
+        // 3. ãã¼ã¸ãåèª­ã¿è¾¼ã¿
         setTimeout(() => {
           window.location.reload(true);
         }, 1500);
       } catch (error) {
-        status.textContent = '❌ 更新に失敗しました';
+        status.textContent = 'â æ´æ°ã«å¤±æãã¾ãã';
         status.style.color = 'var(--critical)';
         btn.disabled = false;
         console.error('[Update]', error);
@@ -1714,11 +1717,11 @@
     }
 
     // ============================================================
-    //  初期化
+    //  åæå
     // ============================================================
-    loadSavedKey();         // 保存済みAPIキーの復元
-    loadDashboard();        // ダッシュボードデータ読み込み
-    showIosInstallBanner(); // iOSインストール案内
+    loadSavedKey();         // ä¿å­æ¸ã¿APIã­ã¼ã®å¾©å
+    loadDashboard();        // ããã·ã¥ãã¼ããã¼ã¿èª­ã¿è¾¼ã¿
+    showIosInstallBanner(); // iOSã¤ã³ã¹ãã¼ã«æ¡å
   </script>
 </body>
 </html>
